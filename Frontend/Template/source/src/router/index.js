@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+// Homepage Components
+import homepage from '../views/homepage'
+
 // Dashboard Components
 import dashboard from '../views/dashboard'
 
@@ -38,6 +41,11 @@ export default new Router({
   linkActiveClass: 'active',
   routes: [{
     path: '/',
+    name: 'homepage',
+    component: homepage
+  },
+  {
+    path: '/dashboard',
     name: 'dashboard',
     component: dashboard
   },

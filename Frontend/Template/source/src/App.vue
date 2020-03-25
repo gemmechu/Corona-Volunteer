@@ -3,8 +3,8 @@
     <div class="container-scroller">
       <app-header/>
       <div class="container-fluid page-body-wrapper">
-        <app-sidebar/>
-        <div class="main-panel">
+        <!-- <app-sidebar/> -->
+        <div class="w-100">
           <div class="content-wrapper">
             <router-view></router-view>
           </div>
