@@ -109,7 +109,17 @@
         {
           icon: 'mdi-view-dashboard',
           title: 'Home',
-          to: '/',
+          to: '/admin',
+        },
+        {
+          icon: 'mdi-view-dashboard',
+          title: 'Host Management',
+          to: '/hostManagement',
+        },
+        {
+          icon: 'mdi-view-dashboard',
+          title: 'Opportunity Management',
+          to: '/opportunityManagement',
         },
       ],
     }),

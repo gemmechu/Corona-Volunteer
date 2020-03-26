@@ -42,6 +42,29 @@ export default new Router({
     {
       path: '/admin',
       component: () => import('@/views/components_admin/AdminIndex'),
+      children: [
+        // Dashboard
+        {
+          name: 'Home',
+          path: '',
+          component: () => import('@/views/components_admin/AdminHome'),
+        },
+        {
+          name: 'Host Management',
+          path: '/hostManagement',
+          component: () => import('@/views/components_admin/AdminHostManagement'),
+        },
+        {
+          name: 'Opportunity Management',
+          path: '/opportunityManagement',
+          component: () => import('@/views/components_admin/AdminOpportunityManagement'),
+        },
+        {
+          name: 'Host Editor',
+          path: '/hostedit/:hostid',
+          component: () => import('@/views/components_admin/AdminHostEditor'),
+        },
+      ],
     },
   ],
 })
