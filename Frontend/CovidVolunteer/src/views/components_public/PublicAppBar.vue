@@ -35,7 +35,7 @@
       class="ml-2"
       min-width="0"
       text
-      to="/login"
+      to="/authenticate"
     >
       Login/Signup
     </v-btn>
