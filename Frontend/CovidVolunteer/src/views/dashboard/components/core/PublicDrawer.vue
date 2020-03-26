@@ -79,8 +79,8 @@
     <template v-slot:append>
       <base-item
         :item="{
-          title: $t('upgrade'),
-          icon: 'mdi-package-up',
+          title: 'BlueLabs Ethiopia',
+          icon: 'mdi-copyright',
           to: '/upgrade',
         }"
       />

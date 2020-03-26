@@ -20,9 +20,17 @@ import './plugins/chartist'
 import './plugins/vee-validate'
 import vuetify from './plugins/vuetify'
 import i18n from './i18n'
-
+import DaySpanVuetify from 'dayspan-vuetify'
+// import 'vuetify/dist/vuetify.min.css'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import 'dayspan-vuetify/dist/lib/dayspan-vuetify.min.css'
 Vue.config.productionTip = false
 
+Vue.use(DaySpanVuetify, {
+  methods: {
+    getDefaultEventColor: () => '#1976d2',
+  },
+})
 new Vue({
   router,
   store,

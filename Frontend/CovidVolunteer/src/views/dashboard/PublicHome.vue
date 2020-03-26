@@ -9,7 +9,9 @@
         cols="12"
         lg="12"
       >
-        <base-material-card>
+        <base-material-card
+          color="info"
+        >
           <template v-slot:reveal-actions>
             <v-tooltip bottom>
               <template v-slot:activator="{ attrs, on }">
@@ -131,7 +133,7 @@
         md="4"
       >
         <base-material-card
-          color="warning"
+          color="info"
           class="px-5 py-3"
         >
           <template v-slot:heading>
@@ -153,7 +155,7 @@
         md="4"
       >
         <base-material-card
-          color="warning"
+          color="info"
           class="px-5 py-3"
         >
           <template v-slot:heading>
@@ -175,7 +177,7 @@
         md="4"
       >
         <base-material-card
-          color="warning"
+          color="info"
           class="px-5 py-3"
         >
           <template v-slot:heading>

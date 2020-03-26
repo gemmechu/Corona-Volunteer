@@ -9,7 +9,7 @@
         cols="12"
         md="8"
       >
-        <base-material-card>
+        <base-material-card color="info">
           <template v-slot:heading>
             <div class="display-2 font-weight-light">
               Edit Profile
@@ -124,7 +124,7 @@
                   class="text-right"
                 >
                   <v-btn
-                    color="success"
+                    color="info"
                     class="mr-0"
                   >
                     Update Profile
@@ -156,14 +156,6 @@
             <p class="font-weight-light grey--text">
               Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
             </p>
-
-            <v-btn
-              color="success"
-              rounded
-              class="mr-0"
-            >
-              Follow
-            </v-btn>
           </v-card-text>
         </base-material-card>
       </v-col>

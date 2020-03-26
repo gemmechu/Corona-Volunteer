@@ -29,11 +29,11 @@
           md="auto"
         >
           <div class="body-1 font-weight-light pt-6 pt-md-0 text-center">
-            &copy; 2019, made with
+            &copy; 2020, made with
             <v-icon size="18">
               mdi-heart
             </v-icon>
-            by <a href="https://www.creative-tim.com">Creative Tim</a> for a better web.
+            by <a href="https://www.bluelabs.com">Blue Labs</a> for a better tomorrow.
           </div>
         </v-col>
       </v-row>
@@ -49,19 +49,15 @@
       links: [
         {
           href: '#',
-          text: 'Creative Tim',
+          text: 'Blue Volunteer',
         },
         {
           href: '#',
-          text: 'About Us',
+          text: 'Volunteer',
         },
         {
           href: '#',
-          text: 'Blog',
-        },
-        {
-          href: '#',
-          text: 'Licenses',
+          text: 'Host',
         },
       ],
     }),

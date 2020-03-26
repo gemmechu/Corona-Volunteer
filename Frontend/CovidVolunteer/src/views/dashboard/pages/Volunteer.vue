@@ -9,9 +9,11 @@
         cols="12"
         lg="12"
       >
-        <base-material-card>
+        <base-material-card
+          color="info"
+        >
           <template v-slot:heading>
-            <div class="display-2 font-weight-light">
+            <div class="display-2 font-weight-bold">
               Search for opportunities
             </div>
           </template>
@@ -75,7 +77,10 @@
         cols="12"
         lg="12"
       >
-        <base-material-card class="px-5 py-3">
+        <base-material-card
+          color="info"
+          class="px-5 py-3"
+        >
           <template v-slot:heading>
             <v-tabs
               v-model="tabs"
@@ -83,9 +88,9 @@
               slider-color="white"
             >
               <span
-                class="subheading font-weight-light mx-3"
+                class="subheading font-weight-bold mx-3"
                 style="align-self: center"
-              >Tasks:</span>
+              >Filters:</span>
               <v-tab class="mr-3">
                 <v-icon class="mr-2">
                   mdi-bug
@@ -156,164 +161,240 @@
               </v-card-text>
             </v-tab-item>
           </v-tabs-items>
+          <v-col
+            cols="12"
+            class="text-right"
+          >
+            <v-btn
+              color="info"
+              class="mr-0"
+            >
+              Apply Filters
+            </v-btn>
+          </v-col>
         </base-material-card>
+      </v-col>
+      <v-col
+        cols="12"
+        lg="12"
+      >
+        <div
+          v-cloak
+          id="dayspan"
+          class="display-2 font-weight-bold"
+        >
+          <ds-calendar-app :calendar="calendar"></ds-calendar-app>
+        </div>
       </v-col>
     </v-row>
   </v-container>
 </template>
-
 <script>
+  import { Calendar } from 'dayspan'
   export default {
-    data () {
-      return {
-        search: '',
-        headers: [
-          {
-            text: 'Dessert (100g serving)',
-            align: 'left',
-            sortable: false,
-            value: 'name',
-          },
-          { text: 'Calories', value: 'calories' },
-          { text: 'Fat (g)', value: 'fat' },
-          { text: 'Carbs (g)', value: 'carbs' },
-          { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
-        ],
-        desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: '1%',
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: '1%',
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: '7%',
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: '8%',
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: '16%',
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: '0%',
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: '2%',
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: '45%',
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: '22%',
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: '6%',
-          },
-        ],
-        tabs: 0,
-        tasks: {
-          0: [
-            {
-              text: 'Sign contract for "What are conference organizers afraid of?"',
-              value: true,
-            },
-            {
-              text: 'Lines From Great Russian Literature? Or E-mails From My Boss?',
-              value: false,
-            },
-            {
-              text: 'Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit',
-              value: false,
-            },
-            {
-              text: 'Create 4 Invisible User Experiences you Never Knew About',
-              value: true,
-            },
-          ],
-          1: [
-            {
-              text: 'Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit',
-              value: true,
-            },
-            {
-              text: 'Sign contract for "What are conference organizers afraid of?"',
-              value: false,
-            },
-          ],
-          2: [
-            {
-              text: 'Lines From Great Russian Literature? Or E-mails From My Boss?',
-              value: false,
-            },
-            {
-              text: 'Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit',
-              value: true,
-            },
-            {
-              text: 'Sign contract for "What are conference organizers afraid of?"',
-              value: true,
-            },
-          ],
+    data: () => ({
+      calendar: Calendar.months(),
+      search: '',
+      headers: [
+        {
+          text: 'Opportunity',
+          align: 'left',
+          sortable: false,
+          value: 'Opportunity',
         },
-        list: {
-          0: false,
-          1: false,
-          2: false,
+        { text: 'Organization', value: 'Organization' },
+        { text: 'Where', value: 'Where' },
+        { text: 'Time', value: 'Time' },
+        { text: 'Distance', value: 'Distance' },
+        { text: 'Status', value: 'Status' },
+      ],
+      desserts: [
+        {
+          Opportunity: 'Drivers to deliver meals to seniors in Virginia Beach',
+          Organization: 'Meals on Wheels of Virginia Beach',
+          Where: 'Virginia Beach',
+          Time: 'Open',
+          Distance: 7000,
+          Status: 'Available',
         },
-
-      }
+        {
+          Opportunity: 'Drivers to deliver meals to seniors in Virginia Beach',
+          Organization: 'Meals on Wheels of Virginia Beach',
+          Where: 'Virginia Beach',
+          Time: 'Open',
+          Distance: 7000,
+          Status: 'Available',
+        },
+        {
+          Opportunity: 'Drivers to deliver meals to seniors in Virginia Beach',
+          Organization: 'Meals on Wheels of Virginia Beach',
+          Where: 'Virginia Beach',
+          Time: 'Open',
+          Distance: 7000,
+          Status: 'Denied',
+        },
+        {
+          Opportunity: 'Drivers to deliver meals to seniors in Virginia Beach',
+          Organization: 'Meals on Wheels of Virginia Beach',
+          Where: 'Virginia Beach',
+          Time: 'Open',
+          Distance: 7000,
+          Status: 'Denied',
+        },
+        {
+          Opportunity: 'Drivers to deliver meals to seniors in Virginia Beach',
+          Organization: 'Meals on Wheels of Virginia Beach',
+          Where: 'Virginia Beach',
+          Time: 'Open',
+          Distance: 7000,
+          Status: 'Denied',
+        },
+        {
+          Opportunity: 'Drivers to deliver meals to seniors in Virginia Beach',
+          Organization: 'Meals on Wheels of Virginia Beach',
+          Where: 'Virginia Beach',
+          Time: 'Open',
+          Distance: 7000,
+          Status: 'Pending',
+        },
+        {
+          Opportunity: 'Drivers to deliver meals to seniors in Virginia Beach',
+          Organization: 'Meals on Wheels of Virginia Beach',
+          Where: 'Virginia Beach',
+          Time: 'Open',
+          Distance: 7000,
+          Status: 'Pending',
+        },
+        {
+          Opportunity: 'Drivers to deliver meals to seniors in Virginia Beach',
+          Organization: 'Meals on Wheels of Virginia Beach',
+          Where: 'Virginia Beach',
+          Time: 'Open',
+          Distance: 7000,
+          Status: 'Pending',
+        },
+      ],
+      tabs: 0,
+      tasks: {
+        0: [
+          {
+            text: 'Sign contract for "What are conference organizers afraid of?"',
+            value: true,
+          },
+          {
+            text: 'Lines From Great Russian Literature? Or E-mails From My Boss?',
+            value: false,
+          },
+          {
+            text: 'Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit',
+            value: false,
+          },
+          {
+            text: 'Create 4 Invisible User Experiences you Never Knew About',
+            value: true,
+          },
+        ],
+        1: [
+          {
+            text: 'Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit',
+            value: true,
+          },
+          {
+            text: 'Sign contract for "What are conference organizers afraid of?"',
+            value: false,
+          },
+        ],
+        2: [
+          {
+            text: 'Lines From Great Russian Literature? Or E-mails From My Boss?',
+            value: false,
+          },
+          {
+            text: 'Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit',
+            value: true,
+          },
+          {
+            text: 'Sign contract for "What are conference organizers afraid of?"',
+            value: true,
+          },
+        ],
+      },
+      list: {
+        0: false,
+        1: false,
+        2: false,
+      },
+      today: '2019-01-08',
+      events: [
+        {
+          title: 'Vacation',
+          details: 'Going to the beach!',
+          date: '2018-12-30',
+          open: false,
+        },
+        {
+          title: 'Vacation',
+          details: 'Going to the beach!',
+          date: '2018-12-31',
+          open: false,
+        },
+        {
+          title: 'Vacation',
+          details: 'Going to the beach!',
+          date: '2019-01-01',
+          open: false,
+        },
+        {
+          title: 'Meeting',
+          details: 'Spending time on how we do not have enough time',
+          date: '2019-01-07',
+          open: false,
+        },
+        {
+          title: '30th Birthday',
+          details: 'Celebrate responsibly',
+          date: '2019-01-03',
+          open: false,
+        },
+        {
+          title: 'New Year',
+          details: 'Eat chocolate until you pass out',
+          date: '2019-01-01',
+          open: false,
+        },
+        {
+          title: 'Conference',
+          details: 'Mute myself the whole time and wonder why I am on this call',
+          date: '2019-01-21',
+          open: false,
+        },
+        {
+          title: 'Hackathon',
+          details: 'Code like there is no tommorrow',
+          date: '2019-02-01',
+          open: false,
+        },
+      ],
+    }),
+    computed: {
+      // convert the list of events into a map of lists keyed by date
+      eventsMap () {
+        const map = {}
+        this.events.forEach(e => (map[e.date] = map[e.date] || []).push(e))
+        return map
+      },
+    },
+    methods: {
+      open (event) {
+        alert(event.title)
+      },
     },
   }
 </script>
+<style>
+body, html, #app, #dayspan {
+  font-family: Roboto, sans-serif;
+  width: 100%;
+  height: 100%;
+}
+</style>

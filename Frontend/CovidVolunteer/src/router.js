@@ -22,6 +22,16 @@ export default new Router({
           path: '/volunteer',
           component: () => import('@/views/dashboard/pages/Volunteer'),
         },
+        {
+          name: 'Host',
+          path: '/host',
+          component: () => import('@/views/dashboard/pages/Host'),
+        },
+        {
+          name: 'User',
+          path: '/profile',
+          component: () => import('@/views/dashboard/pages/UserProfile'),
+        },
       ],
 
     },
