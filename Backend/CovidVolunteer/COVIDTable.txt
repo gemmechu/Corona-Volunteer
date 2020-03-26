@@ -1,0 +1,103 @@
+create table media (
+			id text primary key not null,
+			url text not null,
+			type varchar(30) not null,
+			forwhat varchar(30) not null,
+			caption varchar(255) );
+create table user_profile (
+            id text primary key not null,
+            f_name varchar(40) not null,
+            l_name varchar(40) not null,
+            nationality varchar(50) not null,
+            occuption varchar(50) not null,
+            birth_date date not null,
+            gender varchar(10) not null,
+            level_study varchar(50) not null,
+            pp_media_id text ,
+            cv_media_id text ,
+            email varchar(100) ,
+            phone_number varchar(100) not null,
+            role varchar(50) not null,
+            CONSTRAINT fk_pp_media_id FOREIGN KEY (pp_media_id) REFERENCES media (id),
+            CONSTRAINT fk_cv_media_id FOREIGN KEY (cv_media_id) REFERENCES media (id));
+
+create Table company (
+			id text primary key not null,
+			name varchar(200) not null,
+			logo_media_id text not null,
+		    email varchar(200),
+		    phone_number varchar(200) not null,
+		    website varchar(255),
+		    facebook varchar(200),
+		    instagram varchar(200),
+		    CONSTRAINT fk_logo_media_id FOREIGN KEY (logo_media_id) REFERENCES media (id));
+
+create Table work (
+			id text primary key not null,
+			name varchar(255),
+			starting_date date,
+			ending_date date,
+			place varchar(255), 
+			decription text );
+
+create Table work_company(
+			id text primary key not null,
+			work_id text not null,
+			company_id text not null,
+			number_of_volunteer_needed integer not null,
+			CONSTRAINT fk_work_id FOREIGN KEY (work_id) REFERENCES work(id),
+			CONSTRAINT fk_company_id FOREIGN KEY (company_id) REFERENCES company(id));
+
+create Table position_work(
+					id text primary key not null,
+					work_id text not null,
+					company_id text not null,
+					position varchar(100) not null,
+					payment float ,
+					number_of_volunteer_needed integer,
+					extra_incentives text,
+					working_hour_start timestamptz,
+					working_hour_ends timestamptz,
+                    for_how_many_days integer,
+                    work_type varchar(30),
+                    place text,
+					start_date date,
+					end_date date,
+					working_hour_description_detail text,
+					CONSTRAINT fk_company_id FOREIGN KEY (company_id) REFERENCES company(id),
+					CONSTRAINT fk_work_id FOREIGN KEY (work_id) REFERENCES work(id));
+
+create Table position_work_requirment(
+                    id text primary key not null,
+					position_work_id text not null,
+					requirment text not null,
+                    degree_proficency integer,
+                    CONSTRAINT fk_position_work_id FOREIGN KEY (position_work_id) REFERENCES position_work(id)
+)
+create Table applicant(
+					id text primary key not null,
+					user_id text not null,
+					position_work_id text not null,
+					brief_description text ,
+					description_of_experience text,
+					CONSTRAINT fk_position_work_id FOREIGN KEY (position_work_id) REFERENCES position_work(id),
+					CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user_profile(id));
+create Table applicant_position_work_requirment(
+                    id text primary key not null,
+					applicant_id text not null,
+					position_work_requirment_id text not null,
+                    degree_proficency integer,
+                    CONSTRAINT fk_applicant_id FOREIGN KEY (applicant_id) REFERENCES applicant(id),
+					CONSTRAINT fk_position_work_requirment_id FOREIGN KEY (position_work_requirment_id) REFERENCES position_work_requirment(id)
+)
+create Table approved_applicant(
+                    id text primary key not null,
+					applicant_id text not null,
+					position_work_id text not null,
+                    CONSTRAINT fk_position_work_id FOREIGN KEY (position_work_id) REFERENCES position_work(id),
+					CONSTRAINT fk_applicant_id FOREIGN KEY (applicant_id) REFERENCES applicant(id)   
+)
+create Table report (
+			id text primary key not null,
+			type varchar(200) not null,
+			description text not null);
