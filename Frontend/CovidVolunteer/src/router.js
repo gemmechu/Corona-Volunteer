@@ -39,5 +39,9 @@ export default new Router({
         },
       ],
     },
+    {
+      path: '/admin',
+      component: () => import('@/views/components_admin/AdminIndex'),
+    },
   ],
 })
