@@ -200,7 +200,7 @@
 
 <script>
   export default {
-    name: 'DashboardDashboard',
+    name: 'Home',
 
     data () {
       return {

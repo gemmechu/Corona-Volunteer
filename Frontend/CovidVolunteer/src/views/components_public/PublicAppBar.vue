@@ -31,6 +31,14 @@
     <v-spacer />
 
     <div class="mx-3" />
+    <v-btn
+      class="ml-2"
+      min-width="0"
+      text
+      to="/login"
+    >
+      Login/Signup
+    </v-btn>
 
     <v-btn
       class="ml-2"
