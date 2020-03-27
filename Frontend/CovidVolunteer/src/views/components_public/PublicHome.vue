@@ -60,51 +60,6 @@
 
       <v-col
         cols="12"
-        sm="6"
-        lg="3"
-      >
-        <base-material-stats-card
-          color="success"
-          icon="mdi-circle"
-          title="Opportunity B"
-          value="Accepted"
-          sub-icon="mdi-clock"
-          sub-text="December 1, 2019"
-        />
-      </v-col>
-
-      <v-col
-        cols="12"
-        sm="6"
-        lg="3"
-      >
-        <base-material-stats-card
-          color="success"
-          icon="mdi-circle"
-          title="Opportunity C"
-          value="Accepted"
-          sub-icon="mdi-clock"
-          sub-text="December 1, 2019"
-        />
-      </v-col>
-
-      <v-col
-        cols="12"
-        sm="6"
-        lg="3"
-      >
-        <base-material-stats-card
-          color="error"
-          icon="mdi-circle"
-          title="Opportunity D"
-          value="Denied"
-          sub-icon="mdi-clock"
-          sub-text="December 1, 2019"
-        />
-      </v-col>
-
-      <v-col
-        cols="12"
       >
         <h2> Upcoming Opportunities </h2>
       </v-col>
