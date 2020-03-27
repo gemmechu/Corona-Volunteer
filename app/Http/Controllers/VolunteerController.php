@@ -30,7 +30,7 @@ class VolunteerController extends Controller
         $input = $request->all();   
         $volunteer=Volunteer::create($input);
 
-        $contact=$request->input("contact_id");
+        $contact=$volunteer->contact_id;
         $json = Json::decode( $contact,true);
         $createdContact=Contact::create($json);
         $savedContact=$createdContact->save();
