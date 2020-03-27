@@ -13,7 +13,7 @@ class Volunteer extends Model
         'first_name','last_name','birthdate',
         'gender','email','password','distance_willing_to_travel',
         'educational_level','employment_status',
-        'disability_status','id_image','account_status'
+        'disability_status','id_image','account_status','token'
     ];
     protected $keyType = 'string';
     public $incrementing = false;
