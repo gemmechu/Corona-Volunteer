@@ -28,5 +28,11 @@ class Organization extends Model
                 return $this->belongsToMany('App\Contact');
             } 
 
+            public function setNewApiToken(){
+                $this->api_token = $this->Str::uuid();
+                $this->save();
+            }
+
+
           
 }

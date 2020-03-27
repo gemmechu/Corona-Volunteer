@@ -23,11 +23,11 @@ Route::post('/activityType','ActivityTypeController@store');
 Route::put('/activityType/{id}','ActivityTypeController@update');
 Route::delete('/activityType/{id}','ActivityTypeController@destroy');
 
-Route::get('/organization','OrganizationController@index');
-Route::get('/organization/{id}','OrganizationController@show');
+Route::get('/organization','OrganizationController@index')->middleware('auth:api');
+Route::get('/organization/{id}','OrganizationController@show')->middleware('auth:api');
 Route::post('/organization','OrganizationController@store');
-Route::put('/organization/{id}','OrganizationController@update');
-Route::delete('/organization/{id}','OrganizationController@destroy');
+Route::put('/organization/{id}','OrganizationController@update')->middleware('auth:api');
+Route::delete('/organization/{id}','OrganizationController@destroy')->middleware('auth:api');
 
 Route::get('/approvedOrganization','ApprovedOrganizationController@index');
 Route::get('/approvedOrganization/{id}','ApprovedOrganizationController@show');
@@ -83,8 +83,8 @@ Route::post('/volunteerInterest','VolunteerInterestController@store');
 Route::put('/volunteerInterest/{id}','VolunteerInterestController@update');
 Route::delete('/volunteerInterest/{id}','VolunteerInterestController@destroy');
 
-Route::get('/volunteer','VolunteerController@index');
-Route::get('/volunteer/{id}','VolunteerController@show');
+Route::get('/volunteer','VolunteerController@index')->middleware('auth:api');
+Route::get('/volunteer/{id}','VolunteerController@show')->middleware('auth:api');
 Route::post('/volunteer','VolunteerController@store');
-Route::put('/volunteer/{id}','VolunteerController@update');
-Route::delete('/volunteer/{id}','VolunteerController@destroy');
+Route::put('/volunteer/{id}','VolunteerController@update')->middleware('auth:api');
+Route::delete('/volunteer/{id}','VolunteerController@destroy')->middleware('auth:api');

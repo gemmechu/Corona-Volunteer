@@ -31,5 +31,10 @@ class Volunteer extends Model
     public function opportunity(){
         return $this->belongsTo('App\Opportunity');
     }
+
+    public function setNewApiToken(){
+        $this->api_token = $this->Str::uuid();
+        $this->save();
+    }
           
 }
