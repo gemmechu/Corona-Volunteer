@@ -14,17 +14,7 @@ class OpportunityController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Opportunity::all();
     }
 
     /**
@@ -34,52 +24,40 @@ class OpportunityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {    
+        $input = $request->all();    
+        $opportunity=Opportunity::create($input);
+       return $Opportunity->save()? $Opportunity : "Couldnt save Opportunity" ;
+   
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Opportunity  $opportunity
+     * @param  \App\Opportunity  $Opportunity
      * @return \Illuminate\Http\Response
      */
-    public function show(Opportunity $opportunity)
+    public function show($id)
     {
-        //
+        return Opportunity::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Opportunity  $opportunity
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Opportunity $opportunity)
+    public function update(Request $request,  $id)
     {
-        //
+        $Opportunity = Opportunity::findOrFail($id);
+        $input = $request->all();
+        return $Opportunity->fill($input)->save(); 
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Opportunity  $opportunity
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Opportunity $opportunity)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Opportunity  $opportunity
+     * @param  \App\uuid  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Opportunity $opportunity)
+    public function destroy( $id)
     {
-        //
+        $Opportunity = Opportunity::findOrFail($id);
+        $Opportunity->delete();
     }
 }
+

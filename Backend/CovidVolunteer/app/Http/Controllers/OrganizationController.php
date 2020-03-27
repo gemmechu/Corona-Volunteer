@@ -14,17 +14,7 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Organization::all();
     }
 
     /**
@@ -34,8 +24,11 @@ class OrganizationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {    
+        $input = $request->all();    
+        $organization=Organization::create($input);
+       return $organization->save()? $organization : "Couldnt save Organization" ;
+   
     }
 
     /**
@@ -44,42 +37,27 @@ class OrganizationController extends Controller
      * @param  \App\Organization  $organization
      * @return \Illuminate\Http\Response
      */
-    public function show(Organization $organization)
+    public function show($id)
     {
-        //
+        return Organization::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Organization  $organization
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Organization $organization)
+    public function update(Request $request,  $id)
     {
-        //
+        $organization = Organization::findOrFail($id);
+        $input = $request->all();
+        return $organization->fill($input)->save(); 
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Organization  $organization
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Organization $organization)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Organization  $organization
+     * @param  \App\uuid  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Organization $organization)
+    public function destroy( $id)
     {
-        //
+        $organization = Organization::findOrFail($id);
+        $organization->delete();
     }
 }
+

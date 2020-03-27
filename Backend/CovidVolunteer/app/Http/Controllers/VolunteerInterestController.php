@@ -14,17 +14,7 @@ class VolunteerInterestController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return VolunteerInterest::all();
     }
 
     /**
@@ -34,8 +24,11 @@ class VolunteerInterestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {    
+        $input = $request->all();    
+        $volunteerInterest=VolunteerInterest::create($input);
+       return $volunteerInterest->save()? $volunteerInterest : "Couldnt save VolunteerInterest" ;
+   
     }
 
     /**
@@ -44,42 +37,27 @@ class VolunteerInterestController extends Controller
      * @param  \App\VolunteerInterest  $volunteerInterest
      * @return \Illuminate\Http\Response
      */
-    public function show(VolunteerInterest $volunteerInterest)
+    public function show($id)
     {
-        //
+        return VolunteerInterest::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\VolunteerInterest  $volunteerInterest
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(VolunteerInterest $volunteerInterest)
+    public function update(Request $request,  $id)
     {
-        //
+        $volunteerInterest = VolunteerInterest::findOrFail($id);
+        $input = $request->all();
+        return $volunteerInterest->fill($input)->save(); 
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\VolunteerInterest  $volunteerInterest
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, VolunteerInterest $volunteerInterest)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\VolunteerInterest  $volunteerInterest
+     * @param  \App\uuid  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(VolunteerInterest $volunteerInterest)
+    public function destroy( $id)
     {
-        //
+        $volunteerInterest = VolunteerInterest::findOrFail($id);
+        $volunteerInterest->delete();
     }
 }
+

@@ -14,17 +14,7 @@ class ApprovedApplicantController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return ApprovedApplicant::all();
     }
 
     /**
@@ -34,8 +24,11 @@ class ApprovedApplicantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {    
+        $input = $request->all();    
+        $approvedApplicant=ApprovedApplicant::create($input);
+       return $approvedApplicant->save()? $approvedApplicant : "Couldnt save ApprovedApplicant" ;
+   
     }
 
     /**
@@ -44,42 +37,26 @@ class ApprovedApplicantController extends Controller
      * @param  \App\ApprovedApplicant  $approvedApplicant
      * @return \Illuminate\Http\Response
      */
-    public function show(ApprovedApplicant $approvedApplicant)
+    public function show($id)
     {
-        //
+        return ApprovedApplicant::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ApprovedApplicant  $approvedApplicant
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ApprovedApplicant $approvedApplicant)
+    public function update(Request $request,  $id)
     {
-        //
+        $approvedApplicant = ApprovedApplicant::findOrFail($id);
+        $input = $request->all();
+        return $approvedApplicant->fill($input)->save(); 
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ApprovedApplicant  $approvedApplicant
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ApprovedApplicant $approvedApplicant)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ApprovedApplicant  $approvedApplicant
+     * @param  \App\uuid  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ApprovedApplicant $approvedApplicant)
+    public function destroy( $id)
     {
-        //
+        $approvedApplicant = ApprovedApplicant::findOrFail($id);
+        $approvedApplicant->delete();
     }
 }

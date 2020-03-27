@@ -14,17 +14,7 @@ class ActivityTypeController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return ActivityType::all();
     }
 
     /**
@@ -35,51 +25,53 @@ class ActivityTypeController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $this->validate($request, [
+            'name' => 'required'
+        ]);    
+        $input = $request->all();    
+        $activityType=ActivityType::create($input);
+       return $activityType->save()? $activityType : "Couldnt save Activity Type" ;
+   
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ActivityType  $activityType
+     * @param  \App\string  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ActivityType $activityType)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ActivityType  $activityType
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ActivityType $activityType)
-    {
-        //
+        return ActivityType::find($id);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ActivityType  $activityType
+     * @param  \App\uuid  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ActivityType $activityType)
+    public function update(Request $request,  $id)
     {
-        //
+        $activityType = ActivityType::findOrFail($id);
+
+        $this->validate($request, [
+            'name' => 'required' 
+        ]);
+        $input = $request->all();
+        return $activityType->fill($input)->save(); 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ActivityType  $activityType
+     * @param  \App\uuid  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ActivityType $activityType)
+    public function destroy( $id)
     {
-        //
+        $activityType = ActivityType::findOrFail($id);
+        $activityType->delete();
     }
 }
