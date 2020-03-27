@@ -7,24 +7,14 @@ use Illuminate\Http\Request;
 
 class LanguagesController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Language::all();
     }
 
     /**
@@ -34,8 +24,11 @@ class LanguagesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {    
+        $input = $request->all();    
+        $language=Language::create($input);
+       return $language->save()? $language : "Couldnt save Language" ;
+   
     }
 
     /**
@@ -44,42 +37,26 @@ class LanguagesController extends Controller
      * @param  \App\Language  $language
      * @return \Illuminate\Http\Response
      */
-    public function show(Language $language)
+    public function show($id)
     {
-        //
+        return Language::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Language  $language
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Language $language)
+    public function update(Request $request,  $id)
     {
-        //
+        $language = Language::findOrFail($id);
+        $input = $request->all();
+        return $language->fill($input)->save(); 
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Language  $language
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Language $language)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Language  $language
+     * @param  \App\uuid  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Language $language)
+    public function destroy( $id)
     {
-        //
+        $language = Language::findOrFail($id);
+        $language->delete();
     }
 }

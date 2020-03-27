@@ -14,17 +14,7 @@ class OpportunityLanguageRequirmentController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return OpportunityLanguageRequirment::all();
     }
 
     /**
@@ -34,8 +24,11 @@ class OpportunityLanguageRequirmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {    
+        $input = $request->all();    
+        $opportunityLanguageRequirment=OpportunityLanguageRequirment::create($input);
+       return $opportunityLanguageRequirment->save()? $opportunityLanguageRequirment : "Couldnt save OpportunityLanguageRequirment" ;
+   
     }
 
     /**
@@ -44,42 +37,26 @@ class OpportunityLanguageRequirmentController extends Controller
      * @param  \App\OpportunityLanguageRequirment  $opportunityLanguageRequirment
      * @return \Illuminate\Http\Response
      */
-    public function show(OpportunityLanguageRequirment $opportunityLanguageRequirment)
+    public function show($id)
     {
-        //
+        return OpportunityLanguageRequirment::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\OpportunityLanguageRequirment  $opportunityLanguageRequirment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(OpportunityLanguageRequirment $opportunityLanguageRequirment)
+    public function update(Request $request,  $id)
     {
-        //
+        $opportunityLanguageRequirment = OpportunityLanguageRequirment::findOrFail($id);
+        $input = $request->all();
+        return $opportunityLanguageRequirment->fill($input)->save(); 
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\OpportunityLanguageRequirment  $opportunityLanguageRequirment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, OpportunityLanguageRequirment $opportunityLanguageRequirment)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\OpportunityLanguageRequirment  $opportunityLanguageRequirment
+     * @param  \App\uuid  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OpportunityLanguageRequirment $opportunityLanguageRequirment)
+    public function destroy( $id)
     {
-        //
+        $opportunityLanguageRequirment = OpportunityLanguageRequirment::findOrFail($id);
+        $opportunityLanguageRequirment->delete();
     }
 }

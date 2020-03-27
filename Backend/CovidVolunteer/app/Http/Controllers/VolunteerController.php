@@ -14,17 +14,7 @@ class VolunteerController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Volunteer::all();
     }
 
     /**
@@ -34,8 +24,11 @@ class VolunteerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {    
+        $input = $request->all();    
+        $volunteer=Volunteer::create($input);
+       return $volunteer->save()? $volunteer : "Couldnt save Volunteer" ;
+   
     }
 
     /**
@@ -44,42 +37,26 @@ class VolunteerController extends Controller
      * @param  \App\Volunteer  $volunteer
      * @return \Illuminate\Http\Response
      */
-    public function show(Volunteer $volunteer)
+    public function show($id)
     {
-        //
+        return Volunteer::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Volunteer  $volunteer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Volunteer $volunteer)
+    public function update(Request $request,  $id)
     {
-        //
+        $volunteer = Volunteer::findOrFail($id);
+        $input = $request->all();
+        return $volunteer->fill($input)->save(); 
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Volunteer  $volunteer
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Volunteer $volunteer)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Volunteer  $volunteer
+     * @param  \App\uuid  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Volunteer $volunteer)
+    public function destroy( $id)
     {
-        //
+        $volunteer = Volunteer::findOrFail($id);
+        $volunteer->delete();
     }
 }

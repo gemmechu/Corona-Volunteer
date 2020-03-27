@@ -14,17 +14,7 @@ class ApplicantController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Applicant::all();
     }
 
     /**
@@ -34,8 +24,11 @@ class ApplicantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {    
+        $input = $request->all();    
+        $applicant=Applicant::create($input);
+       return $applicant->save()? $applicant : "Couldnt save applicant" ;
+   
     }
 
     /**
@@ -44,42 +37,26 @@ class ApplicantController extends Controller
      * @param  \App\applicant  $applicant
      * @return \Illuminate\Http\Response
      */
-    public function show(Applicant $applicant)
+    public function show($id)
     {
-        //
+        return Applicant::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\applicant  $applicant
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Applicant $applicant)
+    public function update(Request $request,  $id)
     {
-        //
+        $applicant = Applicant::findOrFail($id);
+        $input = $request->all();
+        return $applicant->fill($input)->save(); 
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\applicant  $applicant
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Applicant $applicant)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\applicant  $applicant
+     * @param  \App\uuid  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(applicant $applicant)
+    public function destroy( $id)
     {
-        //
+        $applicant = Applicant::findOrFail($id);
+        $applicant->delete();
     }
 }

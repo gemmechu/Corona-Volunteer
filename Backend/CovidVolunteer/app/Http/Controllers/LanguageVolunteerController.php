@@ -14,17 +14,7 @@ class LanguageVolunteerController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return LanguageVolunteer::all();
     }
 
     /**
@@ -34,8 +24,11 @@ class LanguageVolunteerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {    
+        $input = $request->all();    
+        $languageVolunteer=LanguageVolunteer::create($input);
+       return $languageVolunteer->save()? $languageVolunteer : "Couldnt save LanguageVolunteer" ;
+   
     }
 
     /**
@@ -44,42 +37,26 @@ class LanguageVolunteerController extends Controller
      * @param  \App\LanguageVolunteer  $languageVolunteer
      * @return \Illuminate\Http\Response
      */
-    public function show(LanguageVolunteer $languageVolunteer)
+    public function show($id)
     {
-        //
+        return LanguageVolunteer::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\LanguageVolunteer  $languageVolunteer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(LanguageVolunteer $languageVolunteer)
+    public function update(Request $request,  $id)
     {
-        //
+        $languageVolunteer = LanguageVolunteer::findOrFail($id);
+        $input = $request->all();
+        return $languageVolunteer->fill($input)->save(); 
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\LanguageVolunteer  $languageVolunteer
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, LanguageVolunteer $languageVolunteer)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\LanguageVolunteer  $languageVolunteer
+     * @param  \App\uuid  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LanguageVolunteer $languageVolunteer)
+    public function destroy( $id)
     {
-        //
+        $languageVolunteer = LanguageVolunteer::findOrFail($id);
+        $languageVolunteer->delete();
     }
 }

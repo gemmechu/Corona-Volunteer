@@ -14,17 +14,7 @@ class VolunteerAvailableOnController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return VolunteerAvailableOn::all();
     }
 
     /**
@@ -34,8 +24,11 @@ class VolunteerAvailableOnController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {    
+        $input = $request->all();    
+        $volunteerAvailableOn=VolunteerAvailableOn::create($input);
+       return $volunteerAvailableOn->save()? $volunteerAvailableOn : "Couldnt save VolunteerAvailableOn" ;
+   
     }
 
     /**
@@ -44,42 +37,27 @@ class VolunteerAvailableOnController extends Controller
      * @param  \App\VolunteerAvailableOn  $volunteerAvailableOn
      * @return \Illuminate\Http\Response
      */
-    public function show(VolunteerAvailableOn $volunteerAvailableOn)
+    public function show($id)
     {
-        //
+        return VolunteerAvailableOn::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\VolunteerAvailableOn  $volunteerAvailableOn
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(VolunteerAvailableOn $volunteerAvailableOn)
+    public function update(Request $request,  $id)
     {
-        //
+        $volunteerAvailableOn = VolunteerAvailableOn::findOrFail($id);
+        $input = $request->all();
+        return $volunteerAvailableOn->fill($input)->save(); 
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\VolunteerAvailableOn  $volunteerAvailableOn
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, VolunteerAvailableOn $volunteerAvailableOn)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\VolunteerAvailableOn  $volunteerAvailableOn
+     * @param  \App\uuid  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(VolunteerAvailableOn $volunteerAvailableOn)
+    public function destroy( $id)
     {
-        //
+        $volunteerAvailableOn = VolunteerAvailableOn::findOrFail($id);
+        $volunteerAvailableOn->delete();
     }
 }
+
