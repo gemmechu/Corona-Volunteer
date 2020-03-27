@@ -23,17 +23,17 @@ Route::post('/activityType','ActivityTypeController@store');
 Route::put('/activityType/{id}','ActivityTypeController@update');
 Route::delete('/activityType/{id}','ActivityTypeController@destroy');
 
-Route::get('/organization','OrganizationController@index');
-Route::get('/organization/{id}','OrganizationController@show');
-Route::post('/organization','OrganizationController@store');
-Route::put('/organization/{id}','OrganizationController@update');
-Route::delete('/organization/{id}','OrganizationController@destroy');
+Route::get('/applicant','ApplicantController@index');
+Route::get('/applicant/{id}','ApplicantController@show');
+Route::post('/applicant','ApplicantController@store');
+Route::put('/applicant/{id}','ApplicantController@update');
+Route::delete('/applicant/{id}','ApplicantController@destroy');
 
-Route::get('/approvedOrganization','ApprovedOrganizationController@index');
-Route::get('/approvedOrganization/{id}','ApprovedOrganizationController@show');
-Route::post('/approvedOrganization','ApprovedOrganizationController@store');
-Route::put('/approvedOrganization/{id}','ApprovedOrganizationController@update');
-Route::delete('/approvedOrganization/{id}','ApprovedOrganizationController@destroy');
+Route::get('/approvedApplicant','ApprovedApplicantController@index');
+Route::get('/approvedApplicant/{id}','ApprovedApplicantController@show');
+Route::post('/approvedApplicant','ApprovedApplicantController@store');
+Route::put('/approvedApplicant/{id}','ApprovedApplicantController@update');
+Route::delete('/approvedApplicant/{id}','ApprovedApplicantController@destroy');
 
 Route::get('/contact','ContactsController@index');
 Route::get('/contact/{id}','ContactsController@show');

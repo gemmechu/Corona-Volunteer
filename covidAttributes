@@ -1,7 +1,16 @@
-report(
-	generated time
-)
-
+ROUTES AND THEIR ACTIONS LISTS
+https://stormy-meadow-78369.herokuapp.com/api/activityType
+https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant
+https://stormy-meadow-78369.herokuapp.com/api/applicant
+https://stormy-meadow-78369.herokuapp.com/api/contact
+https://stormy-meadow-78369.herokuapp.com/api/language
+https://stormy-meadow-78369.herokuapp.com/api/languageVolunteer
+https://stormy-meadow-78369.herokuapp.com/api/opportunity
+https://stormy-meadow-78369.herokuapp.com/api/opportunityLanguageRequirment
+https://stormy-meadow-78369.herokuapp.com/api/organization
+https://stormy-meadow-78369.herokuapp.com/api/volunteerAvailableOn
+https://stormy-meadow-78369.herokuapp.com/api/volunteerInterest
+https://stormy-meadow-78369.herokuapp.com/api/volunteer
 media (
 			id
 			url
