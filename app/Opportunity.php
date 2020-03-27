@@ -23,7 +23,7 @@ class Opportunity extends Model
             self::creating(function ($model) {
                 $model->id = (string) Uuid::generate(4);
             });
-              
+        }
             public function organization(){
                 return $this->belongsTo('App\Organization');
             }

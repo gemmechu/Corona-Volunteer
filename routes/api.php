@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/api/activityType','ActivityTypeController@index');
+Route::get('/activityType','ActivityTypeController@index');
 Route::get('/activityType/{id}','ActivityTypeController@show');
 Route::post('/activityType','ActivityTypeController@store');
 Route::put('/activityType/{id}','ActivityTypeController@update');

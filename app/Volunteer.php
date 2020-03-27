@@ -23,11 +23,11 @@ class Volunteer extends Model
     self::creating(function ($model) {
         $model->id = (string) Uuid::generate(4);
     });
-      
+}
     public function contact(){
         return $this->belongsTo('App\Contact');
     }
-
+ 
     public function opportunity(){
         return $this->belongsTo('App\Opportunity');
     }

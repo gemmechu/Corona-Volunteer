@@ -19,4 +19,5 @@ class Language extends Model
     self::creating(function ($model) {
         $model->id = (string) Uuid::generate(4);
     });
+     }
 }

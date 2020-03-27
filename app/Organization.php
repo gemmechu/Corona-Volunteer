@@ -23,7 +23,7 @@ class Organization extends Model
                 $model->id = (string) Uuid::generate(4);
             });
            
-        
+            }
             public function contact(){
                 return $this->belongsToMany('App\Contact');
             } 

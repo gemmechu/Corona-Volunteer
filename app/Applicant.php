@@ -19,7 +19,7 @@ class Applicant extends Model
     self::creating(function ($model) {
         $model->id = (string) Uuid::generate(4);
     });
-      
+    }
     public function volunteer(){
         return $this->belongsTo('App\Volunteer');
     }
