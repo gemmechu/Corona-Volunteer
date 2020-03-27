@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Volunteer;
 use App\Contact;
 use Illuminate\Http\Request;
-
+use Eastwest\Json\Json;
+use Eastwest\Json\JsonException;
 class VolunteerController extends Controller
 {
     /**
@@ -30,10 +31,13 @@ class VolunteerController extends Controller
         $volunteer=Volunteer::create($input);
 
         $contact=$request->input("contact_id");
-        $createdContact=Contact::create($contact);
-        $createdContact=$createdContact->save()? $createdContact : "Couldnt save Volunteer's contact";
-       
-        $volunteer->contact_id = $createdContact->id;
+        $json = Json::decode( $contact,true);
+        $createdContact=Contact::create($json);
+        $savedContact=$createdContact->save();
+        if(empty($savedContact)){
+            return "Couldnt save Volunteer's contact".$createdContact;
+        }
+        $volunteer->contact_id = $savedContact->id;
         return $volunteer->save()? $volunteer : "Couldnt save Volunteer" ;
    
     }
