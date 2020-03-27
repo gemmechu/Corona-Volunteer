@@ -23,6 +23,11 @@ class ActivityTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function trial(){
+        
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [
