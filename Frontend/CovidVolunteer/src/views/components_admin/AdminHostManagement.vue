@@ -99,22 +99,22 @@
         ],
         desserts: [
           {
-            Organization: 'Meals on Wheels of Virginia Beach',
+            Organization: 'Host 1',
             contactId: '+2019242144',
             Status: 'Accepted',
           },
           {
-            Organization: 'Meals on Wheels of Virginia Beach',
+            Organization: 'Host 2',
             contactId: '+2019242144',
             Status: 'pending',
           },
           {
-            Organization: 'Meals on Wheels of Virginia Beach',
+            Organization: 'Host 3',
             contactId: '+2019242144',
             Status: 'Denied',
           },
           {
-            Organization: 'Meals on Wheels of Virginia Beach',
+            Organization: 'Host 4',
             contactId: '+2019242144',
             Status: 'Accepted',
           },
@@ -149,7 +149,7 @@
       },
 
       handleClick (value) {
-        this.$router.push({ path: `/hostedit/${value.contactId}` })
+        this.$router.push({ path: `/hostedit/${value.Organization}` })
       },
 
     },

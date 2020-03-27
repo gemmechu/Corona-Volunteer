@@ -64,6 +64,11 @@ export default new Router({
           path: '/hostedit/:hostid',
           component: () => import('@/views/components_admin/AdminHostEditor'),
         },
+        {
+          name: 'Opportunity Editor',
+          path: '/opportunityedit/:opportunityid',
+          component: () => import('@/views/components_admin/AdminOpportunityEditor'),
+        },
       ],
     },
     {

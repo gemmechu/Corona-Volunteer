@@ -19,11 +19,11 @@
         <base-material-card color="info">
           <template v-slot:heading>
             <div class="display-2 font-weight-bold">
-               {{ $route.params.hostid }} Detail
+              {{ $route.params.opportunityid }} Detail
             </div>
 
             <div class="subtitle-1 font-weight-bold">
-              Edit Delete Host
+              Edit Delete Opportunity
             </div>
           </template>
 

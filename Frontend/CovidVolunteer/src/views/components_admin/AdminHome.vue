@@ -20,7 +20,7 @@
           icon="mdi-circle"
           title="No of Opportunity"
           value="237"
-          sub-icon="mdi-clock"
+          sub-icon="mdi-dropbox"
           sub-text="Show more"
         />
       </v-col>
