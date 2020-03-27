@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class VolunteerInterest extends Model
 {
    
+    #Volunteer Interest
     protected $table = 'volunteer_interest';
     protected $primaryKey = 'id';
   
