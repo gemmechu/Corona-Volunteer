@@ -28,11 +28,6 @@ export default new Router({
           component: () => import('@/views/components_public/PublicHost'),
         },
         {
-          name: 'User',
-          path: '/profile',
-          component: () => import('@/views/components_public/PublicProfile'),
-        },
-        {
           name: 'Authenticate',
           path: '/authenticate',
           component: () => import('@/views/components_public/PublicLoginOrRegister'),
@@ -68,6 +63,33 @@ export default new Router({
           name: 'Host Editor',
           path: '/hostedit/:hostid',
           component: () => import('@/views/components_admin/AdminHostEditor'),
+        },
+      ],
+    },
+    {
+      path: '/volunteers',
+      component: () => import('@/views/components_volunteer/VolunteerIndex'),
+      children: [
+        // Dashboard
+        {
+          name: 'Home',
+          path: '',
+          component: () => import('@/views/components_volunteer/VolunteerHome'),
+        },
+        {
+          name: 'Profile',
+          path: '/profile',
+          component: () => import('@/views/components_volunteer/VolunteerProfile'),
+        },
+        {
+          name: 'VolunteerDetails',
+          path: '/volunteerDetails/:details',
+          component: () => import('@/views/components_volunteer/VolunteerOpportunityDetails'),
+        },
+        {
+          name: 'Calendar',
+          path: '/calendar',
+          component: () => import('@/views/components_volunteer/VolunteerCalendar'),
         },
       ],
     },

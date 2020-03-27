@@ -57,6 +57,25 @@
           </p>
         </base-material-card>
       </v-col>
+      <v-col
+        cols="12"
+      >
+        <h2> Opportunities Status </h2>
+      </v-col>
+      <v-col
+        cols="12"
+        sm="6"
+        lg="3"
+      >
+        <base-material-stats-card
+          color="info"
+          icon="mdi-circle"
+          title="Opportunity A"
+          value="Pending"
+          sub-icon="mdi-clock"
+          sub-text="December 1, 2019"
+        />
+      </v-col>
 
       <v-col
         cols="12"
