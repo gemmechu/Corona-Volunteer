@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Volunteer;
+use App\Contact;
 use Illuminate\Http\Request;
 
 class VolunteerController extends Controller
@@ -31,6 +32,7 @@ class VolunteerController extends Controller
         $contact=$request->input("contact_id");
         $createdContact=Contact::create($contact);
         $createdContact=$createdContact->save()? $createdContact : "Couldnt save Volunteer's contact";
+       
         $volunteer->contact_id = $createdContact->id;
         return $volunteer->save()? $volunteer : "Couldnt save Volunteer" ;
    

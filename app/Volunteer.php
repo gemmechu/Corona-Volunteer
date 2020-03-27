@@ -27,9 +27,5 @@ class Volunteer extends Model
     public function contact(){
         return $this->belongsTo('App\Contact');
     }
- 
-    public function opportunity(){
-        return $this->belongsTo('App\Opportunity');
-    }
-          
+        
 }

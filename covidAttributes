@@ -55,7 +55,17 @@ volunteer
         "disability_status":"false",
 		"id_image":"stormy-meadow-78369.herokuapp.com/api/volunteer",
 		"account_status":"pending",
-		"token":"0a49f70f-ce80-48df-bcaa-432a106ded26"
+		"token":"0a49f70f-ce80-48df-bcaa-432a106ded26",
+		"contact_id":"{
+						"region" : "tigray",
+						"zone":"northen",
+						"city":"mekele",
+						"subcity":"yeka", 
+						"woreda":"08",
+						"house_number":"new",
+						"phone_number":"+25267783920",
+						"emergency_contact":"+25163884829"
+					}"
 	}
 	get https://stormy-meadow-78369.herokuapp.com/api/volunteer
 	get https://stormy-meadow-78369.herokuapp.com/api/volunteer/{id}
