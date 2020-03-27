@@ -7,26 +7,61 @@
     flat
     height="75"
   >
-    <v-btn
-      class="mr-3"
-      elevation="1"
-      fab
-      small
-      @click="setDrawer(!drawer)"
-    >
-      <v-icon v-if="value">
-        mdi-view-quilt
-      </v-icon>
+    <v-menu offset-y>
+      <template v-slot:activator="{ on }">
+        <v-btn
+          class="hidden-md-and-up mr-3"
+          elevation="1"
+          fab
+          small
+          v-on="on"
+        >
+          <v-icon v-if="value">
+            mdi-view-quilt
+          </v-icon>
 
-      <v-icon v-else>
-        mdi-dots-vertical
-      </v-icon>
+          <v-icon v-else>
+            mdi-dots-vertical
+          </v-icon>
+        </v-btn>
+      </template>
+      <v-list>
+        <v-list-item
+          v-for="link in links"
+          :key="link.text"
+          router
+          :to="link.route"
+        >
+          <v-list-item-title>{{ link.text }} </v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+
+    <v-btn
+      class="mx-2"
+      min-width="0"
+      text
+      to="/"
+    >
+      Home
+    </v-btn>
+    <v-btn
+      class="mx-2"
+      min-width="0"
+      text
+      to="/volunteer"
+    >
+      Opportunity
     </v-btn>
 
-    <v-toolbar-title
-      class="hidden-sm-and-down font-weight-light"
-      v-text="$route.name"
-    />
+    <v-btn
+      class="mx-2"
+      min-width="0"
+      text
+      to="/host"
+    >
+      Host
+    </v-btn>
 
     <v-spacer />
 
@@ -39,7 +74,9 @@
     >
       Login/Signup
     </v-btn>
+
   </v-app-bar>
+
 </template>
 
 <script>
@@ -48,12 +85,21 @@
 
   export default {
     name: 'DashboardCoreAppBar',
-
     props: {
       value: {
         type: Boolean,
         default: false,
       },
+    },
+    data () {
+      return {
+
+        links: [
+          { icon: 'Home', text: 'Home', route: '/' },
+          { icon: 'Oportunity', text: 'Oportunity', route: '/volunteer' },
+          { icon: 'Host', text: 'Host', route: '/host' },
+        ],
+      }
     },
 
     computed: {
