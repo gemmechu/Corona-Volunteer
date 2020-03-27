@@ -11,6 +11,15 @@ class ActivityType extends Model
     protected $fillable = [
         'name'
     ];
-    protected $keyType = 'uuid';
+    protected $keyType = 'string';
     public $incrementing = false;
+    
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function (Model $model) {
+            $model->setAttribute($model->getKeyName(), Uuid::uuid4());
+        });
+    }
 }
