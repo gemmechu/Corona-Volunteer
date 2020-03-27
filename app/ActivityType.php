@@ -12,5 +12,5 @@ class ActivityType extends Model
         'name'
     ];
     protected $keyType = 'uuid';
-    protected $incrementing = false;
+    public $incrementing = false;
 }
