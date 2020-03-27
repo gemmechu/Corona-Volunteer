@@ -1,8 +1,76 @@
 ROUTES AND THEIR ACTIONS LISTS
-https://stormy-meadow-78369.herokuapp.com/api/activityType
-https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant
+"id": "3e47b071-a698-45c5-b862-6eda10c14a22",
+"id": "0a49f70f-ce80-48df-bcaa-432a106ded26",
+Note all path get will fetch the same data in the post in addition they have id,created_at,updated_at
+contact
+[
+	post https://stormy-meadow-78369.herokuapp.com/api/contact
+	{
+		"region" : "summit",
+		"zone":"summit",
+		"city":"Addis ababa",
+		"subcity":"bole", 
+        "woreda":"08",
+		"house_number":"new",
+		"phone_number":"+25267783920",
+		"emergency_contact":"+25163884829"
+	}
+	get https://stormy-meadow-78369.herokuapp.com/api/contact
+	get https://stormy-meadow-78369.herokuapp.com/api/contact/{id}
+	put https://stormy-meadow-78369.herokuapp.com/api/contact/{id}
+	{
+
+	}
+	delete https://stormy-meadow-78369.herokuapp.com/api/contact/{id}
+]
+
+ActivityType
+[
+	post https://stormy-meadow-78369.herokuapp.com/api/activityType
+	{
+		"name" : "activityname"
+	}
+	get https://stormy-meadow-78369.herokuapp.com/api/activityType
+	get https://stormy-meadow-78369.herokuapp.com/api/activityType/{id}
+	put https://stormy-meadow-78369.herokuapp.com/api/activityType/{id}
+	{
+
+	}
+	delete https://stormy-meadow-78369.herokuapp.com/api/activityType/{id}
+]
+
+volunteer
+[
+	post https://stormy-meadow-78369.herokuapp.com/api/volunteer
+	{
+		"first_name":"Eden",
+		"last_name":"Abdisa",
+		"birthdate":"2/2/2019",
+        "gender":"female",
+		"email":"eden.abdisa@gmailcom",
+		"password":"eden1234",
+		"distance_willing_to_travel":4.0,
+        "educational_level":"High School",
+		"employment_status":"Student",
+        "disability_status":"false",
+		"id_image":"stormy-meadow-78369.herokuapp.com/api/volunteer",
+		"account_status":"pending",
+		"token":"0a49f70f-ce80-48df-bcaa-432a106ded26"
+	}
+	get https://stormy-meadow-78369.herokuapp.com/api/volunteer
+	get https://stormy-meadow-78369.herokuapp.com/api/volunteer/{id}
+	put https://stormy-meadow-78369.herokuapp.com/api/volunteer/{id}
+	{
+
+	}
+	delete https://stormy-meadow-78369.herokuapp.com/api/volunteer/{id}
+]
+
+
+
+
+
 https://stormy-meadow-78369.herokuapp.com/api/applicant
-https://stormy-meadow-78369.herokuapp.com/api/contact
 https://stormy-meadow-78369.herokuapp.com/api/language
 https://stormy-meadow-78369.herokuapp.com/api/languageVolunteer
 https://stormy-meadow-78369.herokuapp.com/api/opportunity
@@ -10,7 +78,23 @@ https://stormy-meadow-78369.herokuapp.com/api/opportunityLanguageRequirment
 https://stormy-meadow-78369.herokuapp.com/api/organization
 https://stormy-meadow-78369.herokuapp.com/api/volunteerAvailableOn
 https://stormy-meadow-78369.herokuapp.com/api/volunteerInterest
-https://stormy-meadow-78369.herokuapp.com/api/volunteer
+
+
+approvedApplicant
+[
+	post https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant
+	{
+		"brief_description" : "summit",
+		"rating":"summit"
+	}
+	get https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant
+	get https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant/{id}
+	put https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant/{id}
+	{
+
+	}
+	delete https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant/{id}
+]
 media (
 			id
 			url

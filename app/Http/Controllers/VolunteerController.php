@@ -25,9 +25,14 @@ class VolunteerController extends Controller
      */
     public function store(Request $request)
     {    
-        $input = $request->all();    
+        $input = $request->all();   
         $volunteer=Volunteer::create($input);
-       return $volunteer->save()? $volunteer : "Couldnt save Volunteer" ;
+
+        $contact=$request->input("contact_id");
+        $createdContact=Contact::create($contact);
+        $createdContact=$createdContact->save()? $createdContact : "Couldnt save Volunteer's contact";
+        $volunteer->contact_id = $createdContact->id;
+        return $volunteer->save()? $volunteer : "Couldnt save Volunteer" ;
    
     }
 
