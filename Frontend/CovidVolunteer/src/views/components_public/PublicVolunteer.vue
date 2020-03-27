@@ -460,7 +460,7 @@
         alert(event.title)
       },
       handleClick (value) {
-        this.$router.push({ path: `/details/${value.Opportunity}` })
+        this.$router.push({ path: `/volunteerDetails/${value.Opportunity}` })
       },
     },
   }

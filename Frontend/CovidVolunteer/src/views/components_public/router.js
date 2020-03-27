@@ -21,6 +21,13 @@ export default new Router({
           name: 'Volunteer',
           path: '/volunteer',
           component: () => import('@/views/components_public/PublicVolunteer'),
+          children: [
+            {
+              name: 'VolunteerDetails',
+              path: '/details',
+              component: () => import('@/views/components_public/OpportunityDetails'),    
+            },
+          ],
         },
         {
           name: 'Host',
@@ -36,11 +43,6 @@ export default new Router({
           name: 'Authenticate',
           path: '/authenticate',
           component: () => import('@/views/components_public/PublicLoginOrRegister'),
-        },
-        {
-          name: 'VolunteerDetails',
-          path: '/volunteerDetails/:details',
-          component: () => import('@/views/components_public/PublicOpportunityDetails'),
         },
       ],
     },
