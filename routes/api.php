@@ -17,17 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('ActivityType','ActivityTypeController@index');
-Route::get('ActivityType/{id}','ActivityTypeController@show');
-Route::post('ActivityType','ActivityTypeController@store');
-Route::put('ActivityType/{id}','ActivityTypeController@update');
-Route::delete('ActivityType/{id}','ActivityTypeController@destroy');
+Route::get('/ActivityType','ActivityTypeController@index');
+Route::get('/ActivityType/{id}','ActivityTypeController@show');
+Route::post('/ActivityType','ActivityTypeController@store');
+Route::put('/ActivityType/{id}','ActivityTypeController@update');
+Route::delete('/ActivityType/{id}','ActivityTypeController@destroy');
 
-Route::get('Organization','OrganizationController@index');
-Route::get('Organization/{id}','OrganizationController@show');
-Route::post('Organization','OrganizationController@store');
-Route::put('Organization/{id}','OrganizationController@update');
-Route::delete('Organization/{id}','OrganizationController@destroy');
+Route::get('/Organization','OrganizationController@index');
+Route::get('/Organization/{id}','OrganizationController@show');
+Route::post('/Organization','OrganizationController@store');
+Route::put('/Organization/{id}','OrganizationController@update');
+Route::delete('/Organization/{id}','OrganizationController@destroy');
 
 Route::get('ApprovedOrganization','ApprovedOrganizationController@index');
 Route::get('ApprovedOrganization/{id}','ApprovedOrganizationController@show');
