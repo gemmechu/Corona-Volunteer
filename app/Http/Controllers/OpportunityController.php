@@ -33,7 +33,7 @@ class OpportunityController extends Controller
             return "Couldnt save Volunteer's contact".$createdContact;
         }
         $input = $request->all(); 
-        $activityType=ActivityType::where('name',$input("activity_type"))->get()->first();             
+        $activityType=ActivityType::where('name',$input["activity_type"])->get()->first();             
         $input["contact_id"]= $createdContact->id; 
         //OPPOURTUNITY
         $opportunity=Opportunity::create($input);
