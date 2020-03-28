@@ -171,8 +171,9 @@
                   cols="12"
                   md="4"
                 >
-                  <v-text-field
+                  <v-select
                     v-model="volunteer.disability_status"
+                    :items="disability"
                     label="Disability Status"
                   />
                 </v-col>
@@ -266,6 +267,19 @@
           </v-form>
         </base-material-card>
       </v-col>
+      <v-snackbar
+        v-model="snackbar"
+        :timeout="timeout"
+      >
+        {{ text }}
+        <v-btn
+          color="blue"
+          text
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </v-snackbar>
     </v-row>
   </v-container>
 </template>
@@ -274,6 +288,9 @@
   import axios from 'axios'
   export default {
     data: () => ({
+      snackbar: false,
+      text: 'Failed to Register. Please try again',
+      timeout: 2000,
       email: '',
       password: '',
       contact: {
@@ -285,7 +302,7 @@
         woreda: '',
         house_number: '',
         phone_number: '',
-        emergency_count: '',
+        emergency_contact: '',
       },
       volunteer: {
         id: '',
@@ -294,18 +311,22 @@
         birthdate: '',
         gender: '',
         email: '',
-        contact_id: '',
         password: '',
         distance_willing_to_travel: '',
         educational_level: '',
         employment_status: '',
         disability_status: '',
-        id_image: '',
-        account_status: '',
+        id_image: 'http://stormy-meadow-78369.herokuapp.com/api/volunteer',
+        account_status: 'pending',
+        token: '0a49f70f-ce80-48df-bcaa-432a106ded26',
       },
       genders: [
         'Male',
         'Female',
+      ],
+      disability: [
+        'true',
+        'false',
       ],
       response: '',
     }),
@@ -319,13 +340,31 @@
           this.response = result.data
           this.vol = {}
           this.vol = this.volunteer
-          this.vol.contact_id = this.response.id
+          this.vol.contact_id = {}
+          this.vol.contact_id.region = this.response.region
+          this.vol.contact_id.zone = this.response.zone
+          this.vol.contact_id.city = this.response.city
+          this.vol.contact_id.subcity = this.response.subcity
+          this.vol.contact_id.woreda = this.response.woreda
+          this.vol.contact_id.house_number = this.response.house_number
+          this.vol.contact_id.phone_number = this.response.phone_number
+          this.vol.contact_id.emergency_contact = this.response.emergency_contact
+          if (this.vol.disability_status === 'true') {
+            this.vol.disability_status = true
+          } else {
+            this.vol.disability_status = false
+          }
           axios({ method: 'POST', url: 'https://stormy-meadow-78369.herokuapp.com/api/volunteer', data: this.vol, headers: { 'content-type': 'application/json' } }).then(result => {
+            if (result.data.first_name !== this.vol.first_name) {
+              this.trigger()
+            }
           }, error => {
             console.error(error)
+            this.trigger()
           })
         }, error => {
           console.error(error)
+          this.trigger()
         })
       },
       login () {
@@ -333,12 +372,15 @@
         this.vol.email = this.email
         this.vol.password = this.password
         axios({ method: 'GET', url: 'https://stormy-meadow-78369.herokuapp.com/api/volunteer', data: this.vol, headers: { 'content-type': 'application/json' } }).then(result => {
-          if (result.data[0].email === this.email) {
+          if (result.data[0].email === this.email && result.data[0].password === this.password) {
             this.$router.push('volunteers')
           }
         }, error => {
           console.error(error)
         })
+      },
+      trigger () {
+        this.snackbar = true
       },
     },
   }
