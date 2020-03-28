@@ -44,8 +44,8 @@ class OrganizationController extends Controller
      */
     public function show($id)
     {
-        $org=Organization::find($id);
-        $contact=Contact::find($org->contact_id);
+        $org=Organization::findOrFail($id);
+        $contact=Contact::findOrFail($org->contact_id);
         $org->contact_id=$contact;
         return $org;
     }
@@ -59,7 +59,7 @@ class OrganizationController extends Controller
             $contact->fill($input["contact_id"])->save(); 
             $input["contact_id"]= $contact->id;
         }        
-        return $org->fill($input)->save();  
+        return $org->fill($input)->save()?$org:"Couldnt update the organization";  
     }
     /**
      * Remove the specified resource from storage.

@@ -61,7 +61,7 @@ class VolunteerController extends Controller
             $input["contact_id"]= $contact->id;
         }
         
-        return $volunteer->fill($input)->save(); 
+        return $volunteer->fill($input)->save()? $volunteer: "Couldnt update the volunteer"; 
     }
     /**
      * Remove the specified resource from storage.
