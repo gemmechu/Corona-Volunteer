@@ -39,7 +39,7 @@ class OpportunityController extends Controller
         $activityType=ActivityType::where('name',$input["activity_type"])->get()->first();             
          
         //OPPOURTUNITY   
-        $organization=Organization::where('email',$input["organization_id"])->get()->first();
+        $organization=Organization::where('email',$input["organization_id"]["email"])->get()->first();
         $input["organization_id"]= $organization->id;
         $opportunity=Opportunity::create($input); 
         $opportunity->activity_type=$activityType->id;
