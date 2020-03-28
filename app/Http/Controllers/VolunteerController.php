@@ -61,7 +61,7 @@ class VolunteerController extends Controller
         }
         //avalibility
         $dayCount=$input["avaliable_on"];
-        foreach($day as $dayCount) {
+        foreach($dayCount as $day ) {
             $avalibilityOn=VolunteerAvailableOn::create($day);
             $avalibilityOn->volunteer_id=$volunteer->id;
             if(!$avalibilityOn->save()){
@@ -72,7 +72,7 @@ class VolunteerController extends Controller
         //interest
         $vInterest=$input["volunteer_interest"];
         $createdVolunteerInterest=new VolunteerInterest();
-        foreach($interest as $vInterest) {
+        foreach($vInterest as $interest) {
             $activityType=ActivityType::where('name',$interest)->get()->first();
             $createdVolunteerInterest->activity_id=$activityType->id;
             $createdVolunteerInterest->volunteer_id=$volunteer->id;
@@ -83,7 +83,7 @@ class VolunteerController extends Controller
         }
         //language
         $volunteerLanguage=$input["language_volunteer"]; 
-        foreach($vLang as $volunteerLanguage) {
+        foreach($volunteerLanguage as $vLang) {
             $vLangCreated=LanguageVolunteer::create($vLang);
             $vLangCreated->volunteer_id=$volunteer->id;
             if(!$vLangCreated->save()){
