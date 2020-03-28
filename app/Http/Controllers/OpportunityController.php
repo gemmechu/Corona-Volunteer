@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Opportunity;
 use App\ActivityType;
 use App\Contact;
+use App\Organization;
 use App\OpportunityLanguageRequirment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -37,11 +38,10 @@ class OpportunityController extends Controller
         $input["contact_id"]= $createdContact->id;
         $activityType=ActivityType::where('name',$input["activity_type"])->get()->first();             
          
-        //OPPOURTUNITY  hex2bin($value)
-         
-        $uuid=uuid($input["organization_id"]);
-        $input["organization_id"]= $uuid;
+        //OPPOURTUNITY   
+        $organization=Organization::where('email',$input["organization_email"])->get()->first();
         $opportunity=Opportunity::create($input);
+        $opportunity->organization_id=$organization->id;
         $opportunity->activity_type=$activityType->id;
         $opportunity->contact_id=$createdContact->id;
         $opportunity->save()? $opportunity : "Couldnt save Opportunity" ;
