@@ -9,7 +9,8 @@ class Applicant extends Model
     protected $table = 'applicant';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'brief_description','status'
+        'brief_description','status',
+        'volunteer_id','opportunity_id'
     ];
     protected $keyType = 'string';
     public $incrementing = false;
