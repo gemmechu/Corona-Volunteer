@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cdc3968a8acfeef734d07e15538525c1",
+    "content-hash": "4a2fdc0b5616d520e61f2381d803b0dc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -384,16 +384,16 @@
         },
         {
             "name": "eastwest/json",
-            "version": "v3.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jannejava/laravel-json.git",
-                "reference": "d422d6c1523ff3f8c2094dc8cb6087b71f76272e"
+                "url": "https://github.com/jannejava/json.git",
+                "reference": "d08982d1849b1e6f5e67768484a703bcd3c463b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jannejava/laravel-json/zipball/d422d6c1523ff3f8c2094dc8cb6087b71f76272e",
-                "reference": "d422d6c1523ff3f8c2094dc8cb6087b71f76272e",
+                "url": "https://api.github.com/repos/jannejava/json/zipball/d08982d1849b1e6f5e67768484a703bcd3c463b9",
+                "reference": "d08982d1849b1e6f5e67768484a703bcd3c463b9",
                 "shasum": ""
             },
             "require": {
@@ -409,13 +409,17 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
                     "name": "Jan Östlund",
                     "email": "janne@eastwest.se"
                 }
             ],
-            "time": "2018-06-14T09:20:22+00:00"
+            "description": "Wrap JSON encoding/decoding errors in exception",
+            "time": "2018-06-14T10:10:59+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -6464,5 +6468,6 @@
     "platform": {
         "php": "^7.2.5"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
