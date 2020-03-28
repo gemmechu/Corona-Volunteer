@@ -23,17 +23,25 @@ Route::post('/activityType','ActivityTypeController@store');
 Route::put('/activityType/{id}','ActivityTypeController@update');
 Route::delete('/activityType/{id}','ActivityTypeController@destroy');
 
+<<<<<<< HEAD
 Route::get('/organization','OrganizationController@index')->middleware('auth:api');
 Route::get('/organization/{id}','OrganizationController@show')->middleware('auth:api');
 Route::post('/organization','OrganizationController@store');
 Route::put('/organization/{id}','OrganizationController@update')->middleware('auth:api');
 Route::delete('/organization/{id}','OrganizationController@destroy')->middleware('auth:api');
+=======
+Route::get('/applicant','ApplicantController@index');
+Route::get('/applicant/{id}','ApplicantController@show');
+Route::post('/applicant','ApplicantController@store');
+Route::put('/applicant/{id}','ApplicantController@update');
+Route::delete('/applicant/{id}','ApplicantController@destroy');
+>>>>>>> 3fbecfab06589eba2862b50595329352501376a8
 
-Route::get('/approvedOrganization','ApprovedOrganizationController@index');
-Route::get('/approvedOrganization/{id}','ApprovedOrganizationController@show');
-Route::post('/approvedOrganization','ApprovedOrganizationController@store');
-Route::put('/approvedOrganization/{id}','ApprovedOrganizationController@update');
-Route::delete('/approvedOrganization/{id}','ApprovedOrganizationController@destroy');
+Route::get('/approvedApplicant','ApprovedApplicantController@index');
+Route::get('/approvedApplicant/{id}','ApprovedApplicantController@show');
+Route::post('/approvedApplicant','ApprovedApplicantController@store');
+Route::put('/approvedApplicant/{id}','ApprovedApplicantController@update');
+Route::delete('/approvedApplicant/{id}','ApprovedApplicantController@destroy');
 
 Route::get('/contact','ContactsController@index');
 Route::get('/contact/{id}','ContactsController@show');
@@ -86,5 +94,12 @@ Route::delete('/volunteerInterest/{id}','VolunteerInterestController@destroy');
 Route::get('/volunteer','VolunteerController@index')->middleware('auth:api');
 Route::get('/volunteer/{id}','VolunteerController@show')->middleware('auth:api');
 Route::post('/volunteer','VolunteerController@store');
+<<<<<<< HEAD
 Route::put('/volunteer/{id}','VolunteerController@update')->middleware('auth:api');
 Route::delete('/volunteer/{id}','VolunteerController@destroy')->middleware('auth:api');
+=======
+Route::put('/volunteer/{id}','VolunteerController@update');
+Route::delete('/volunteer/{id}','VolunteerController@destroy');
+
+Route::post('/volunteer/login','VolunteerController@login');
+>>>>>>> 3fbecfab06589eba2862b50595329352501376a8

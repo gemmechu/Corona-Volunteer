@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Organization;
 use Illuminate\Http\Request;
-
+use App\Contact;
 class OrganizationController extends Controller
 {
     /**
@@ -24,8 +24,13 @@ class OrganizationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {    
-        $input = $request->all();    
+    {   
+        $createdContact=Contact::create($request->input("contact_id"));
+        if(!$createdContact->save()){
+            return "Couldnt save Volunteer's contact".$createdContact;
+        }
+        $input = $request->all(); 
+        $input["contact_id"]= $createdContact->id;   
         $organization=Organization::create($input);
        return $organization->save()? $organization : "Couldnt save Organization" ;
    
@@ -39,14 +44,22 @@ class OrganizationController extends Controller
      */
     public function show($id)
     {
-        return Organization::find($id);
+        $org=Organization::findOrFail($id);
+        $contact=Contact::findOrFail($org->contact_id);
+        $org->contact_id=$contact;
+        return $org;
     }
 
     public function update(Request $request,  $id)
     {
-        $organization = Organization::findOrFail($id);
+        $org = Organization::findOrFail($id);       
         $input = $request->all();
-        return $organization->fill($input)->save(); 
+        if(!empty($input["contact_id"])){
+            $contact = Contact::findOrFail($org->contact_id); 
+            $contact->fill($input["contact_id"])->save(); 
+            $input["contact_id"]= $contact->id;
+        }        
+        return $org->fill($input)->save()?$org:"Couldnt update the organization";  
     }
     /**
      * Remove the specified resource from storage.
@@ -57,7 +70,9 @@ class OrganizationController extends Controller
     public function destroy( $id)
     {
         $organization = Organization::findOrFail($id);
+        $contact = Contact::findOrFail($organization->contact_id);
         $organization->delete();
+        $contact->delete();
     }
 }
 

@@ -1,7 +1,190 @@
-report(
-	generated time
-)
+ROUTES AND THEIR ACTIONS LISTS
+"id": "3e47b071-a698-45c5-b862-6eda10c14a22",
+"id": "0a49f70f-ce80-48df-bcaa-432a106ded26",
+Note all path get will fetch the same data in the post in addition they have id,created_at,updated_at
+contact
+[
+	post https://stormy-meadow-78369.herokuapp.com/api/contact
+	{
+		"region" : "summit",
+		"zone":"summit",
+		"city":"Addis ababa",
+		"subcity":"bole", 
+        "woreda":"08",
+		"house_number":"new",
+		"phone_number":"+25267783920",
+		"emergency_contact":"+25163884829"
+	}
+	get https://stormy-meadow-78369.herokuapp.com/api/contact
+	get https://stormy-meadow-78369.herokuapp.com/api/contact/{id}
+	put https://stormy-meadow-78369.herokuapp.com/api/contact/{id}
+	{
 
+	}
+	delete https://stormy-meadow-78369.herokuapp.com/api/contact/{id}
+]
+
+ActivityType
+[
+	post https://stormy-meadow-78369.herokuapp.com/api/activityType
+	{
+		"name" : "activityname"
+	}
+	get https://stormy-meadow-78369.herokuapp.com/api/activityType
+	get https://stormy-meadow-78369.herokuapp.com/api/activityType/{id}
+	put https://stormy-meadow-78369.herokuapp.com/api/activityType/{id}
+	{
+
+	}
+	delete https://stormy-meadow-78369.herokuapp.com/api/activityType/{id}
+]
+volunteer
+[
+	post https://stormy-meadow-78369.herokuapp.com/api/volunteer
+	{
+		"first_name":"Eden",
+		"last_name":"Abdisa",
+		"birthdate":"2/2/2019",
+        "gender":"female",
+		"email":"eden.abdisa@gmailcom",
+		"password":"eden1234",
+		"distance_willing_to_travel":4.0,
+        "educational_level":"High School",
+		"employment_status":"Student",
+        "disability_status":false,
+		"id_image":"stormy-meadow-78369.herokuapp.com/api/volunteer",
+		"account_status":"pending",
+		"token":"0a49f70f-ce80-48df-bcaa-432a106ded26",
+		"contact_id":{
+						"region" : "afar",
+						"zone":"northen",
+						"city":"mekele",
+						"subcity":"yeka", 
+						"woreda":"08",
+						"house_number":"new",
+						"phone_number":"+25267783920",
+						"emergency_contact":"+25163884829"
+					},
+		"avaliable_on":[
+						{"day":"monday","time":"morning"},
+						{"day":"tuesday","time":"afternoon"},
+						{"day":"wednesday","time":"morning"},
+						{"day":"thursday","time":"afternoon"},
+						{"day":"friday","time":"morning"},
+						{"day":"saturday","time":"afternoon"},
+						{"day":"sunday","time":"morning"}
+						]
+		},
+		"volunteer_interest":["Caring for people","cleaning","Caring for people"],
+		"language_volunteer":[
+						{"name":"amharic","degree_proficency":"advanced"},
+						{"name":"afaan oromo","degree_proficency":"beginer"}
+						]
+	}
+	get https://stormy-meadow-78369.herokuapp.com/api/volunteer
+	get https://stormy-meadow-78369.herokuapp.com/api/volunteer/{id}
+	put https://stormy-meadow-78369.herokuapp.com/api/volunteer/{id}
+	{
+
+	}
+	delete https://stormy-meadow-78369.herokuapp.com/api/volunteer/{id}
+]
+
+organization
+[
+	post https://stormy-meadow-78369.herokuapp.com/api/organization
+	{
+		"name":"bluemoon",
+		"email":"bluemoon@gmailcom",
+		"password":"blue1234",
+		"website":"https://78369.herokuapp.com/api/volunteer",
+		"account_status":"pending",
+		"contact_id":{
+						"region" : "afar",
+						"zone":"northen",
+						"city":"mekele",
+						"subcity":"yeka", 
+						"woreda":"08",
+						"house_number":"new",
+						"phone_number":"+25267783920",
+						"emergency_contact":"+25163884829"
+					}
+	}
+	get https://stormy-meadow-78369.herokuapp.com/api/organization
+	get https://stormy-meadow-78369.herokuapp.com/api/organization/{id}
+	put https://stormy-meadow-78369.herokuapp.com/api/organization/{id}
+	{
+
+	}
+	delete https://stormy-meadow-78369.herokuapp.com/api/volunteer/{id}
+]
+
+Opportunity
+[
+	post https://stormy-meadow-78369.herokuapp.com/api/opportunity
+	{
+		"name":"cleaning megenagna",
+		"status":"active",
+		"start_date":"2/5/2020",
+		"end_date":"2/6/2020",
+		"brief_description":"Colleect trash", 
+		"requirment_description":"We want a hardwoeking person",
+		"minimum_age":20,
+		"number_of_volunteer_needed":10,
+		number_of_avaliable_spot:10,
+		"contact_id":{
+						"region" : "central",
+						"zone":"09",
+						"city":"addis ababa",
+						"subcity":"yeka", 
+						"woreda":"08",
+						"house_number":"new",
+						"phone_number":"+25267783920",
+						"emergency_contact":"+25163884829"
+					},
+		"organization_id":"c16bc8fe-1b3e-49c3-89c3-e8c3d5c86915",
+		"activity_type":"cleaning",
+		"opportunity_language_requirment":[
+						{"name":"amharic","degree_proficency":"advanced"},
+						{"name":"afaan oromo","degree_proficency":"beginer"}
+						]
+	}
+	get https://stormy-meadow-78369.herokuapp.com/api/opportunity
+	get https://stormy-meadow-78369.herokuapp.com/api/opportunity/{id}
+	put https://stormy-meadow-78369.herokuapp.com/api/opportunity/{id}
+	{
+
+	}
+	delete https://stormy-meadow-78369.herokuapp.com/api/opportunity/{id}
+]
+
+
+
+https://stormy-meadow-78369.herokuapp.com/api/applicant
+https://stormy-meadow-78369.herokuapp.com/api/language
+https://stormy-meadow-78369.herokuapp.com/api/languageVolunteer
+
+https://stormy-meadow-78369.herokuapp.com/api/opportunityLanguageRequirment
+
+https://stormy-meadow-78369.herokuapp.com/api/volunteerAvailableOn
+https://stormy-meadow-78369.herokuapp.com/api/volunteerInterest
+
+
+approvedApplicant
+[
+	post https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant
+	{
+		"brief_description" : "summit",
+		"rating":"summit"
+	}
+	get https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant
+	get https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant/{id}
+	put https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant/{id}
+	{
+
+	}
+	delete https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant/{id}
+]
 media (
 			id
 			url

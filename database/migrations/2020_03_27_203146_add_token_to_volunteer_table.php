@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLanguageTable extends Migration
+class AddTokenToVolunteerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateLanguageTable extends Migration
      */
     public function up()
     {
-        Schema::create('language', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('volunteer', function (Blueprint $table) {
+            $table->string("token");
         });
     }
 
@@ -27,6 +25,8 @@ class CreateLanguageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('language');
+        Schema::table('volunteer', function (Blueprint $table) {
+            //
+        });
     }
 }

@@ -10,7 +10,7 @@ class Contact extends Model
     protected $table = 'contact';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'region','zone','city','subcity','subcity',
+        'region','zone','city','subcity',
         'woreda','house_number','phone_number','emergency_contact'
     ];
     protected $keyType = 'string';
@@ -22,5 +22,8 @@ class Contact extends Model
         $model->id = (string) Uuid::generate(4);
     });
 }
-   
+    public function volunteer()
+    {
+        return $this->hasOne('App\Volunteer');
+    }
 }

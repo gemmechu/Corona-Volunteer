@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Opportunity;
+use App\ActivityType;
+use App\Contact;
+use App\Organization;
+use App\OpportunityLanguageRequirment;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
+use Webpatser\Uuid\Uuid;
 class OpportunityController extends Controller
 {
     /**
@@ -24,11 +29,34 @@ class OpportunityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {    
-        $input = $request->all();    
+    {   //oPPORTUNITY CONTACT
+        $createdContact=Contact::create($request->input("contact_id"));
+        if(!$createdContact->save()){
+            return "Couldnt save Volunteer's contact".$createdContact;
+        }
+        $input = $request->all(); 
+        $input["contact_id"]= $createdContact->id;
+        $activityType=ActivityType::where('name',$input["activity_type"])->get()->first();             
+         
+        //OPPOURTUNITY   
+        $organization=Organization::where('email',$input["organization_email"])->get()->first();
         $opportunity=Opportunity::create($input);
-       return $Opportunity->save()? $Opportunity : "Couldnt save Opportunity" ;
-   
+        $opportunity->organization_id=$organization->id;
+        $opportunity->activity_type=$activityType->id;
+        $opportunity->contact_id=$createdContact->id;
+        $opportunity->save()? $opportunity : "Couldnt save Opportunity" ;
+        //LANGUAGE REQUIRMENT
+        $volunteerLanguageRequirment=$input["opportunity_language_requirment"];        
+        foreach($volunteerLanguageRequirment as $vLangReq) {
+            $vLangReqCreated=new OpportunityLanguageRequirment(); 
+            $vLangReqCreated->opportunity_id=$opportunity->id; 
+            $vLangReqCreated->language_name=$vLangReq["name"];
+            $vLangReqCreated->needed_proficency_level=$vLangReq["degree_proficency"];
+            if(!$vLangCreated->save()){
+                return "Couldnt save Volunteer's language".$vLangCreated;
+            } 
+        }
+        return $opportunity;
     }
 
     /**

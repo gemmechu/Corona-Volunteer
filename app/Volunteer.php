@@ -14,7 +14,7 @@ class Volunteer extends Model
     protected $fillable = [
         'first_name','last_name','birthdate',
         'gender','email','password','distance_willing_to_travel',
-        'educational_level','employment_status',
+        'educational_level','employment_status','contact_id',
         'disability_status','id_image','account_status','token'
     ];
     protected $keyType = 'string';

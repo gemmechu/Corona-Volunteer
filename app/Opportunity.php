@@ -11,9 +11,10 @@ class Opportunity extends Model
             protected $primaryKey = 'id';
             protected $fillable = [
                 'name','status','start_date','end_date',
-                'end_date','brief_description','requirment_description',
+                'brief_description','requirment_description',
                 'minimum_age','number_of_volunteer_needed',
-                'number_of_avaliable_spot'
+                'number_of_avaliable_spot','contact_id',
+                'organization_id','activity_type'
             ];
             protected $keyType = 'string';
             public $incrementing = false;
