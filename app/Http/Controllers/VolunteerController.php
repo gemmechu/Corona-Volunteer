@@ -87,10 +87,12 @@ class VolunteerController extends Controller
             unset($createdVolunteerInterest);
         }
         //language
-        $volunteerLanguage=$input["language_volunteer"]; 
+        $volunteerLanguage=$input["language_volunteer"];
+        $vLangCreated=new LanguageVolunteer(); 
+        $vLangCreated->volunteer_id=$volunteer->id; 
         foreach($volunteerLanguage as $vLang) {
-            $vLangCreated=LanguageVolunteer::create($vLang);
-            $vLangCreated->volunteer_id=$volunteer->id;
+            $vLangCreated->language_name=$vLang["name"];
+            $vLangCreated->degree_proficency=$vLang["degree_proficency"];
             if(!$vLangCreated->save()){
                 return "Couldnt save Volunteer's language".$vLangCreated;
             }
