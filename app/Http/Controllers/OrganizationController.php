@@ -44,14 +44,22 @@ class OrganizationController extends Controller
      */
     public function show($id)
     {
-        return Organization::find($id);
+        $org=Organization::find($id);
+        $contact=Contact::find($org->contact_id);
+        $org->contact_id=$contact;
+        return $org;
     }
 
     public function update(Request $request,  $id)
     {
-        $organization = Organization::findOrFail($id);
+        $org = Organization::findOrFail($id);       
         $input = $request->all();
-        return $organization->fill($input)->save(); 
+        if(!empty($input["contact_id"])){
+            $contact = Contact::findOrFail($org->contact_id); 
+            $contact->fill($input["contact_id"])->save(); 
+            $input["contact_id"]= $contact->id;
+        }        
+        return $org->fill($input)->save();  
     }
     /**
      * Remove the specified resource from storage.
@@ -62,7 +70,9 @@ class OrganizationController extends Controller
     public function destroy( $id)
     {
         $organization = Organization::findOrFail($id);
+        $contact = Contact::findOrFail($organization->contact_id);
         $organization->delete();
+        $contact->delete();
     }
 }
 
