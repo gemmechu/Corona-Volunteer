@@ -26,20 +26,21 @@ class VolunteerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {     $json = Json::decode( $request,true);
+    {     
+        //$json = Json::decode( $request,true);$json["contact_id"]
         
         
         //$contact=$volunteer->contact_id;
        
-        $createdContact=Contact::create($json["contact_id"]);
+        $createdContact=Contact::create($request->input("contact_id"));
         $savedContact=$createdContact->save();
         if(empty($savedContact)){
             return "Couldnt save Volunteer's contact".$createdContact;
         }
-        $input = $request->all();   
+        $input = $request->all();  
+        $input->contact_id= $savedContact->id;
         $volunteer=Volunteer::create($input);
 
-        $volunteer->contact_id = $savedContact->id;
         return $volunteer->save()? $volunteer : "Couldnt save Volunteer" ;
    
     }

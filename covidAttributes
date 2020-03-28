@@ -38,7 +38,6 @@ ActivityType
 	}
 	delete https://stormy-meadow-78369.herokuapp.com/api/activityType/{id}
 ]
-
 volunteer
 [
 	post https://stormy-meadow-78369.herokuapp.com/api/volunteer
