@@ -94,12 +94,8 @@ Route::delete('/volunteerInterest/{id}','VolunteerInterestController@destroy');
 Route::get('/volunteer','VolunteerController@index')->middleware('auth:api');
 Route::get('/volunteer/{id}','VolunteerController@show')->middleware('auth:api');
 Route::post('/volunteer','VolunteerController@store');
-<<<<<<< HEAD
 Route::put('/volunteer/{id}','VolunteerController@update')->middleware('auth:api');
 Route::delete('/volunteer/{id}','VolunteerController@destroy')->middleware('auth:api');
-=======
-Route::put('/volunteer/{id}','VolunteerController@update');
-Route::delete('/volunteer/{id}','VolunteerController@destroy');
+
 
 Route::post('/volunteer/login','VolunteerController@login');
->>>>>>> 3fbecfab06589eba2862b50595329352501376a8
