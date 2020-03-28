@@ -11,7 +11,8 @@ class OpportunityLanguageRequirment extends Model
 
             protected $primaryKey = 'opportunity_id';
             protected $fillable = [
-                'language_name','needed_proficency_level'
+                'language_name','needed_proficency_level',
+                'opportunity_id'
             ];
             protected $keyType = 'string';
             public $incrementing = false;

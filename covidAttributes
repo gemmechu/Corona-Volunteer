@@ -119,13 +119,52 @@ organization
 	delete https://stormy-meadow-78369.herokuapp.com/api/volunteer/{id}
 ]
 
+Opportunity
+[
+	post https://stormy-meadow-78369.herokuapp.com/api/opportunity
+	{
+		"name":"bluemoon",
+		"status":"bluemoon@gmailcom",
+		"start_date":"blue1234",
+		"end_date":"blue1234",
+		"brief_description":"https://78369.herokuapp.com/api/volunteer",
+		"status":"pending",
+		"requirment_description":"",
+		"minimum_age":,
+		"number_of_volunteer_needed":,
+		number_of_avaliable_spot:,
+		"contact_id":{
+						"region" : "afar",
+						"zone":"northen",
+						"city":"mekele",
+						"subcity":"yeka", 
+						"woreda":"08",
+						"house_number":"new",
+						"phone_number":"+25267783920",
+						"emergency_contact":"+25163884829"
+					},
+		"organization_id":"",
+		"activity_type":"",
+		"opportunity_language_requirment":[
+						{"name":"amharic","degree_proficency":"advanced"},
+						{"name":"afaan oromo","degree_proficency":"beginer"}
+						]
+	}
+	get https://stormy-meadow-78369.herokuapp.com/api/opportunity
+	get https://stormy-meadow-78369.herokuapp.com/api/opportunity/{id}
+	put https://stormy-meadow-78369.herokuapp.com/api/opportunity/{id}
+	{
+
+	}
+	delete https://stormy-meadow-78369.herokuapp.com/api/opportunity/{id}
+]
 
 
 
 https://stormy-meadow-78369.herokuapp.com/api/applicant
 https://stormy-meadow-78369.herokuapp.com/api/language
 https://stormy-meadow-78369.herokuapp.com/api/languageVolunteer
-https://stormy-meadow-78369.herokuapp.com/api/opportunity
+
 https://stormy-meadow-78369.herokuapp.com/api/opportunityLanguageRequirment
 
 https://stormy-meadow-78369.herokuapp.com/api/volunteerAvailableOn
