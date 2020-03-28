@@ -64,8 +64,8 @@ class VolunteerController extends Controller
         $avalibilityOn=new VolunteerAvailableOn();        
         $avalibilityOn->volunteer_id=$volunteer->id;
         foreach($dayCount as $day ) {
-            $avalibilityOn->time=$day ->time;
-            $avalibilityOn->day=$day ->day;
+            $avalibilityOn->time=$day["time"];
+            $avalibilityOn->day=$day["day"];
             if(!$avalibilityOn->save()){
                 return "Couldnt save Volunteer's avalibility date".$avalibilityOn;
             }
