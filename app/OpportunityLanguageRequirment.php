@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class OpportunityLanguageRequirment extends Model
 {
   
-    protected $table = 'opportunity_language_requirement';
+    protected $table = 'opportunity_language_requirment';
 
             protected $primaryKey = 'opportunity_id';
             protected $fillable = [
