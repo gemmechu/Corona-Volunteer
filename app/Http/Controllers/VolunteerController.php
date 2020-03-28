@@ -47,16 +47,51 @@ class VolunteerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {     
+    {   //Contact 
         $createdContact=Contact::create($request->input("contact_id"));
         if(!$createdContact->save()){
             return "Couldnt save Volunteer's contact".$createdContact;
         }
         $input = $request->all();  
         $input["contact_id"]= $createdContact->id;
-
-        $volunteer=Volunteer::create($input);        
-        return $volunteer->save()? $volunteer : "Couldnt save Volunteer" ;   
+        //volunteer
+        $volunteer=Volunteer::create($input);
+        if(!$volunteer->save()){
+            return "Couldnt save Volunteer's contact".$volunteer;
+        }
+        //avalibility
+        $dayCount=$input["avaliable_on"];
+        foreach($day as $dayCount) {
+            $avalibilityOn=VolunteerAvailableOn::create($day);
+            $avalibilityOn->volunteer_id=$volunteer->id;
+            if(!$avalibilityOn->save()){
+                return "Couldnt save Volunteer's avalibility date".$avalibilityOn;
+            }
+            unset($avalibilityOn);
+        } 
+        //interest
+        $vInterest=$input["volunteer_interest"];
+        $createdVolunteerInterest=new VolunteerInterest();
+        foreach($interest as $vInterest) {
+            $activityType=ActivityType::where('name',$interest)->get()->first();
+            $createdVolunteerInterest->activity_id=$activityType->id;
+            $createdVolunteerInterest->volunteer_id=$volunteer->id;
+            if(!$createdVolunteerInterest->save()){
+                return "Couldnt save Volunteer's interest date".$createdVolunteerInterest;
+            }
+            unset($createdVolunteerInterest->id);
+        }
+        //language
+        $volunteerLanguage=$input["language_volunteer"]; 
+        foreach($vLang as $volunteerLanguage) {
+            $vLangCreated=LanguageVolunteer::create($vLang);
+            $vLangCreated->volunteer_id=$volunteer->id;
+            if(!$vLangCreated->save()){
+                return "Couldnt save Volunteer's language".$vLangCreated;
+            }
+            unset($vLangCreated);
+        }
+          
     }
 
     /**

@@ -9,7 +9,9 @@ class VolunteerInterest extends Model
    
     protected $table = 'volunteer_interest';
     protected $primaryKey = 'id';
-  
+    protected $fillable = [
+        'activity_id',"volunteer_id"
+    ];
     protected $keyType = 'string';
     public $incrementing = false;
 

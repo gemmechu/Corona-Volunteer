@@ -65,21 +65,21 @@ volunteer
 						"phone_number":"+25267783920",
 						"emergency_contact":"+25163884829"
 					},
-		"avaliable_on":{
-						"monday":"morning",
-						"tuesday":"morning",
-						"wednesday":"afternoon",
-						"thursday":"afternoon",
-						"friday":"morning",
-						"saturday":"afternoon",
-						"sunday":"morning",
+		"avaliable_on":[
+						{"day":"monday","time":"morning"},
+						{"day":"tuesday","time":"afternoon"},
+						{"day":"wednesday","time":"morning"},
+						{"day":"thursday","time":"afternoon"},
+						{"day":"friday","time":"morning"},
+						{"day":"saturday","time":"afternoon"},
+						{"day":"sunday","time":"morning"}
+						]
 		},
-		"volunteer_interest":{
-
-		},
-		"language_volunteer":{
-
-		}
+		"volunteer_interest":["Caring for people","cleaning","Caring for people"],
+		"language_volunteer":[
+						{"name":"amharic","degree_proficency":"advanced"},
+						{"name":"afaan oromo","degree_proficency":"beginer"}
+						]
 	}
 	get https://stormy-meadow-78369.herokuapp.com/api/volunteer
 	get https://stormy-meadow-78369.herokuapp.com/api/volunteer/{id}

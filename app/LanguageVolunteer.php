@@ -10,7 +10,8 @@ class LanguageVolunteer extends Model
 
     protected $primaryKey = 'id';
     protected $fillable = [
-        'language_name','degree_proficency'
+        'language_name','degree_proficency',
+        'volunteer_id'
     ];
     protected $keyType = 'string';
     public $incrementing = false;
