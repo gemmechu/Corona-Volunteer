@@ -141,7 +141,7 @@ Opportunity
 						"emergency_contact":"+25163884829"
 					},
 		"organization_id":"bluemoon@gmailcom",
-		"activity_type":"cleaning",
+		"activity_type":"1e7c27f5-cac0-4db2-94d4-e13f5974394e",
 		"opportunity_language_requirment":[
 						{"name":"amharic","degree_proficency":"advanced"},
 						{"name":"afaan oromo","degree_proficency":"beginer"}
@@ -179,7 +179,7 @@ approvedApplicant
 	{
 		"brief_description" : "summit",
 		"rating":"summit",
-		"applicant_id";""
+		"applicant_id":"e270b173-fb3a-4bf9-bcc5-d0683077b5f5"
 	}
 	get https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant
 	get https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant/{id}
@@ -188,4 +188,19 @@ approvedApplicant
 
 	}
 	delete https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant/{id}
+]
+
+language
+[
+	post https://stormy-meadow-78369.herokuapp.com/api/language
+	{
+		"name" : "tigrgna" 
+	}
+	get https://stormy-meadow-78369.herokuapp.com/api/language
+	get https://stormy-meadow-78369.herokuapp.com/api/language/{id}
+	put https://stormy-meadow-78369.herokuapp.com/api/language/{id}
+	{
+
+	}
+	delete https://stormy-meadow-78369.herokuapp.com/api/language/{id}
 ]
