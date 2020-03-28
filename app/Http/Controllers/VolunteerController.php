@@ -96,8 +96,7 @@ class VolunteerController extends Controller
                 return "Couldnt save Volunteer's language".$vLangCreated;
             } 
         }
-          //return $volunteer;
-          return response()->json(['success'=>$volunteer],200);
+          return $volunteer;
     }
 
     /**
