@@ -19,11 +19,19 @@ class VolunteerController extends Controller
     {
         return Volunteer::all();
     }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function login(Request $request)
     {
         $input = $request->all();
-        $volunteer=Volunteer::select('email','password')->where($input["email"], $input["password"])->get()->first();;
-        //where('email', '=', $input["email"])->first();
+        $volunteer=Volunteer::where('email',$input["email"])
+                              ->where('password', $input["password"])
+                              ->where('account_status', "active")
+                              ->get()->first();
         if(empty($volunteer)){
             return "Volunteer is not found";
         }
