@@ -15,13 +15,13 @@ class Organization extends Model
                 'website','account_status'
             ];
             protected $hidden = ['password'];
-            protected $keyType = 'uuid';
+            protected $keyType = 'string';
             public $incrementing = false;
 
             public static function boot(){
             parent::boot();
             self::creating(function ($model) {
-                $model->id =   Uuid::generate(4);
+                $model->id = (string) Uuid::generate(4);
             });
            
             }
