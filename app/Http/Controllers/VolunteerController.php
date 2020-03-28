@@ -26,9 +26,13 @@ class VolunteerController extends Controller
     public function store(Request $request)
     {    
         $input = $request->all();    
+        
         $volunteer=Volunteer::create($input);
-       return $volunteer->save()? $volunteer : "Couldnt save Volunteer" ;
-   
+        $success['token'] = $volunteer->createToken('MyApp')->accessToken;
+        $success['name'] = $volunteer->first_name;
+        //$volunteer->setNewApiToken();
+       //return $volunteer->save()? $volunteer : "Couldnt save Volunteer" ;
+        return response()->json(['success'=>$success],200);
     }
 
     /**
