@@ -92,9 +92,9 @@ class VolunteerController extends Controller
             $vLangCreated->volunteer_id=$volunteer->id; 
             $vLangCreated->language_name=$vLang["name"];
             $vLangCreated->degree_proficency=$vLang["degree_proficency"];
-            if(!$vLangCreated->save())
+            if(!$vLangCreated->save()){
                 return "Couldnt save Volunteer's language".$vLangCreated;
-            
+            } 
         }
           //return $volunteer;
           return response()->json(['success'=>$volunteer],200);

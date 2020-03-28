@@ -7,7 +7,7 @@ use Laravel\Passport\HasApiTokens;
 
 class Volunteer extends Model
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens;
     protected $table = "volunteer";
   
     protected $primaryKey = 'id';
