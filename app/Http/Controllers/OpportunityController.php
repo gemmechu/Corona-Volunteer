@@ -36,15 +36,15 @@ class OpportunityController extends Controller
         }
         $input = $request->all(); 
         $input["contact_id"]= $createdContact->id;
-        $activityType=ActivityType::where('name',$input["activity_type"])->get()->first();             
+        //$activityType=ActivityType::where('name',$input["activity_type"])->get()->first();             
          
         //OPPOURTUNITY   
         $organization=Organization::where('email',$input["organization_id"]["email"])->get()->first();
         $input["organization_id"]=$organization->id;
-        $input["activity_type"]=$activity_type->id;
+        //$input["activity_type"]=$activity_type->id;
         $opportunity=Opportunity::create($input);
         $opportunity->organization_id= $organization->id; 
-        $opportunity->activity_type=$activityType->id;
+       // $opportunity->activity_type=$activityType->id;
         $opportunity->contact_id=$createdContact->id;
         $opportunity->save()? $opportunity : "Couldnt save Opportunity" ;
         //LANGUAGE REQUIRMENT
