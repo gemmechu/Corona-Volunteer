@@ -123,28 +123,27 @@ Opportunity
 [
 	post https://stormy-meadow-78369.herokuapp.com/api/opportunity
 	{
-		"name":"bluemoon",
-		"status":"bluemoon@gmailcom",
-		"start_date":"blue1234",
-		"end_date":"blue1234",
-		"brief_description":"https://78369.herokuapp.com/api/volunteer",
-		"status":"pending",
-		"requirment_description":"",
-		"minimum_age":,
-		"number_of_volunteer_needed":,
-		number_of_avaliable_spot:,
+		"name":"cleaning megenagna",
+		"status":"active",
+		"start_date":"2/5/2020",
+		"end_date":"2/6/2020",
+		"brief_description":"Colleect trash", 
+		"requirment_description":"We want a hardwoeking person",
+		"minimum_age":20,
+		"number_of_volunteer_needed":10,
+		number_of_avaliable_spot:10,
 		"contact_id":{
-						"region" : "afar",
-						"zone":"northen",
-						"city":"mekele",
+						"region" : "central",
+						"zone":"09",
+						"city":"addis ababa",
 						"subcity":"yeka", 
 						"woreda":"08",
 						"house_number":"new",
 						"phone_number":"+25267783920",
 						"emergency_contact":"+25163884829"
 					},
-		"organization_id":"",
-		"activity_type":"",
+		"organization_id":"c16bc8fe-1b3e-49c3-89c3-e8c3d5c86915",
+		"activity_type":"cleaning",
 		"opportunity_language_requirment":[
 						{"name":"amharic","degree_proficency":"advanced"},
 						{"name":"afaan oromo","degree_proficency":"beginer"}

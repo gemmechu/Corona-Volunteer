@@ -32,11 +32,13 @@ class OpportunityController extends Controller
         if(!$createdContact->save()){
             return "Couldnt save Volunteer's contact".$createdContact;
         }
-        $activityType=ActivityType::where('name',input("activity_type"))->get()->first();        
         $input = $request->all(); 
+        $activityType=ActivityType::where('name',$input("activity_type"))->get()->first();             
         $input["contact_id"]= $createdContact->id; 
         //OPPOURTUNITY
         $opportunity=Opportunity::create($input);
+        $opportunity->activity_type=$activityType->id;
+        $opportunity->contact_id=$createdContact->id;
         $opportunity->save()? $opportunity : "Couldnt save Opportunity" ;
         //LANGUAGE REQUIRMENT
         $volunteerLanguageRequirment=$input["opportunity_language_requirment"];        
