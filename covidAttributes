@@ -51,12 +51,12 @@ volunteer
 		"distance_willing_to_travel":4.0,
         "educational_level":"High School",
 		"employment_status":"Student",
-        "disability_status":"false",
+        "disability_status":false,
 		"id_image":"stormy-meadow-78369.herokuapp.com/api/volunteer",
 		"account_status":"pending",
 		"token":"0a49f70f-ce80-48df-bcaa-432a106ded26",
-		"contact_id":"{
-						"region" : "tigray",
+		"contact_id":{
+						"region" : "afar",
 						"zone":"northen",
 						"city":"mekele",
 						"subcity":"yeka", 
@@ -64,7 +64,7 @@ volunteer
 						"house_number":"new",
 						"phone_number":"+25267783920",
 						"emergency_contact":"+25163884829"
-					}"
+					}
 	}
 	get https://stormy-meadow-78369.herokuapp.com/api/volunteer
 	get https://stormy-meadow-78369.herokuapp.com/api/volunteer/{id}

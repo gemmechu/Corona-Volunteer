@@ -27,22 +27,14 @@ class VolunteerController extends Controller
      */
     public function store(Request $request)
     {     
-        //$json = Json::decode( $request,true);$json["contact_id"]
-        
-        
-        //$contact=$volunteer->contact_id;
-       
         $createdContact=Contact::create($request->input("contact_id"));
-        ;
         if(!$createdContact->save()){
             return "Couldnt save Volunteer's contact".$createdContact;
         }
         $input = $request->all();  
         $input["contact_id"]= $createdContact->id;
-        $volunteer=Volunteer::create($input);
-        
-        return $volunteer->save()? $volunteer : "Couldnt save Volunteer" ;
-   
+        $volunteer=Volunteer::create($input);        
+        return $volunteer->save()? $volunteer : "Couldnt save Volunteer" ;   
     }
 
     /**
@@ -58,8 +50,12 @@ class VolunteerController extends Controller
 
     public function update(Request $request,  $id)
     {
-        $volunteer = Volunteer::findOrFail($id);
+        $volunteer = Volunteer::findOrFail($id);       
         $input = $request->all();
+        if(!empty($input["contact_id"])){
+            $contact = Contact::findOrFail($volunteer->id); 
+            $contact->fill($input["contact_id"])->save(); 
+        }
         return $volunteer->fill($input)->save(); 
     }
     /**
