@@ -3,9 +3,11 @@
 namespace App;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Passport\HasApiTokens;
 
 class Volunteer extends Model
 {
+    use HasApiTokens, Notifiable;
     protected $table = "volunteer";
   
     protected $primaryKey = 'id';
@@ -22,10 +24,19 @@ class Volunteer extends Model
     parent::boot();
     self::creating(function ($model) {
         $model->id = (string) Uuid::generate(4);
+        $model->token = (string) Uuid::generate(4);
     });
 }
     public function contact(){
         return $this->belongsTo('App\Contact');
     }
-        
+ 
+ 
+
+    /*public function setNewApiToken(){
+        $this->attributes['token'] = $this->Str::uuid();
+        $this->save();
+    }
+    */
+          
 }
