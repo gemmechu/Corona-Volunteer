@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Volunteer;
 use App\Contact;
+use App\VolunteerInterest;
+use App\LanguageVolunteer;
+use App\ActivityType;
 use App\VolunteerAvailableOn;
 use Illuminate\Http\Request;
 use Eastwest\Json\Json;
