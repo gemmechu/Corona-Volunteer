@@ -7,7 +7,8 @@ use App\ActivityType;
 use App\Contact;
 use App\OpportunityLanguageRequirment;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
+use Webpatser\Uuid\Uuid;
 class OpportunityController extends Controller
 {
     /**
@@ -37,6 +38,7 @@ class OpportunityController extends Controller
         $input["contact_id"]= $createdContact->id; 
         //OPPOURTUNITY
         $opportunity=Opportunity::create($input);
+        $opportunity->organization_id=Uuid::import($input["organization_id"]);
         $opportunity->activity_type=$activityType->id;
         $opportunity->contact_id=$createdContact->id;
         $opportunity->save()? $opportunity : "Couldnt save Opportunity" ;
