@@ -72,6 +72,8 @@ class VolunteerController extends Controller
     public function destroy( $id)
     {
         $volunteer = Volunteer::findOrFail($id);
+        $contact = Contact::findOrFail($volunteer->contact_id);
         $volunteer->delete();
+        $contact->delete();
     }
 }
