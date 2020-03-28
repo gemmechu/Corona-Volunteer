@@ -158,6 +158,23 @@ Opportunity
 	delete https://stormy-meadow-78369.herokuapp.com/api/opportunity/{id}
 ]
 
+Opportunity
+[
+	post https://stormy-meadow-78369.herokuapp.com/api/applicant
+	{
+		"volunteer_id":"cleaning megenagna",
+		"opportunity_id":"2a5bf696-b340-49d2-b10e-0502aef81cec",
+		"status":"active",
+		"brief_description":"jhelwkjfhlh"
+	}
+	get https://stormy-meadow-78369.herokuapp.com/api/applicant
+	get https://stormy-meadow-78369.herokuapp.com/api/applicant/{id}
+	put https://stormy-meadow-78369.herokuapp.com/api/applicant/{id}
+	{
+
+	}
+	delete https://stormy-meadow-78369.herokuapp.com/api/applicant/{id}
+]
 
 
 https://stormy-meadow-78369.herokuapp.com/api/applicant
