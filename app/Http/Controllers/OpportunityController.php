@@ -54,7 +54,7 @@ class OpportunityController extends Controller
             $vLangReqCreated->opportunity_id=$opportunity->id; 
             $vLangReqCreated->language_name=$vLangReq["name"];
             $vLangReqCreated->needed_proficency_level=$vLangReq["degree_proficency"];
-            if(!$vLangCreated->save()){
+            if(!$vLangReqCreated->save()){
                 return "Couldnt save Volunteer's language".$vLangCreated;
             } 
         }
