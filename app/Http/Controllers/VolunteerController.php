@@ -64,15 +64,15 @@ class VolunteerController extends Controller
         }
         //avalibility
         $dayCount=$input["avaliable_on"];
-        $avalibilityOn=new VolunteerAvailableOn();        
-        $avalibilityOn->volunteer_id=$volunteer->id;
+        
         foreach($dayCount as $day ) {
+            $avalibilityOn=new VolunteerAvailableOn();        
+            $avalibilityOn->volunteer_id=$volunteer->id;
             $avalibilityOn->time=$day["time"];
             $avalibilityOn->day=$day["day"];
             if(!$avalibilityOn->save()){
                 return "Couldnt save Volunteer's avalibility date".$avalibilityOn;
             }
-            unset($avalibilityOn);
         } 
         //interest
         $vInterest=$input["volunteer_interest"];
