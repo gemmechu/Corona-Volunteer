@@ -56,7 +56,7 @@ class VolunteerController extends Controller
         $volunteer = Volunteer::findOrFail($id);       
         $input = $request->all();
         if(!empty($input["contact_id"])){
-            $contact = Contact::findOrFail($volunteer->id); 
+            $contact = Contact::findOrFail($volunteer->contact_id); 
             $contact->fill($input["contact_id"])->save(); 
         }
         return $volunteer->fill($input)->save(); 
