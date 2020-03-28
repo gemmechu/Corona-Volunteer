@@ -77,6 +77,8 @@
       <v-col
         cols="12"
         md="4"
+        v-for="op of opportunity"
+        v-bind:key="op.id"
       >
         <base-material-card
           color="info"
@@ -84,78 +86,21 @@
         >
           <template v-slot:heading>
             <div class="display-2 font-weight-light">
-              Opportunity A
+              {{op.name}}
             </div>
 
             <div class="subtitle-1 font-weight-light">
-              15th September, 2016
+              {{op.start_date}}
             </div>
           </template>
           <v-card-text>
-            "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+            {{op.brief_description}}
           </v-card-text>
           <v-btn
             class="ma-2"
             outlined
             color="info"
-          >
-            Detail
-          </v-btn>
-        </base-material-card>
-      </v-col>
-      <v-col
-        cols="12"
-        md="4"
-      >
-        <base-material-card
-          color="info"
-          class="px-5 py-3"
-        >
-          <template v-slot:heading>
-            <div class="display-2 font-weight-light">
-              Opportunity A
-            </div>
-
-            <div class="subtitle-1 font-weight-light">
-              15th September, 2016
-            </div>
-          </template>
-          <v-card-text>
-            "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-          </v-card-text>
-          <v-btn
-            class="ma-2"
-            outlined
-            color="info"
-          >
-            Detail
-          </v-btn>
-        </base-material-card>
-      </v-col>
-      <v-col
-        cols="12"
-        md="4"
-      >
-        <base-material-card
-          color="info"
-          class="px-5 py-3"
-        >
-          <template v-slot:heading>
-            <div class="display-2 font-weight-light">
-              Opportunity A
-            </div>
-
-            <div class="subtitle-1 font-weight-light">
-              15th September, 2016
-            </div>
-          </template>
-          <v-card-text>
-            "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-          </v-card-text>
-          <v-btn
-            class="ma-2"
-            outlined
-            color="info"
+            v-on:click="Details(op)"
           >
             Detail
           </v-btn>
@@ -167,18 +112,29 @@
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
     name: 'Home',
 
     data () {
       return {
+        opportunity: [],
         abren: require('../../assets/abren.jpg'),
       }
     },
-
+    created () {
+      axios({ method: 'GET', url: 'https://stormy-meadow-78369.herokuapp.com/api/opportunity', headers: { 'content-type': 'application/json' } }).then(result => {
+        this.opportunity = this.result.data.slice(0, 3)
+      }, error => {
+        console.error(error)
+      })
+    },
     methods: {
       complete (index) {
         this.list[index] = !this.list[index]
+      },
+      Details (value) {
+        this.$router.push({ path: `/volunteerDetails/${value.id}` })
       },
     },
   }
