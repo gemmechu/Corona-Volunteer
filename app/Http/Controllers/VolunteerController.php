@@ -45,7 +45,10 @@ class VolunteerController extends Controller
      */
     public function show($id)
     {
-        return Volunteer::find($id);
+        $volunteer=Volunteer::find($id);
+        $contact=Contact::find($volunteer->contact_id);
+        $volunteer->contact_id=$contact;
+        return $volunteer;
     }
 
     public function update(Request $request,  $id)

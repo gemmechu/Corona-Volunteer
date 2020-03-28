@@ -11,6 +11,7 @@ class Organization extends Model
     protected $primaryKey = 'id';
             protected $fillable = [
                 'name','email','password',
+                'contact_id',
                 'website','account_status'
             ];
             protected $hidden = ['password'];

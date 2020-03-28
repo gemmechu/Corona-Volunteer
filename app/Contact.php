@@ -22,5 +22,8 @@ class Contact extends Model
         $model->id = (string) Uuid::generate(4);
     });
 }
-   
+    public function volunteer()
+    {
+        return $this->hasOne('App\Volunteer');
+    }
 }

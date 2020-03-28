@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Organization;
 use Illuminate\Http\Request;
-
+use App\Contact;
 class OrganizationController extends Controller
 {
     /**
@@ -24,8 +24,13 @@ class OrganizationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {    
-        $input = $request->all();    
+    {   
+        $createdContact=Contact::create($request->input("contact_id"));
+        if(!$createdContact->save()){
+            return "Couldnt save Volunteer's contact".$createdContact;
+        }
+        $input = $request->all(); 
+        $input["contact_id"]= $createdContact->id;   
         $organization=Organization::create($input);
        return $organization->save()? $organization : "Couldnt save Organization" ;
    
