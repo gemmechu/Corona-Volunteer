@@ -22,7 +22,7 @@ class VolunteerController extends Controller
     public function login(Request $request)
     {
         $input = $request->all();
-        $volunteer=Volunteer::select('email','password')->where($input["email"], $input["password"])->get();
+        $volunteer=Volunteer::select('email','password')->where($input["email"], $input["password"])->get()->first();;
         //where('email', '=', $input["email"])->first();
         if(empty($volunteer)){
             return "Volunteer is not found";
