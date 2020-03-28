@@ -33,12 +33,12 @@ class VolunteerController extends Controller
         //$contact=$volunteer->contact_id;
        
         $createdContact=Contact::create($request->input("contact_id"));
-        $savedContact=$createdContact->save();
-        if(!isset($savedContact)){
+        ;
+        if(!$createdContact->save()){
             return "Couldnt save Volunteer's contact".$createdContact;
         }
         $input = $request->all();  
-        $input->contact_id= $savedContact->id;
+        $input->contact_id= $createdContact->id;
         $volunteer=Volunteer::create($input);
 
         return $volunteer->save()? $volunteer : "Couldnt save Volunteer" ;
