@@ -1,6 +1,4 @@
 ROUTES AND THEIR ACTIONS LISTS
-"id": "3e47b071-a698-45c5-b862-6eda10c14a22",
-"id": "0a49f70f-ce80-48df-bcaa-432a106ded26",
 Note all path get will fetch the same data in the post in addition they have id,created_at,updated_at
 contact
 [
@@ -143,7 +141,7 @@ Opportunity
 						"emergency_contact":"+25163884829"
 					},
 		"organization_id":"bluemoon@gmailcom",
-		"activity_type":"cleaning",
+		"activity_type":"1e7c27f5-cac0-4db2-94d4-e13f5974394e",
 		"opportunity_language_requirment":[
 						{"name":"amharic","degree_proficency":"advanced"},
 						{"name":"afaan oromo","degree_proficency":"beginer"}
@@ -158,11 +156,11 @@ Opportunity
 	delete https://stormy-meadow-78369.herokuapp.com/api/opportunity/{id}
 ]
 
-Opportunity
+Applicant
 [
 	post https://stormy-meadow-78369.herokuapp.com/api/applicant
 	{
-		"volunteer_id":"cleaning megenagna",
+		"volunteer_id":"20576554-0e90-41cc-8586-e8307fc19b72",
 		"opportunity_id":"2a5bf696-b340-49d2-b10e-0502aef81cec",
 		"status":"active",
 		"brief_description":"jhelwkjfhlh"
@@ -175,24 +173,13 @@ Opportunity
 	}
 	delete https://stormy-meadow-78369.herokuapp.com/api/applicant/{id}
 ]
-
-
-https://stormy-meadow-78369.herokuapp.com/api/applicant
-https://stormy-meadow-78369.herokuapp.com/api/language
-https://stormy-meadow-78369.herokuapp.com/api/languageVolunteer
-
-https://stormy-meadow-78369.herokuapp.com/api/opportunityLanguageRequirment
-
-https://stormy-meadow-78369.herokuapp.com/api/volunteerAvailableOn
-https://stormy-meadow-78369.herokuapp.com/api/volunteerInterest
-
-
 approvedApplicant
 [
 	post https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant
 	{
 		"brief_description" : "summit",
-		"rating":"summit"
+		"rating":"summit",
+		"applicant_id":"e270b173-fb3a-4bf9-bcc5-d0683077b5f5"
 	}
 	get https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant
 	get https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant/{id}
@@ -202,224 +189,18 @@ approvedApplicant
 	}
 	delete https://stormy-meadow-78369.herokuapp.com/api/approvedApplicant/{id}
 ]
-media (
-			id
-			url
-			type
-			forwhatpurpose this media used
-			caption)
-volunteer_profile/volunteer (
-            id
-            f_name
-            l_name
-            nationality 
-            occuption 
-            birth_date 
-            gender 
-            level_study 
-            pp_media_id 
-            cv_media_id 
-            email 
-            phone_number 
-            role
-			employment status
-			willing to travel
-			how did you hear about us
-			martial status
-			ethnicity
-			disability status
-			do you want to help diaster
-			password
-			reward and recognition
-			avaliablity
-			activity types
-			issues area
-			population to serve
-			 );
 
-organization (
-			id 
-			name 
-			logo_media_id no need 
-		    email 
-		    phone_number 
-		    website 
-		    facebook 
-		    instagram
-			primary population served
-			impact area
-			federal Tin
-			contact detailed
-			status(active ...)
-			 );
-organization_connection(
-			id
-			organization_it_has_added
-			status
-)
+language
+[
+	post https://stormy-meadow-78369.herokuapp.com/api/language
+	{
+		"name" : "tigrgna" 
+	}
+	get https://stormy-meadow-78369.herokuapp.com/api/language
+	get https://stormy-meadow-78369.herokuapp.com/api/language/{id}
+	put https://stormy-meadow-78369.herokuapp.com/api/language/{id}
+	{
 
-opportunity (
-			id 
-			name 
-			starting_date 
-			ending_date 
-			place  
-			decription
-			location
-			event
-			oppourtunity leader
-			requirment
-			age minimum 
-			description
-			website link
-			contact name and number );
-
-opportunity_organization(
-			id 
-			opportunity_id 
-			organization_id 
-			number_of_volunteer_needed  );
-
-position_opportunity(
-					id 
-					opportunity_id 
-					organization_id 
-					position 
-					number_of_volunteer_needed 
-					extra_incentives 
-					opportunitying_hour_start 
-					opportunitying_hour_ends 
-                    for_how_many_days 
-                    opportunity_type 
-                    place 
-					start_date 
-					end_date 
-					opportunitying_hour_description_detail  );
-
-position_opportunity_requirment(
-                    id 
-					position_opportunity_id 
-					requirment 
-                    degree_proficency  
-)
-applicant(
-					id 
-					volunteer_id 
-					position_opportunity_id 
-					brief_description 
-					description_of_experience  );
-applicant_position_opportunity_requirment(
-                    id 
-					applicant_id 
-					position_opportunity_requirment_id 
-                    degree_proficency  
-)
-approved_applicant(
-                    id 
-					applicant_id 
-					position_opportunity_id 
-					rating (satisfactory,incomplete,almetam)    
-)
-report (
-			id 
-			type 
-			description );
-
-			AS admin we need a dash board that show activites how many oppourtunity,company rgister list status to activate it, volunteer 
-
-/////////
- (
-		id
-		Region
-		Zone
-		City
-		Sub-city
-		Woreda/Kebele
-		House #
-		Home Phone
-		Mobile Phone
-)
-Language (
-		id
-		name
-)
-volunteer_profile/volunteer (
-            id
-            f_name
-            l_name
-            birth_date 
-            gender 
-            email 
-            contact_id
-            password
-            distance willing to travel
-           //// Language
-            Educational Level
-           // Interest            
-			employment status
-			disability status avliablity
-			//Volunteer avlibility			
-			Government ID (image upload)
-			status
-			 );
-Language_volunteer(
-			id
-			language name
-			volunteer id
-			degree_proficency
-)
-Volunteer_available_on(
-			id
-			volunteer id
-			day
-			time
-)
-organization/host (
-			id 
-			name  
-		    email 
-		    contact_id 
-		    website 
-			file_id  
-			status(active ...)
-)
-opportunity (
-			id 
-			name 
-			starting_date 
-			ending_date 
-			contact_id  
-			brief decription			
-			requirment
-			minimum age limit for application
-			organization_id
-			number_of_volunteer_needed
-			status 
-
-);
-opportunity_language_requirment(
-		id
-		language_id
-		oppourtunity_id
-		needed degree of proficency
-)
-
-
-applicant(
-					id 
-					volunteer_id 
-					opportunity_id 
-					brief_description  );
-
-applicant_opportunity_language(
-                    id 
-					applicant_id
-					language_id
-                    degree_proficency  
-)
-approved_applicant(
-                    id 
-					applicant_id 
-					opportunity_id 
-					rating (satisfactory,incomplete,almetam)    
-)
+	}
+	delete https://stormy-meadow-78369.herokuapp.com/api/language/{id}
+]
