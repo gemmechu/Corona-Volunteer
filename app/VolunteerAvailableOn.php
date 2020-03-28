@@ -10,7 +10,7 @@ class VolunteerAvailableOn extends Model
     protected $table = 'volunteer_available_on';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'time','time'
+        'time','day'
     ];
     protected $keyType = 'string';
     public $incrementing = false;

@@ -64,7 +64,22 @@ volunteer
 						"house_number":"new",
 						"phone_number":"+25267783920",
 						"emergency_contact":"+25163884829"
-					}
+					},
+		"avaliable_on":{
+						"monday":"morning",
+						"tuesday":"morning",
+						"wednesday":"afternoon",
+						"thursday":"afternoon",
+						"friday":"morning",
+						"saturday":"afternoon",
+						"sunday":"morning",
+		},
+		"volunteer_interest":{
+
+		},
+		"language_volunteer":{
+
+		}
 	}
 	get https://stormy-meadow-78369.herokuapp.com/api/volunteer
 	get https://stormy-meadow-78369.herokuapp.com/api/volunteer/{id}

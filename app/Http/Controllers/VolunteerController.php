@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Volunteer;
 use App\Contact;
+use App\VolunteerAvailableOn;
 use Illuminate\Http\Request;
 use Eastwest\Json\Json;
 use Eastwest\Json\JsonException;
@@ -18,7 +19,19 @@ class VolunteerController extends Controller
     {
         return Volunteer::all();
     }
-
+    public function login(Request $request)
+    {
+        $input = $request->all();
+        $volunteer=Volunteer::select('email','password')->where($input["email"], $input["password"])->get();
+        //where('email', '=', $input["email"])->first();
+        if(empty($volunteer)){
+            return "Volunteer is not found";
+        }
+        
+        $contact=Contact::findOrFail($volunteer->contact_id);
+        $volunteer->contact_id=$contact;
+        return $volunteer;
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -33,6 +46,7 @@ class VolunteerController extends Controller
         }
         $input = $request->all();  
         $input["contact_id"]= $createdContact->id;
+
         $volunteer=Volunteer::create($input);        
         return $volunteer->save()? $volunteer : "Couldnt save Volunteer" ;   
     }
@@ -45,8 +59,8 @@ class VolunteerController extends Controller
      */
     public function show($id)
     {
-        $volunteer=Volunteer::find($id);
-        $contact=Contact::find($volunteer->contact_id);
+        $volunteer=Volunteer::findOrFail($id);
+        $contact=Contact::findOrFail($volunteer->contact_id);
         $volunteer->contact_id=$contact;
         return $volunteer;
     }

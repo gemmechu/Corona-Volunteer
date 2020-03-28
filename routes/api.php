@@ -88,3 +88,5 @@ Route::get('/volunteer/{id}','VolunteerController@show');
 Route::post('/volunteer','VolunteerController@store');
 Route::put('/volunteer/{id}','VolunteerController@update');
 Route::delete('/volunteer/{id}','VolunteerController@destroy');
+
+Route::post('/volunteer/login','VolunteerController@login');
