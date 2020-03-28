@@ -9,7 +9,8 @@ class ApprovedApplicant extends Model
     protected $table = 'approved_applicant';
     protected $primaryKey = 'id';
     protected $fillable = [
-      'brief_description','rating'
+      'brief_description','rating',
+      'applicant_id'
     ];
     protected $keyType = 'string';
     public $incrementing = false;
