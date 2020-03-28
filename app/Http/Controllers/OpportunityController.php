@@ -37,8 +37,9 @@ class OpportunityController extends Controller
         $input["contact_id"]= $createdContact->id;
         $activityType=ActivityType::where('name',$input["activity_type"])->get()->first();             
          
-        //OPPOURTUNITY       
-        $uuid=Uuid::import($input["organization_id"]);
+        //OPPOURTUNITY  hex2bin($value)
+         
+        $uuid=hex2bin($input["organization_id"]);
         $input["organization_id"]= $uuid;
         $opportunity=Opportunity::create($input);
         $opportunity->activity_type=$activityType->id;
