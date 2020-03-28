@@ -76,15 +76,15 @@ class VolunteerController extends Controller
         } 
         //interest
         $vInterest=$input["volunteer_interest"];
-        $createdVolunteerInterest=new VolunteerInterest();
+        $createdVolunteerInterest=new VolunteerInterest();        
+        $createdVolunteerInterest->volunteer_id=$volunteer->id;
         foreach($vInterest as $interest) {
             $activityType=ActivityType::where('name',$interest)->get()->first();
             $createdVolunteerInterest->activity_id=$activityType->id;
-            $createdVolunteerInterest->volunteer_id=$volunteer->id;
             if(!$createdVolunteerInterest->save()){
                 return "Couldnt save Volunteer's interest date".$createdVolunteerInterest;
             }
-            unset($createdVolunteerInterest->id);
+            unset($createdVolunteerInterest);
         }
         //language
         $volunteerLanguage=$input["language_volunteer"]; 
