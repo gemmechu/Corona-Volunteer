@@ -96,7 +96,7 @@ class VolunteerController extends Controller
                 return "Couldnt save Volunteer's language".$vLangCreated;
             } 
         }
-          return $volunteer
+          return $volunteer;
     }
 
     /**
