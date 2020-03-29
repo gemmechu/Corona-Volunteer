@@ -35,7 +35,7 @@ class Volunteer extends Model
  
 
     public function setNewApiToken(){
-        $this->attributes['api_token'] = $this->Str::uuid();
+        $this->attributes['token'] = $this->Str::uuid();
         $this->save();
     }
     
