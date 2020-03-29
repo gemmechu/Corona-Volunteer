@@ -9,8 +9,8 @@ use App\LanguageVolunteer;
 use App\ActivityType;
 use App\VolunteerAvailableOn;
 use Illuminate\Http\Request;
-use Eastwest\Json\Json;
-use Eastwest\Json\JsonException;
+//use Eastwest\Json\Json;
+//use Eastwest\Json\JsonException;
 class VolunteerController extends Controller
 {
     /**

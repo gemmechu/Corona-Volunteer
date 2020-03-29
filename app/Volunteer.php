@@ -3,7 +3,7 @@
 namespace App;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Passport\HasApiTokens;
+//use Laravel\Passport\HasApiTokens;
 
 class Volunteer extends Model
 {
