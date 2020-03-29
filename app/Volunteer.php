@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Volunteer extends Model
 {
-    use HasApiTokens, Notifiable;
+    //use HasApiTokens, Notifiable;
     protected $table = "volunteer";
   
     protected $primaryKey = 'id';
