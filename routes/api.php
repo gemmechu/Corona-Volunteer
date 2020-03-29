@@ -89,7 +89,7 @@ Route::post('/volunteerInterest','VolunteerInterestController@store');
 Route::put('/volunteerInterest/{id}','VolunteerInterestController@update');
 Route::delete('/volunteerInterest/{id}','VolunteerInterestController@destroy');
 
-Route::get('/volunteer','VolunteerController@index')->middleware('auth:api');
+Route::get('/volunteer','VolunteerController@index');
 Route::get('/volunteer/{id}','VolunteerController@show')->middleware('auth:api');
 Route::post('/volunteer','VolunteerController@store');
 Route::put('/volunteer/{id}','VolunteerController@update')->middleware('auth:api');
