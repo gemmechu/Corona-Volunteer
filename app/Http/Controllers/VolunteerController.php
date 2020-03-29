@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Volunteer;
 use App\Contact;
+use App\User;
 use App\VolunteerInterest;
 use App\LanguageVolunteer;
 use App\ActivityType;
@@ -13,6 +14,13 @@ use Eastwest\Json\Json;
 use Eastwest\Json\JsonException;
 class VolunteerController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except('index','show','store');
+    }
+
+   
     /**
      * Display a listing of the resource.
      *
@@ -96,8 +104,12 @@ class VolunteerController extends Controller
                 return "Couldnt save Volunteer's language".$vLangCreated;
             } 
         }
+        $user = new User();
+        $user->name =  $input["first_name"];
+        $user->email =  $input["email"];
+        $user->password = $input["password"];
           //return $volunteer;
-          return response()->json(['success'=>$volunteer],200);
+          return response()->json(['success'=>$user],200);
     }
 
     /**
