@@ -14,7 +14,7 @@ class AddTokenToVolunteerTable extends Migration
     public function up()
     {
         Schema::table('volunteer', function (Blueprint $table) {
-            $table->string("token");
+            $table->string("api_token");
         });
     }
 
