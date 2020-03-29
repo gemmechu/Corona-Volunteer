@@ -1,9 +1,17 @@
 <template>
   <v-container
     id="authenticate"
-    fluid
     tag="section"
   >
+    <v-row v-if="noUser == true">
+      <v-alert
+        type="error"
+        dismissible
+        class="pa-2"
+      >
+        Username or Passord incorrect
+      </v-alert>
+    </v-row>
     <v-row justify="center">
       <v-col
         cols="12"
@@ -288,6 +296,7 @@
   import axios from 'axios'
   export default {
     data: () => ({
+      noUser: false,
       snackbar: false,
       text: 'Failed to Register. Please try again',
       timeout: 2000,
@@ -371,9 +380,16 @@
         this.vol = {}
         this.vol.email = this.email
         this.vol.password = this.password
-        axios({ method: 'GET', url: 'https://stormy-meadow-78369.herokuapp.com/api/volunteer', data: this.vol, headers: { 'content-type': 'application/json' } }).then(result => {
+        axios({
+          method: 'GET',
+          url: 'https://stormy-meadow-78369.herokuapp.com/api/volunteer',
+          data: this.vol,
+          headers: { 'content-type': 'application/json' },
+        }).then(result => {
           if (result.data[0].email === this.email && result.data[0].password === this.password) {
             this.$router.push('volunteers')
+          } else {
+            this.noUser = true
           }
         }, error => {
           console.error(error)

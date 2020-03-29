@@ -12,18 +12,29 @@
         <base-material-card color="info">
           <template v-slot:heading>
             <div class="display-2 font-weight-light">
-              Opportunity Details
+              {{ opportunity.name }}
             </div>
-
           </template>
-          "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-          "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-          <br>
-          "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-          "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-          <br>
-          "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-          "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+          <div class="ml-5">
+            <h3>Status</h3>
+            <span>{{ opportunity.status }}</span>
+            <br>
+            <h3>Start Date</h3>
+            <span>{{ opportunity.start_date }}</span>
+            <br>
+            <h3>End Date</h3>
+            <span>{{ opportunity.end_date }}</span>
+            <br>
+            <h3>Minimum Age</h3>
+            <span>{{ opportunity.minimum_age }}</span>
+            <br>
+            <h3>Brief description</h3>
+            <span>{{ opportunity.brief_description }}</span>
+            <br>
+            <h3>Requirment description</h3>
+            <span>{{ opportunity.requirment_description }}</span>
+            <br>
+          </div>
           <v-col
             cols="12"
             class="text-right"
@@ -31,6 +42,7 @@
             <v-btn
               color="info"
               class="mr-0"
+              @click="expressInterest(opportunity.id)"
             >
               Express Interest
             </v-btn>
@@ -41,12 +53,27 @@
   </v-container>
 </template>
 <script>
+  import axios from 'axios'
   export default {
-    data: () => ({
-      first: 'joi',
-      last: 'Doe',
-      hel: this.$route.params.hostid,
-    }),
+    data: function () {
+      return {
+        opportunity: '',
+        id: this.$route.params.details,
+      }
+    },
+    mounted: function () {
+      axios.get('https://stormy-meadow-78369.herokuapp.com/api/opportunity/' + this.id)
+        .then(response => (this.opportunity = response.data))
+        .catch(console.log('error occured'))
+        .finally(console.log('loading complete'))
+    },
+    methods: {
+      expressInterest (opId) {
+        /** To do alert box saying are you sure
+        //if yes send email
+        //else return**/
+      },
+    },
   }
 </script>
 <style>

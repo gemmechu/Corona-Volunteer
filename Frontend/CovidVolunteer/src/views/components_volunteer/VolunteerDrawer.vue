@@ -112,6 +112,11 @@
           to: '/volunteers',
         },
         {
+          icon: 'mdi-view-list',
+          title: 'Opportunities',
+          to: '/opportunities',
+        },
+        {
           icon: 'mdi-account',
           title: 'Calendar',
           to: '/calendar',

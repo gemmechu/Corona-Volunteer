@@ -1,7 +1,6 @@
 <template>
   <v-container
     id="volunteer"
-    fluid
     tag="section"
   >
     <v-row>

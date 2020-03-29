@@ -87,14 +87,41 @@ export default new Router({
           component: () => import('@/views/components_volunteer/VolunteerProfile'),
         },
         {
+          name: 'Opportunities',
+          path: '/opportunities',
+          component: () => import('@/views/components_volunteer/VolunteerOpportunities'),
+        },
+        {
           name: 'VolunteerDetails',
-          path: '/volunteerDetails/:details',
+          path: '/volunteerOpportunityDetails/:details',
           component: () => import('@/views/components_volunteer/VolunteerOpportunityDetails'),
         },
         {
           name: 'Calendar',
           path: '/calendar',
           component: () => import('@/views/components_volunteer/VolunteerCalendar'),
+        },
+      ],
+    },
+    {
+      path: '/Hosts',
+      component: () => import('@/views/components_host/HostIndex'),
+      children: [
+        // Dashboard
+        {
+          name: 'Home',
+          path: '/hosthome',
+          component: () => import('@/views/components_host/HostHome'),
+        },
+        {
+          name: 'Opportunity',
+          path: '/hostOpportunity',
+          component: () => import('@/views/components_host/HostOpportunityManagement'),
+        },
+        {
+          name: 'Opportunity Editor',
+          path: '/hostOpportunityEditor',
+          component: () => import('@/views/components_host/HostOpportunityEditor'),
         },
       ],
     },
