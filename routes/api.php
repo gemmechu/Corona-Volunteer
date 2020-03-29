@@ -23,11 +23,11 @@ Route::post('/activityType','ActivityTypeController@store');
 Route::put('/activityType/{id}','ActivityTypeController@update');
 Route::delete('/activityType/{id}','ActivityTypeController@destroy');
 
-Route::get('/organization','OrganizationController@index')->middleware('auth:api');
-Route::get('/organization/{id}','OrganizationController@show')->middleware('auth:api');
+Route::get('/organization','OrganizationController@index');
+Route::get('/organization/{id}','OrganizationController@show');
 Route::post('/organization','OrganizationController@store');
-Route::put('/organization/{id}','OrganizationController@update')->middleware('auth:api');
-Route::delete('/organization/{id}','OrganizationController@destroy')->middleware('auth:api');
+Route::put('/organization/{id}','OrganizationController@update');
+Route::delete('/organization/{id}','OrganizationController@destroy');
 
 Route::get('/applicant','ApplicantController@index');
 Route::get('/applicant/{id}','ApplicantController@show');
