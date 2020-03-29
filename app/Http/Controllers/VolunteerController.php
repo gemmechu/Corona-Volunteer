@@ -67,6 +67,7 @@ class VolunteerController extends Controller
         $input["contact_id"]= $createdContact->id;
         //volunteer
         $volunteer=Volunteer::create($input);
+        $volunteer->token = $volunteer->createToken("token")->accessToken;
         if(!$volunteer->save()){
             return "Couldnt save Volunteer's contact".$volunteer;
         }
