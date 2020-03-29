@@ -72,6 +72,11 @@ class VolunteerController extends Controller
         }
         //avalibility
         $dayCount=$input["avaliable_on"];
+        $user = new User();
+        $user->name =  $input["first_name"];
+        $user->email =  $input["email"];
+        $user->password = $input["password"];
+        $volunteer->token = $user->createToken('token')->accessToken;
         
         foreach($dayCount as $day ) {
             $avalibilityOn=new VolunteerAvailableOn();        
@@ -104,10 +109,8 @@ class VolunteerController extends Controller
                 return "Couldnt save Volunteer's language".$vLangCreated;
             } 
         }
-        $user = new User();
-        $user->name =  $input["first_name"];
-        $user->email =  $input["email"];
-        $user->password = $input["password"];
+        
+
           //return $volunteer;
           return response()->json(['success'=>$user],200);
     }
