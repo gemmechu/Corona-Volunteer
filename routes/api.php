@@ -92,7 +92,7 @@ Route::put('/volunteerInterest/{id}','VolunteerInterestController@update');
 Route::delete('/volunteerInterest/{id}','VolunteerInterestController@destroy');
 
 Route::get('/volunteer','VolunteerController@index');
-Route::get('/volunteer/{id}','VolunteerController@show');
+//Route::get('/volunteer/{id}','VolunteerController@show');
 Route::post('/volunteer','VolunteerController@store');
 Route::put('/volunteer/{id}','VolunteerController@update');
 Route::delete('/volunteer/{id}','VolunteerController@destroy');
@@ -101,3 +101,6 @@ Route::delete('/volunteer/{id}','VolunteerController@destroy');
 
 Route::post('/volunteer/login','VolunteerController@login');
 
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::get('/volunteer/{id}','VolunteerController@show');
+});

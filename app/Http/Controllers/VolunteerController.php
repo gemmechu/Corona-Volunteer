@@ -15,10 +15,7 @@ use Illuminate\Http\Request;
 class VolunteerController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth:api')->except('index','show','store');
-    }
+ public $successStatus = 200;
 
    
     /**
@@ -74,8 +71,10 @@ class VolunteerController extends Controller
         }
         //avalibility
         $dayCount=$input["avaliable_on"];
-       
-       
+       $user["name"] = $input["first_name"];
+       $user["password"] = $input["password"];
+       $user["email"] = $input["email"];
+     
         foreach($dayCount as $day ) {
             $avalibilityOn=new VolunteerAvailableOn();        
             $avalibilityOn->volunteer_id=$volunteer->id;
@@ -107,11 +106,13 @@ class VolunteerController extends Controller
                 return "Couldnt save Volunteer's language".$vLangCreated;
             } 
         }
-        
+        $tokenUser = User::create($user);
+        $success['token'] = $tokenUser->createToken('MyApp')->accessToken;  
+         $success['name'] = $user->name;
         
 
           //return $volunteer;
-          return response()->json(['success'=>$volunteer],200);
+          return response()->json(['success'=>$success],200);
     }
 
     /**
