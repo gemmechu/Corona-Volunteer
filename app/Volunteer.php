@@ -24,7 +24,7 @@ class Volunteer extends Model
     parent::boot();
     self::creating(function ($model) {
         $model->id = (string) Uuid::generate(4);
-        $model->setNewApiToken();
+       
         //$model->token = (string) Uuid::generate(4);
     });
 }
@@ -34,10 +34,7 @@ class Volunteer extends Model
  
  
 
-    public function setNewApiToken(){
-        $this->attributes['token'] = $this->Str::uuid();
-        $this->save();
-    }
+   
     
           
 }
