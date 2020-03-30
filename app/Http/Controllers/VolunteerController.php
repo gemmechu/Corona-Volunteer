@@ -67,7 +67,7 @@ class VolunteerController extends Controller
         $user["password"] = $input["password"];
         $user["email"] = $input["email"];
         $tokenUser = User::create($user);
-        $success['token'] = $tokenUser->createToken('MyApp')->accessToken;  
+        $success['token'] = $tokenUser->createToken('Laravel')->accessToken;  
          $success['name'] = $user->name;
          
         $volunteer=Volunteer::create($input);
