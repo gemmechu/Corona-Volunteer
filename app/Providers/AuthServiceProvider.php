@@ -33,7 +33,8 @@ class AuthServiceProvider extends ServiceProvider
         });*/
         //
         Passport::routes();
-        Passport::ignoreMigrations();
+        Passport::personalAccessClientId('client-id');
+        //Passport::ignoreMigrations();
         //Passport::loadKeysFrom('C:/Users/Delilah Dessalegn/Documents/Bluemoon/Corona-Volunteer/storage');
        
     }
