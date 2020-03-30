@@ -3,11 +3,11 @@
 namespace App;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Passport\HasApiTokens;
+//use Laravel\Passport\HasApiTokens;
 
 class Volunteer extends Model
 {
-    use HasApiTokens;
+    //use HasApiTokens, Notifiable;
     protected $table = "volunteer";
   
     protected $primaryKey = 'id';
