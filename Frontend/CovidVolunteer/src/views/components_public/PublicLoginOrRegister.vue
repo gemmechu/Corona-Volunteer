@@ -37,6 +37,7 @@
                 <v-text-field
                   v-model="email"
                   label="Email Address"
+                  type="email"
                   class="purple-input"
                 />
               </v-col>
@@ -47,6 +48,7 @@
                 <v-text-field
                   v-model="password"
                   label="Password"
+                  type="password"
                   class="purple-input"
                 />
               </v-col>

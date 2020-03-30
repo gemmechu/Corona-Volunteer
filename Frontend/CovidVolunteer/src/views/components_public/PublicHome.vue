@@ -8,12 +8,11 @@
       cols="12"
       lg="12"
     >
-        <img
-          height="370px"
-          width="370px"
-          :src="'https://scontent.fadd1-1.fna.fbcdn.net/v/t1.15752-9/91397625_1470240889823152_7387739624845606912_n.jpg?_nc_cat=106&_nc_sid=b96e70&_nc_ohc=D4lFk4-pOLcAX8RaVF_&_nc_ht=scontent.fadd1-1.fna&oh=e2f5ecd2a47c480161d7fc773eb21330&oe=5EA543FC'"
-        >
-
+      <img
+        height="370px"
+        width="370px"
+        :src="'https://scontent.fadd1-1.fna.fbcdn.net/v/t1.15752-9/91397625_1470240889823152_7387739624845606912_n.jpg?_nc_cat=106&_nc_sid=b96e70&_nc_ohc=D4lFk4-pOLcAX8RaVF_&_nc_ht=scontent.fadd1-1.fna&oh=e2f5ecd2a47c480161d7fc773eb21330&oe=5EA543FC'"
+      >
     </v-col>
     <v-row>
       <v-col
@@ -70,45 +69,40 @@
       </v-col>
 
       <v-col
+        v-for="op of opportunities.slice(0,3)"
+        :key="op.id"
         cols="12"
+        md="4"
       >
-        <h2 class="lg-6">
-          Recent Opportunities
-        </h2>
-        <v-col>
-          <v-col
-            cols="12"
-            md="4"
-          >
-            <base-material-card
-              v-for="op of this.opportunity"
-              :key="op.id"
-              color="info"
-              class="px-5 py-3"
-            >
-              <template v-slot:heading>
-                <div class="display-2 font-weight-light">
-                  {{ op.name }}
-                </div>
+        <base-material-card
+          color="info"
+          class="px-5 py-3"
+        >
+          <template v-slot:heading>
+            <div class="display-2 font-weight-light">
+              {{ op.name }}
+            </div>
 
-                <div class="subtitle-1 font-weight-light">
-                  {{ op.start_date }}
-                </div>
-              </template>
-              <v-card-text>
-                {{ op.brief_description }}
-              </v-card-text>
-              <v-btn
-                class="ma-2"
-                outlined
-                color="info"
-                @click="Details(op)"
-              >
-                Detail
-              </v-btn>
-            </base-material-card>
-          </v-col>
-        </v-col>
+            <div class="subtitle-1 font-weight-light">
+              {{ op.end_date }}
+            </div>
+          </template>
+          <v-card-text>
+            {{ op.brief_description }}
+          </v-card-text>
+          <v-btn
+            class="ma-2"
+            outlined
+            color="info"
+            @click="Details(op)"
+          >
+            Detail
+          </v-btn>
+        </base-material-card>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
         <div class="my-2">
           <v-btn
             outlined
@@ -129,12 +123,12 @@
     name: 'Home',
     data: function () {
       return {
-        opportunity: [],
+        opportunities: [],
       }
     },
     mounted: function () {
       axios.get('https://stormy-meadow-78369.herokuapp.com/api/opportunity')
-        .then(response => (this.opportunity = response.data))
+        .then(response => (this.opportunities = response.data))
         .catch(console.log('error occured'))
         .finally(console.log('loading complete'))
     },
@@ -143,7 +137,7 @@
         this.list[index] = !this.list[index]
       },
       Details (value) {
-        this.$router.push({ path: `/volunteerDetails/${value.id}` })
+        this.$router.push({ path: `/opportunityDetails/${value.id}` })
       },
     },
   }

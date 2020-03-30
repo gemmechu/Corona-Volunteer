@@ -21,10 +21,15 @@
           <template>
             <v-card flat>
               <v-card-title>
-                Opportunity
-                <v-spacer>
-                  *
-                </v-spacer>
+                <v-btn
+                  outlined
+                  text
+                  color="info"
+                  to="/hostOpportunityCreate"
+                >
+                  Create New
+                </v-btn>
+                <v-spacer />
                 <v-text-field
                   v-model="search"
                   label="Search"
@@ -163,7 +168,7 @@
       },
 
       handleClick (value) {
-        this.$router.push({ path: `/opportunityedit/${value.Opportunity}` })
+        this.$router.push({ path: `/hostOpportunityEditor/${value.Opportunity}` })
       },
 
     },

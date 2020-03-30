@@ -116,11 +116,6 @@
           title: 'Host Management',
           to: '/hostManagement',
         },
-        {
-          icon: 'mdi-view-dashboard',
-          title: 'Opportunity Management',
-          to: '/opportunityManagement',
-        },
       ],
     }),
 

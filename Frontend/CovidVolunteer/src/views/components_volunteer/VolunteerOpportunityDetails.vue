@@ -39,13 +39,7 @@
             cols="12"
             class="text-right"
           >
-            <v-btn
-              color="info"
-              class="mr-0"
-               @click="expressInterest(opportunity.id)"
-            >
-              Express Interest
-            </v-btn>
+            <popup />
           </v-col>
         </base-material-card>
       </v-col>
@@ -54,7 +48,9 @@
 </template>
 <script>
   import axios from 'axios'
+  import popup from './../../components/PopupDialogVolunteer'
   export default {
+    components: { popup },
     data: function () {
       return {
         opportunity: '',

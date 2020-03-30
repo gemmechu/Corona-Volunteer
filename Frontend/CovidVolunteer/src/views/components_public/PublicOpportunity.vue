@@ -87,7 +87,7 @@
         alert(event.title)
       },
       handleClick (value) {
-        this.$router.push({ path: `/volunteerDetails/${value.id}` })
+        this.$router.push({ path: `/opportunityDetails/${value.id}` })
       },
     },
   }

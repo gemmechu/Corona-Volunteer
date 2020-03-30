@@ -18,9 +18,9 @@ export default new Router({
           component: () => import('@/views/components_public/PublicHome'),
         },
         {
-          name: 'Volunteer',
-          path: '/volunteer',
-          component: () => import('@/views/components_public/PublicVolunteer'),
+          name: 'Opportuniry',
+          path: '/Opportuniry',
+          component: () => import('@/views/components_public/PublicOpportunity'),
         },
         {
           name: 'Host',
@@ -33,8 +33,8 @@ export default new Router({
           component: () => import('@/views/components_public/PublicLoginOrRegister'),
         },
         {
-          name: 'VolunteerDetails',
-          path: '/volunteerDetails/:details',
+          name: 'OpportunityDetails',
+          path: '/opportunityDetails/:details',
           component: () => import('@/views/components_public/PublicOpportunityDetails'),
         },
       ],
@@ -55,19 +55,9 @@ export default new Router({
           component: () => import('@/views/components_admin/AdminHostManagement'),
         },
         {
-          name: 'Opportunity Management',
-          path: '/opportunityManagement',
-          component: () => import('@/views/components_admin/AdminOpportunityManagement'),
-        },
-        {
           name: 'Host Editor',
           path: '/hostedit/:hostid',
           component: () => import('@/views/components_admin/AdminHostEditor'),
-        },
-        {
-          name: 'Opportunity Editor',
-          path: '/opportunityedit/:opportunityid',
-          component: () => import('@/views/components_admin/AdminOpportunityEditor'),
         },
       ],
     },
@@ -104,6 +94,7 @@ export default new Router({
       ],
     },
     {
+      // Host
       path: '/Hosts',
       component: () => import('@/views/components_host/HostIndex'),
       children: [
@@ -115,13 +106,18 @@ export default new Router({
         },
         {
           name: 'Opportunity',
-          path: '/hostOpportunity',
+          path: '/hostOpportunityManagement',
           component: () => import('@/views/components_host/HostOpportunityManagement'),
         },
         {
           name: 'Opportunity Editor',
-          path: '/hostOpportunityEditor',
+          path: '/hostOpportunityEditor/:opportunityId',
           component: () => import('@/views/components_host/HostOpportunityEditor'),
+        },
+        {
+          name: 'Create Opportunity',
+          path: '/hostOpportunityCreate',
+          component: () => import('@/views/components_host/HostOpportunityCreate'),
         },
       ],
     },

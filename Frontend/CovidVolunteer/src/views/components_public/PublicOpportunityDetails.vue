@@ -1,7 +1,6 @@
 <template>
   <v-container
     id="opportunityDetails"
-    fluid
     tag="section"
   >
     <v-row>
@@ -39,13 +38,7 @@
             cols="12"
             class="text-right"
           >
-            <v-btn
-              color="info"
-              class="mr-0"
-              @click="expressInterest(opportunity.id)"
-            >
-              Express Interest
-            </v-btn>
+            <popup />
           </v-col>
         </base-material-card>
       </v-col>
@@ -54,7 +47,9 @@
 </template>
 <script>
   import axios from 'axios'
+  import Popup from './../../components/PopupDialog'
   export default {
+    components: { Popup },
     data: function () {
       return {
         opportunity: '',

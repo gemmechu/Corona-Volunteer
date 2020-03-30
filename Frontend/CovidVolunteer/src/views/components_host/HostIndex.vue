@@ -13,8 +13,8 @@
     name: 'Index',
 
     components: {
-      DashboardCoreAppBar: () => import('@/views/components_public/PublicAppBar'),
-      DashboardCoreDrawer: () => import('@/views/components_admin/AdminDrawer'),
+      DashboardCoreAppBar: () => import('@/views/components_admin/AllAppBar'),
+      DashboardCoreDrawer: () => import('@/views/components_host/HostDrawer'),
       DashboardCoreView: () => import('@/views/dashboard/components/core/View'),
     },
 

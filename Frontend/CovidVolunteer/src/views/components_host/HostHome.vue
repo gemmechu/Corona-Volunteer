@@ -18,8 +18,8 @@
         <base-material-stats-card
           color="info"
           icon="mdi-circle"
-          title="No of Opportunity"
-          value="237"
+          title="No of Your Opportunity"
+          value="30"
           sub-icon="mdi-dropbox"
           sub-text="Show more"
         />
@@ -33,25 +33,10 @@
         <base-material-stats-card
           color="success"
           icon="mdi-circle"
-          title="No of Volunteer"
+          title="No Applied Volunteers"
           value="109"
           sub-icon="mdi-more"
           sub-text="showmore"
-        />
-      </v-col>
-
-      <v-col
-        cols="12"
-        sm="4"
-        lg="3"
-      >
-        <base-material-stats-card
-          color="success"
-          icon="mdi-circle"
-          title="No of Hosts"
-          value="30"
-          sub-icon="mdi-clock"
-          sub-text="show more"
         />
       </v-col>
 
@@ -71,7 +56,7 @@
         >
           <template v-slot:heading>
             <div class="display-2 font-weight-bold">
-              Host insight
+              Opportunity insight
             </div>
 
             <div class="subtitle-1 font-weight-light">
@@ -81,22 +66,22 @@
           <v-card-text>
             <v-list-item two-line>
               <v-list-item-content>
-                <v-list-item-title>Accepted</v-list-item-title>
-                <v-list-item-subtitle>190</v-list-item-subtitle>
+                <v-list-item-title>Active</v-list-item-title>
+                <v-list-item-subtitle>9</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
 
             <v-list-item two-line>
               <v-list-item-content>
-                <v-list-item-title>Pending</v-list-item-title>
+                <v-list-item-title>in Active</v-list-item-title>
                 <v-list-item-subtitle>12</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
 
             <v-list-item two-line>
               <v-list-item-content>
-                <v-list-item-title>Denied</v-list-item-title>
-                <v-list-item-subtitle>30</v-list-item-subtitle>
+                <v-list-item-title>Total</v-list-item-title>
+                <v-list-item-subtitle>21</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-card-text>
