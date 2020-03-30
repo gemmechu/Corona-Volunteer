@@ -63,15 +63,16 @@ class VolunteerController extends Controller
         $input = $request->all();  
         $input["contact_id"]= $createdContact->id;
         //volunteer
+        $user["name"] = $input["first_name"];
+        $user["password"] = $input["password"];
+        $user["email"] = $input["email"];
+        $tokenUser = User::create($user);
+        $success['token'] = $tokenUser->createToken('MyApp')->accessToken;  
+         $success['name'] = $user->name;
+         
         $volunteer=Volunteer::create($input);
        // $volunteer->token = $volunteer->createToken("token")->accessToken;
-       $user["name"] = $input["first_name"];
-       $user["password"] = $input["password"];
-       $user["email"] = $input["email"];
-       $tokenUser = User::create($user);
-       $success['token'] = $tokenUser->createToken('MyApp')->accessToken;  
-        $success['name'] = $user->name;
-        $volunteer["token"] = $success["token"];
+       $volunteer->token = $success["token"];
        if(!$volunteer->save()){
             return "Couldnt save Volunteer's contact".$volunteer;
         }
