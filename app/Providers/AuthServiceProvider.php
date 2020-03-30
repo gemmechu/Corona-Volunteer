@@ -28,11 +28,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         
-        Auth::extend('api_token', function ($app, $name, array $config) {
+        /*Auth::extend('api_token', function ($app, $name, array $config) {
             return new TokenGuard(Auth::createVolunteerProvider($config['provider']), $app->request);
-        });
+        });*/
         //
-        //Passport::routes();
+        Passport::routes();
         //Passport::ignoreMigrations();
        
     }
