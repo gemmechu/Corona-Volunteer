@@ -65,15 +65,18 @@ class VolunteerController extends Controller
         //volunteer
         $volunteer=Volunteer::create($input);
        // $volunteer->token = $volunteer->createToken("token")->accessToken;
-       $volunteer->setNewApiToken(); 
+       $user["name"] = $input["first_name"];
+       $user["password"] = $input["password"];
+       $user["email"] = $input["email"];
+       $tokenUser = User::create($user);
+       $success['token'] = $tokenUser->createToken('MyApp')->accessToken;  
+        $success['name'] = $user->name;
+        $volunteer["token"] = $success["token"];
        if(!$volunteer->save()){
             return "Couldnt save Volunteer's contact".$volunteer;
         }
         //avalibility
         $dayCount=$input["avaliable_on"];
-       $user["name"] = $input["first_name"];
-       $user["password"] = $input["password"];
-       $user["email"] = $input["email"];
      
         foreach($dayCount as $day ) {
             $avalibilityOn=new VolunteerAvailableOn();        
@@ -106,9 +109,7 @@ class VolunteerController extends Controller
                 return "Couldnt save Volunteer's language".$vLangCreated;
             } 
         }
-        $tokenUser = User::create($user);
-        $success['token'] = $tokenUser->createToken('MyApp')->accessToken;  
-         $success['name'] = $user->name;
+       
         
 
           //return $volunteer;
