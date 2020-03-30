@@ -34,7 +34,7 @@ class AuthServiceProvider extends ServiceProvider
         //
         Passport::routes();
         Passport::ignoreMigrations();
-        Passport::loadKeysFrom('C:/Users/Delilah Dessalegn/Documents/Bluemoon/Corona-Volunteer/storage');
+        //Passport::loadKeysFrom('C:/Users/Delilah Dessalegn/Documents/Bluemoon/Corona-Volunteer/storage');
        
     }
 }
