@@ -11,6 +11,7 @@ use App\OpportunityLanguageRequirment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Webpatser\Uuid\Uuid;
+use Illuminate\Support\Collection;
 class OpportunityController extends Controller
 {
     /**
@@ -80,6 +81,7 @@ class OpportunityController extends Controller
      */
     public function opportunityByOrganizationId()
     {
+        $input = $request->all(); 
         $opportunity=Opportunity::where('organization_id',$input["organization_id"])
                               ->get();
         return $opportunity;
@@ -92,9 +94,16 @@ class OpportunityController extends Controller
      */
     public function applicantsForAnOpportunity()
     {
-        $opportunity=Applicant::where('opportunity_id',$input["opportunity_id"])
+        $input = $request->all(); 
+        $collection = collect([]);
+        $applicants=Applicant::where('opportunity_id',$input["opportunity_id"])
                               ->get();
-        return $opportunity;
+        foreach($applicant as $applicants ) {
+           $volunteer=Volunteer::where('id',$applicant->volunteer_id)
+                              ->get().first();
+            $collection->put($applicant->id,$volunteer);
+        }
+        return $collection;
     }
     public function update(Request $request,  $id)
     {
