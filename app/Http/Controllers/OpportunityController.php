@@ -98,7 +98,7 @@ class OpportunityController extends Controller
         $collection = collect();
         $applicants=Applicant::where('opportunity_id',$input["opportunity_id"])
                               ->get();
-        foreach($applicant as $applicants ) {
+        foreach($applicants as $applicant ) {
            $volunteer=Volunteer::where('id',$applicant->volunteer_id)
                               ->get().first();
             $collection->put($applicant->id,$volunteer);
