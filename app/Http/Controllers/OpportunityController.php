@@ -82,8 +82,14 @@ class OpportunityController extends Controller
     public function opportunityByOrganizationId(Request $request)
     {
         $input = $request->all(); 
-        $opportunity=Opportunity::where('organization_id',$input["organization_id"])
+        $opportunitys=Opportunity::where('organization_id',$input["organization_id"])
                               ->get();
+        foreach($opportunitys as $opportunity ) {
+            $contact=Contact::findOrFail($opportunity->contact_id);
+            $opportunity->contact_id=$contact; 
+            $activityType=ActivityType::findOrFail($opportunity->activity_type);
+            $opportunity->activity_type=$activityType;
+        }
         return $opportunity;
     }
     /**
