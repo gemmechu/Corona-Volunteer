@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Volunteer;
+use App\Applicant;
 use App\Opportunity;
 use App\ActivityType;
 use App\Contact;
@@ -71,7 +72,30 @@ class OpportunityController extends Controller
     {
         return Opportunity::find($id);
     }
-
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Opportunity  $Opportunity
+     * @return \Illuminate\Http\Response
+     */
+    public function opportunityByOrganizationId()
+    {
+        $opportunity=Opportunity::where('organization_id',$input["organization_id"])
+                              ->get();
+        return $opportunity;
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Opportunity  $Opportunity
+     * @return \Illuminate\Http\Response
+     */
+    public function applicantsForAnOpportunity()
+    {
+        $opportunity=Applicant::where('opportunity_id',$input["opportunity_id"])
+                              ->get();
+        return $opportunity;
+    }
     public function update(Request $request,  $id)
     {
         $Opportunity = Opportunity::findOrFail($id);

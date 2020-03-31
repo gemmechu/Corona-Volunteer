@@ -62,6 +62,8 @@ Route::delete('/languageVolunteer/{id}','LanguageVolunteerController@destroy');
 Route::get('/opportunity','OpportunityController@index');
 Route::get('/opportunity/{id}','OpportunityController@show');
 Route::post('/opportunity','OpportunityController@store');
+Route::post('/opportunity/applicantsForAnOpportunity','OpportunityController@applicantsForAnOpportunity');
+Route::post('/opportunity/opportunityByOrganizationId','OpportunityController@opportunityByOrganizationId');
 Route::put('/opportunity/{id}','OpportunityController@update');
 Route::delete('/opportunity/{id}','OpportunityController@destroy');
 
@@ -73,8 +75,7 @@ Route::delete('/opportunityLanguageRequirment/{id}','OpportunityLanguageRequirme
 
 Route::get('/organization','OrganizationController@index');
 Route::get('/organization/{id}','OrganizationController@show');
-Route::post('/organization','OrganizationController@store');
-Route::put('/organization/{id}','OrganizationController@update');
+Route::post('/organization','OrganizationController@store');Route::put('/organization/{id}','OrganizationController@update');
 Route::delete('/organization/{id}','OrganizationController@destroy');
 
 Route::get('/volunteerAvailableOn','VolunteerAvailableOnController@index');
