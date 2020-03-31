@@ -36,9 +36,19 @@ class VolunteerController extends Controller
                               ->where('account_status', "active")
                               ->get()->first();
         if(empty($volunteer)){
-            return "Volunteer is not found";
-        }
-        
+            $organization=Organization::where('email',$input["email"])
+                              ->where('password', $input["password"])
+                              ->where('account_status', "active")
+                              ->get()->first();
+            if(empty($organization)){
+                return "No account exist by the specified values";
+            }else{
+                $contact=Contact::findOrFail($organization->contact_id);
+                $organization->contact_id=$contact;
+                return $organization;
+            }
+            
+        }        
         $contact=Contact::findOrFail($volunteer->contact_id);
         $volunteer->contact_id=$contact;
         return $volunteer;

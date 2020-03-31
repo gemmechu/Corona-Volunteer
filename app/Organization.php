@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Organization extends Model
 {
-   
+    public static $type="organization";
     protected $table = 'organization';
     protected $primaryKey = 'id';
             protected $fillable = [
@@ -16,6 +16,7 @@ class Organization extends Model
             ];
             protected $hidden = ['password'];
             protected $keyType = 'string';
+            
             public $incrementing = false;
 
             public static function boot(){
