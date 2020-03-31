@@ -390,7 +390,7 @@
           headers: { 'content-type': 'application/json' },
         }).then(result => {
           if (result.data.type === 'volunteer') {
-            if (result.data.volunteer.email === this.email && result.data.volunteer.password === this.password) {
+            if (result.data.volunteer.email === this.email) {
               store.dispatch('setUser', result.data.volunteer.id)
               this.$router.push('volunteers')
             } else {

@@ -66,6 +66,8 @@
         cols="12"
         sm="6"
         lg="3"
+        v-for="recentOpportunity of recents"
+        :key="recentOpportunity.id"
       >
         <base-material-stats-card
           color="info"
@@ -76,52 +78,6 @@
           sub-text="December 1, 2019"
         />
       </v-col>
-
-      <v-col
-        cols="12"
-        sm="6"
-        lg="3"
-      >
-        <base-material-stats-card
-          color="success"
-          icon="mdi-circle"
-          title="Opportunity B"
-          value="Accepted"
-          sub-icon="mdi-clock"
-          sub-text="December 1, 2019"
-        />
-      </v-col>
-
-      <v-col
-        cols="12"
-        sm="6"
-        lg="3"
-      >
-        <base-material-stats-card
-          color="success"
-          icon="mdi-circle"
-          title="Opportunity C"
-          value="Accepted"
-          sub-icon="mdi-clock"
-          sub-text="December 1, 2019"
-        />
-      </v-col>
-
-      <v-col
-        cols="12"
-        sm="6"
-        lg="3"
-      >
-        <base-material-stats-card
-          color="error"
-          icon="mdi-circle"
-          title="Opportunity D"
-          value="Denied"
-          sub-icon="mdi-clock"
-          sub-text="December 1, 2019"
-        />
-      </v-col>
-
       <v-col
         cols="12"
       >
@@ -166,19 +122,33 @@
 
 <script>
   import axios from 'axios'
+  import store from '../../store'
   export default {
     name: 'Home',
 
     data () {
       return {
         opportunities: [],
+        recents: [],
+        userId: {
+          volunteer_id: null,
+        },
       }
     },
     mounted: function () {
+      this.userId.volunteer_id = store.getters.getUserId
       axios.get('https://stormy-meadow-78369.herokuapp.com/api/opportunity')
         .then(response => (this.opportunities = response.data))
         .catch(console.log('error occured'))
         .finally(console.log('loading complete'))
+      axios({
+        method: 'POST',
+        url: 'https://stormy-meadow-78369.herokuapp.com/api/volunteer/myApplications',
+        data: this.userId,
+        headers: { 'content-type': 'application/json' },
+      }).then(result => {
+        this.recents = result.data
+      })
     },
     methods: {
       complete (index) {
