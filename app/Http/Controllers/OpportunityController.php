@@ -101,6 +101,8 @@ class OpportunityController extends Controller
         foreach($applicants as $applicant ) {
            $volunteer=Volunteer::where('id',$applicant->volunteer_id)
                               ->get()->first();
+            $contact=Contact::findOrFail($volunteer->contact_id);
+            $volunteer->contact_id=$contact;
             $collection->put($applicant->id,$volunteer);
         }
         return $collection;
