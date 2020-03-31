@@ -137,7 +137,20 @@ class VolunteerController extends Controller
         $volunteer=Volunteer::findOrFail($id);
         $contact=Contact::findOrFail($volunteer->contact_id);
         $volunteer->contact_id=$contact;
-        return $volunteer;
+        $volunteerAvailableOn=VolunteerAvailableOn::where('volunteer_id',$input["volunteer_id"])
+                              ->get();
+        $volunteerInterests=VolunteerInterest::where('volunteer_id',$input["volunteer_id"])
+                              ->get();
+        foreach($volunteerInterests as $volunteerInterest ) {
+            $activityType=ActivityType::where('id',$volunteerInterest->activity_id)
+                              ->get()->first();
+            $volunteerInterest->activity_id=$activityType;
+        }
+        return [
+            "volunteer" => $volunteer,
+            "availability" => $volunteerAvailableOn,
+            "volunteer_interest" => $volunteerInterests
+        ]; 
     }
     public function myApplications(Request $request)
     {
