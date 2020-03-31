@@ -45,13 +45,26 @@ class VolunteerController extends Controller
             }else{
                 $contact=Contact::findOrFail($organization->contact_id);
                 $organization->contact_id=$contact;
-                return $organization;
+                return [
+                    "id" => $organization->id,
+                    "name" =>$organization->name,
+                    "email" =>$organization->email,
+                    "account_status" =>$organization->account_status,
+                    "type" => "organization"
+                ];
             }
             
-        }        
+        }  
+             
         $contact=Contact::findOrFail($volunteer->contact_id);
         $volunteer->contact_id=$contact;
-        return $volunteer;
+         return [
+            "id" => $volunteer->id,
+            "first_name" =>$volunteer->name,
+            "email" =>$volunteer->email,
+            "account_status" =>$volunteer->account_status,
+            "type" => "volunteer"
+        ]; 
     }
     /**
      * Store a newly created resource in storage.
