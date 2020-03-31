@@ -25,11 +25,17 @@ class OrganizationController extends Controller
      */
     public function store(Request $request)
     {   
+        $input = $request->all();
+        $org=Organization::where('email',$input["email"])
+                            ->get()->first();
+        if(!empty($org)){
+            return "An organization by this email has already registered before";
+        }
         $createdContact=Contact::create($request->input("contact_id"));
         if(!$createdContact->save()){
             return "Couldnt save Volunteer's contact".$createdContact;
         }
-        $input = $request->all(); 
+         
         $input["contact_id"]= $createdContact->id;   
         $organization=Organization::create($input);
        return $organization->save()? $organization : "Couldnt save Organization" ;

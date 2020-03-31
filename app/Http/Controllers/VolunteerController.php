@@ -69,12 +69,19 @@ class VolunteerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   //Contact 
+    {   
+        $input = $request->all(); 
+        $v=Volunteer::where('email',$input["email"])
+                            ->get()->first();
+        if(!empty($v)){
+            return "This volunteer has already registered before";
+        } 
+        //Contact 
         $createdContact=Contact::create($request->input("contact_id"));
         if(!$createdContact->save()){
             return "Couldnt save Volunteer's contact".$createdContact;
         }
-        $input = $request->all();  
+         
         $input["contact_id"]= $createdContact->id;
         //volunteer
         $volunteer=Volunteer::create($input);

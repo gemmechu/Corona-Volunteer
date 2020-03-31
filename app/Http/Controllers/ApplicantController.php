@@ -25,9 +25,15 @@ class ApplicantController extends Controller
      */
     public function store(Request $request)
     {    
-        $input = $request->all();    
+        $input = $request->all(); 
+        $applicant=Applicant::where('volunteer_id',$input["volunteer_id"])
+                            ->where('opportunity_id', $input["opportunity_id"])
+                            ->get()->first();
+        if(!empty($applicant)){
+            return "This volunteer has already applied before for this opportunity";
+        } 
         $applicant=Applicant::create($input);
-       return $applicant->save()? $applicant : "Couldnt save applicant" ;
+        return $applicant->save()? $applicant : "Couldnt save applicant" ;
    
     }
 
