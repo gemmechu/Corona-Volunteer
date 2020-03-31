@@ -135,6 +135,7 @@ class VolunteerController extends Controller
     public function myApplications(Request $request)
     {
         $input = $request->all();
+        $collection = collect();
         $applicants=Applicant::where('volunteer_id',$input["volunteer_id"])
                               ->get();
         foreach($applicants as $applicant ) {
