@@ -136,7 +136,7 @@ class VolunteerController extends Controller
     {
         $input = $request->all();
         $applicants=Applicant::where('volunteer_id',$input["volunteer_id"])
-                              ->get()->first();
+                              ->get();
         foreach($applicants as $applicant ) {
             $opportunity=Opportunity::where('id',$applicant->opportunity_id)
                                  ->get()->first();
