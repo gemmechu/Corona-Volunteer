@@ -54,16 +54,13 @@ class VolunteerController extends Controller
                 ];
             }
             
-        }  
-             
+        }               
         $contact=Contact::findOrFail($volunteer->contact_id);
         $volunteer->contact_id=$contact;
          return [
-            "id" => $volunteer->id,
-            "first_name" =>$volunteer->name,
-            "email" =>$volunteer->email,
-            "account_status" =>$volunteer->account_status,
+            "volunteer" => $volunteer,
             "type" => "volunteer"
+
         ]; 
     }
     /**
