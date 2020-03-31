@@ -79,7 +79,7 @@ class OpportunityController extends Controller
      * @param  \App\Opportunity  $Opportunity
      * @return \Illuminate\Http\Response
      */
-    public function opportunityByOrganizationId()
+    public function opportunityByOrganizationId(Request $request)
     {
         $input = $request->all(); 
         $opportunity=Opportunity::where('organization_id',$input["organization_id"])
@@ -92,7 +92,7 @@ class OpportunityController extends Controller
      * @param  \App\Opportunity  $Opportunity
      * @return \Illuminate\Http\Response
      */
-    public function applicantsForAnOpportunity()
+    public function applicantsForAnOpportunity(Request $request)
     {
         $input = $request->all(); 
         $collection = collect();
