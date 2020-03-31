@@ -296,6 +296,7 @@
 
 <script>
   import axios from 'axios'
+  import store from '../../store'
   export default {
     data: () => ({
       noUser: false,
@@ -383,13 +384,20 @@
         this.vol.email = this.email
         this.vol.password = this.password
         axios({
-          method: 'GET',
-          url: 'https://stormy-meadow-78369.herokuapp.com/api/volunteer',
+          method: 'POST',
+          url: 'https://stormy-meadow-78369.herokuapp.com/api/login',
           data: this.vol,
           headers: { 'content-type': 'application/json' },
         }).then(result => {
-          if (result.data[0].email === this.email && result.data[0].password === this.password) {
-            this.$router.push('volunteers')
+          if (result.data.type === 'volunteer') {
+            if (result.data.volunteer.email === this.email && result.data.volunteer.password === this.password) {
+              store.dispatch('setUser', result.data.volunteer.id)
+              this.$router.push('volunteers')
+            } else {
+              this.noUser = true
+            }
+          } else if (result.data.type === 'host') {
+            // Do the Host side
           } else {
             this.noUser = true
           }
