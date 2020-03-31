@@ -75,7 +75,8 @@ Route::delete('/opportunityLanguageRequirment/{id}','OpportunityLanguageRequirme
 
 Route::get('/organization','OrganizationController@index');
 Route::get('/organization/{id}','OrganizationController@show');
-Route::post('/organization','OrganizationController@store');Route::put('/organization/{id}','OrganizationController@update');
+Route::post('/organization','OrganizationController@store');
+Route::put('/organization/{id}','OrganizationController@update');
 Route::delete('/organization/{id}','OrganizationController@destroy');
 
 Route::get('/volunteerAvailableOn','VolunteerAvailableOnController@index');

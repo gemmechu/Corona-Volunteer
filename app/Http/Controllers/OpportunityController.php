@@ -95,7 +95,7 @@ class OpportunityController extends Controller
     public function applicantsForAnOpportunity()
     {
         $input = $request->all(); 
-        $collection = collect([]);
+        $collection = collect();
         $applicants=Applicant::where('opportunity_id',$input["opportunity_id"])
                               ->get();
         foreach($applicant as $applicants ) {
