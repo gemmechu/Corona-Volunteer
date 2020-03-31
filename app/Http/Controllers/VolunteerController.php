@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Organization;
 use App\Volunteer;
 use App\Contact;
 use App\VolunteerInterest;
