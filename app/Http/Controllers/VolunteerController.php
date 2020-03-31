@@ -33,7 +33,7 @@ class VolunteerController extends Controller
         $input = $request->all();
         $volunteer=Volunteer::where('email',$input["email"])
                               ->where('password', $input["password"])
-                              ->where('account_status', "active")
+                              ->where('account_status', "approved")
                               ->get()->first();
         if(empty($volunteer)){
             $organization=Organization::where('email',$input["email"])
