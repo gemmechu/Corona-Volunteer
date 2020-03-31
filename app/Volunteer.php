@@ -18,6 +18,7 @@ class Volunteer extends Model
         'educational_level','employment_status','contact_id',
         'disability_status','id_image','account_status','token'
     ];
+    protected $hidden = ['password'];
     protected $keyType = 'string';
     public $incrementing = false;
 

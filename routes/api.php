@@ -94,6 +94,7 @@ Route::delete('/volunteerInterest/{id}','VolunteerInterestController@destroy');
 Route::get('/volunteer','VolunteerController@index');
 Route::get('/volunteer/{id}','VolunteerController@show');
 Route::post('/volunteer','VolunteerController@store');
+Route::post('/volunteer/myApplications','VolunteerController@myApplications');
 Route::put('/volunteer/{id}','VolunteerController@update');
 Route::delete('/volunteer/{id}','VolunteerController@destroy');
 

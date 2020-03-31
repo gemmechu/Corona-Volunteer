@@ -130,7 +130,21 @@ class VolunteerController extends Controller
         $volunteer->contact_id=$contact;
         return $volunteer;
     }
-
+    public function myApplications(Request $request)
+    {
+        $input = $request->all();
+        $applicants=Applicant::where('volunteer_id',$input["volunteer_id"])
+                              ->get()->first();
+        foreach($applicants as $applicant ) {
+            $opportunity=Opportunity::where('id',$applicant->opportunity_id)
+                                 ->get()->first();
+            $contact=Contact::findOrFail($opportunity->contact_id);
+            $opportunity->contact_id=$contact;
+            $collection->put($opportunity->id,["opportunity"=>$opportunity,"application_status"=>$applicant->status]);
+        }
+        return $collection;
+        
+    }
     public function update(Request $request,  $id)
     {
         $volunteer = Volunteer::findOrFail($id);       

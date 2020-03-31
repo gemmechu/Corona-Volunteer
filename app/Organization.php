@@ -14,7 +14,7 @@ class Organization extends Model
                 'contact_id',
                 'website','account_status'
             ];
-            //protected $hidden = ['password'];
+            protected $hidden = ['password'];
             protected $keyType = 'string';
             
             public $incrementing = false;

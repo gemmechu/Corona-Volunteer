@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Applicant;
+use App\ApprovedApplicant;
 use Illuminate\Http\Request;
 
 class ApplicantController extends Controller
@@ -46,7 +46,19 @@ class ApplicantController extends Controller
     {
         $applicant = Applicant::findOrFail($id);
         $input = $request->all();
-        return $applicant->fill($input)->save(); 
+        if (empty($input["status"])){
+            if($input["status"]=="accepted"){
+                $approvedApplicant=new ApprovedApplicant();        
+                $approvedApplicant->applicant_id=$input["applicant_id"];
+                if(!$approvedApplicant->save()){
+                    return "Couldnt save approved applicant";
+                }                
+            }
+        }
+        if($applicant->fill($input)->save()){
+            return ; 
+        }
+        return "Couldnt update status";
     }
     /**
      * Remove the specified resource from storage.
