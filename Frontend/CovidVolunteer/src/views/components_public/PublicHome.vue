@@ -113,11 +113,18 @@
           </v-btn>
         </div>
       </v-col>
+      <div
+        v-for="a in myauth"
+        :key="a.id"
+      >
+        {{ a.email }}
+      </div>
     </v-row>
   </v-container>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import axios from 'axios'
   export default {
     name: 'Home',
@@ -126,6 +133,7 @@
         opportunities: [],
       }
     },
+    computed: mapGetters(['myauth']),
     mounted: function () {
       axios.get('https://stormy-meadow-78369.herokuapp.com/api/opportunity')
         .then(response => (this.opportunities = response.data))

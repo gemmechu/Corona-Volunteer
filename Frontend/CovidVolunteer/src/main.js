@@ -15,6 +15,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import auth from './storea/'
 import './plugins/base'
 import './plugins/chartist'
 import './plugins/vee-validate'
@@ -34,6 +35,7 @@ Vue.use(DaySpanVuetify, {
 new Vue({
   router,
   store,
+  auth,
   vuetify,
   i18n,
   render: h => h(App),
