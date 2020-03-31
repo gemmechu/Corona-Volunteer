@@ -100,7 +100,7 @@ class OpportunityController extends Controller
                               ->get();
         foreach($applicants as $applicant ) {
            $volunteer=Volunteer::where('id',$applicant->volunteer_id)
-                              ->get().first();
+                              ->get()->first();
             $collection->put($applicant->id,$volunteer);
         }
         return $collection;
