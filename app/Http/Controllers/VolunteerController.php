@@ -7,6 +7,8 @@ use App\Contact;
 use App\VolunteerInterest;
 use App\LanguageVolunteer;
 use App\ActivityType;
+use App\Applicant;
+use App\Opportunity;
 use App\VolunteerAvailableOn;
 use Illuminate\Http\Request;
 //use Eastwest\Json\Json;
