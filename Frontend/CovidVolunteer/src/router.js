@@ -2,8 +2,16 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 Vue.use(Router)
-
-export default new Router({
+function guardMyroute (to, from, next) {
+    if (localStorage.getItem('userId') !== '-Infinity') {
+    next()
+  } else {
+    next({
+      path: '/authenticate',
+    })
+  }
+}
+const router = new Router({
   mode: 'hash',
   base: process.env.BASE_URL,
   routes: [
@@ -48,16 +56,19 @@ export default new Router({
           name: 'Home',
           path: '',
           component: () => import('@/views/components_admin/AdminHome'),
+          beforeEnter: guardMyroute,
         },
         {
           name: 'Host Management',
           path: '/hostManagement',
           component: () => import('@/views/components_admin/AdminHostManagement'),
+          beforeEnter: guardMyroute,
         },
         {
           name: 'Host Editor',
           path: '/hostedit/:hostid',
           component: () => import('@/views/components_admin/AdminHostEditor'),
+          beforeEnter: guardMyroute,
         },
       ],
     },
@@ -70,26 +81,31 @@ export default new Router({
           name: 'Home',
           path: '',
           component: () => import('@/views/components_volunteer/VolunteerHome'),
+          beforeEnter: guardMyroute,
         },
         {
           name: 'Profile',
           path: '/profile',
           component: () => import('@/views/components_volunteer/VolunteerProfile'),
+          beforeEnter: guardMyroute,
         },
         {
           name: 'Opportunities',
           path: '/opportunities',
           component: () => import('@/views/components_volunteer/VolunteerOpportunities'),
+          beforeEnter: guardMyroute,
         },
         {
           name: 'VolunteerDetails',
           path: '/volunteerOpportunityDetails/:details',
           component: () => import('@/views/components_volunteer/VolunteerOpportunityDetails'),
+          beforeEnter: guardMyroute,
         },
         {
           name: 'Calendar',
           path: '/calendar',
           component: () => import('@/views/components_volunteer/VolunteerCalendar'),
+          beforeEnter: guardMyroute,
         },
       ],
     },
@@ -103,23 +119,28 @@ export default new Router({
           name: 'Home',
           path: '/hosthome',
           component: () => import('@/views/components_host/HostHome'),
+          beforeEnter: guardMyroute,
         },
         {
           name: 'Opportunity',
           path: '/hostOpportunityManagement',
           component: () => import('@/views/components_host/HostOpportunityManagement'),
+          beforeEnter: guardMyroute,
         },
         {
           name: 'Opportunity Editor',
           path: '/hostOpportunityEditor/:opportunityId',
           component: () => import('@/views/components_host/HostOpportunityEditor'),
+          beforeEnter: guardMyroute,
         },
         {
           name: 'Create Opportunity',
           path: '/hostOpportunityCreate',
           component: () => import('@/views/components_host/HostOpportunityCreate'),
+          beforeEnter: guardMyroute,
         },
       ],
     },
   ],
 })
+export default router
