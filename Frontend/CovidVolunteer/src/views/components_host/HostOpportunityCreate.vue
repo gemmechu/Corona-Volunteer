@@ -52,7 +52,7 @@
                       <v-text-field
                         v-model="computedDateFormatted"
                         label="Start Date"
-                        hint="MM/DD/YYYY format"
+                        hint="DD/MM/YYYY format"
                         persistent-hint
                         prepend-icon="event"
                         readonly
@@ -82,7 +82,7 @@
                       <v-text-field
                         v-model="computedDateFormatted2"
                         label="End Date"
-                        hint="MM/DD/YYYY format"
+                        hint="DD/MM/YYYY format"
                         persistent-hint
                         prepend-icon="event"
                         readonly
@@ -101,6 +101,8 @@
                   md="4"
                 >
                   <v-text-field
+                    v-model="minimum_age"
+                    type="number"
                     label="Minimum age"
                     class="purple-input"
                   />
@@ -113,6 +115,7 @@
                   <v-text-field
                     v-model="number_of_volunteer_needed"
                     label="number of Volunteer needed"
+                    type="number"
                     class="purple-input"
                   />
                 </v-col>
@@ -137,11 +140,11 @@
                 </v-col>
 
                 <v-col
-                  v-model="subcity"
                   cols="12"
                   md="4"
                 >
                   <v-text-field
+                    v-model="subcity"
                     label="subcity"
                     class="purple-input"
                   />
@@ -214,33 +217,6 @@
   import Axios from 'axios'
   export default {
     data: vm => ({
-      sendData: [{
-        name: 'Recieving COVID-19 airline 124',
-        status: 'active',
-        start_date: '2/5/2020',
-        end_date: '2/6/2020',
-        brief_description: 'check every incoming person',
-        requirment_description: 'check every incoming person',
-        minimum_age: 20,
-        number_of_volunteer_needed: 10,
-        number_of_avaliable_spot: 10,
-        contact_id: {
-          region: 'central',
-          zone: '09',
-          city: 'addis ababa',
-          subcity: 'yeka',
-          woreda: '08',
-          house_number: 'new',
-          phone_number: '+25267783920',
-          emergency_contact: '+25163884829',
-        },
-        organization_id: 'bluemoon@gmailcom',
-        activity_type: '1e7c27f5-cac0-4db2-94d4-e13f5974394e',
-        opportunity_language_requirment: [
-          { name: 'amharic', degree_proficency: 'advanced' },
-          { name: 'afaan oromo', degree_proficency: 'beginer' },
-        ],
-      }],
       select: null,
       items: [],
       date: new Date().toISOString().substr(0, 10),
@@ -251,13 +227,13 @@
       // Input Data
       name: '',
       status: 'active',
-      start_date: '2/5/2020',
-      end_date: '2/6/2020',
+      start_date: new Date().toISOString().substr(0, 10),
+      end_date: new Date().toISOString().substr(0, 10),
       brief_description: '',
       requirment_description: '',
-      minimum_age: '',
-      number_of_volunteer_needed: '',
-      number_of_avaliable_spot: '',
+      minimum_age: 0,
+      number_of_volunteer_needed: 0,
+      number_of_avaliable_spot: 0,
       region: 'central',
       zone: '09',
       city: '',
@@ -297,7 +273,7 @@
         if (!date) return null
 
         const [year, month, day] = date.split('-')
-        return `${month}/${day}/${year}`
+        return `${day}/${month}/${year}`
       },
       parseDate (date) {
         if (!date) return null
@@ -306,7 +282,35 @@
         return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
       },
       createOpportunity () {
-        console.log(this.computedDateFormatted)
+        Axios.post('https://stormy-meadow-78369.herokuapp.com/api/opportunity',
+                   {
+                     name: this.name,
+                     status: 'active',
+                     start_date: this.computedDateFormatted,
+                     end_date: this.computedDateFormatted2,
+                     brief_description: this.brief_description,
+                     requirment_description: this.requirment_description,
+                     minimum_age: this.minimum_age,
+                     number_of_volunteer_needed: this.number_of_volunteer_needed,
+                     number_of_avaliable_spot: this.number_of_volunteer_needed,
+                     contact_id: {
+                       region: 'central',
+                       zone: '09',
+                       city: this.city,
+                       subcity: this.subcity,
+                       woreda: '08',
+                       house_number: 'new',
+                       phone_number: this.phone_number,
+                       emergency_contact: '+25163884829',
+                     },
+                     organization_id: { email: 'bluemoon@gmailcom' },
+                     activity_type: this.activity_type,
+                     opportunity_language_requirment: [
+                       { name: 'amharic', degree_proficency: 'advanced' },
+                       { name: 'afaan oromo', degree_proficency: 'beginer' },
+                     ],
+                   })
+          .catch(console.log('error happend'))
       },
     },
   }
