@@ -31,6 +31,7 @@
                   md="4"
                 >
                   <v-text-field
+                    v-model="name"
                     label="Name"
                   />
                 </v-col>
@@ -79,7 +80,7 @@
                   >
                     <template v-slot:activator="{ on }">
                       <v-text-field
-                        v-model="computedDateFormatted"
+                        v-model="computedDateFormatted2"
                         label="End Date"
                         hint="MM/DD/YYYY format"
                         persistent-hint
@@ -89,7 +90,7 @@
                       />
                     </template>
                     <v-date-picker
-                      v-model="date"
+                      v-model="date2"
                       no-title
                       @input="menu2 = false"
                     />
@@ -110,6 +111,7 @@
                   md="4"
                 >
                   <v-text-field
+                    v-model="number_of_volunteer_needed"
                     label="number of Volunteer needed"
                     class="purple-input"
                   />
@@ -125,11 +127,44 @@
                 </v-col>
                 <v-col
                   cols="12"
+                  md="4"
+                >
+                  <v-text-field
+                    v-model="city"
+                    label="City"
+                    class="purple-input"
+                  />
+                </v-col>
+
+                <v-col
+                  v-model="subcity"
+                  cols="12"
+                  md="4"
+                >
+                  <v-text-field
+                    label="subcity"
+                    class="purple-input"
+                  />
+                </v-col>
+                <v-col
+                  cols="12"
+                  md="4"
+                >
+                  <v-text-field
+                    v-model="phone_number"
+                    label="phone number"
+                    class="purple-input"
+                  />
+                </v-col>
+                <v-col
+                  cols="12"
                   md="6"
                 >
                   <v-select
-                    v-model="select"
+                    v-model="activity_type"
                     :items="items"
+                    item-value="id"
+                    item-text="name"
                     :rules="[v => !!v || 'Item is required']"
                     label="Activity Type"
                     required
@@ -140,6 +175,7 @@
                   md="12"
                 >
                   <v-textarea
+                    v-model="requirment_description"
                     outlined
                     name="input-7-4"
                     label="requirement description"
@@ -151,6 +187,7 @@
                   md="12"
                 >
                   <v-textarea
+                    v-model="brief_description"
                     outlined
                     name="input-7-4"
                     label="brief description"
@@ -162,6 +199,7 @@
                 outlined
                 text
                 color="info"
+                @click="createOpportunity"
               >
                 Create New
               </v-btn>
@@ -173,23 +211,74 @@
   </v-container>
 </template>
 <script>
+  import Axios from 'axios'
   export default {
     data: vm => ({
+      sendData: [{
+        name: 'Recieving COVID-19 airline 124',
+        status: 'active',
+        start_date: '2/5/2020',
+        end_date: '2/6/2020',
+        brief_description: 'check every incoming person',
+        requirment_description: 'check every incoming person',
+        minimum_age: 20,
+        number_of_volunteer_needed: 10,
+        number_of_avaliable_spot: 10,
+        contact_id: {
+          region: 'central',
+          zone: '09',
+          city: 'addis ababa',
+          subcity: 'yeka',
+          woreda: '08',
+          house_number: 'new',
+          phone_number: '+25267783920',
+          emergency_contact: '+25163884829',
+        },
+        organization_id: 'bluemoon@gmailcom',
+        activity_type: '1e7c27f5-cac0-4db2-94d4-e13f5974394e',
+        opportunity_language_requirment: [
+          { name: 'amharic', degree_proficency: 'advanced' },
+          { name: 'afaan oromo', degree_proficency: 'beginer' },
+        ],
+      }],
       select: null,
-      items: [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
-      ],
+      items: [],
       date: new Date().toISOString().substr(0, 10),
+      date2: new Date().toISOString().substr(0, 10),
       dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
       menu1: false,
       menu2: false,
+      // Input Data
+      name: '',
+      status: 'active',
+      start_date: '2/5/2020',
+      end_date: '2/6/2020',
+      brief_description: '',
+      requirment_description: '',
+      minimum_age: '',
+      number_of_volunteer_needed: '',
+      number_of_avaliable_spot: '',
+      region: 'central',
+      zone: '09',
+      city: '',
+      subcity: '',
+      woreda: '08',
+      house_number: 'new',
+      phone_number: '',
+      emergency_contact: '+25163884829',
+      organization_id: '',
+      activity_type: null,
+      opportunity_language_requirment: [
+        { name: 'amharic', degree_proficency: 'advanced' },
+        { name: 'afaan oromo', degree_proficency: 'beginer' },
+      ],
     }),
     computed: {
       computedDateFormatted () {
         return this.formatDate(this.date)
+      },
+      computedDateFormatted2 () {
+        return this.formatDate(this.date2)
       },
     },
 
@@ -197,6 +286,10 @@
       date (val) {
         this.dateFormatted = this.formatDate(this.date)
       },
+    },
+    mounted: function () {
+      Axios.get('https://stormy-meadow-78369.herokuapp.com/api/activityType')
+        .then(response => (this.items = response.data))
     },
 
     methods: {
@@ -211,6 +304,9 @@
 
         const [month, day, year] = date.split('/')
         return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+      },
+      createOpportunity () {
+        console.log(this.computedDateFormatted)
       },
     },
   }
