@@ -15,6 +15,7 @@ export default new Vuex.Store({
   },
   getters: {
     getUserId: state => {
+      state.userId = localStorage.getItem('userId')
       return state.userId
     },
   },
@@ -27,6 +28,7 @@ export default new Vuex.Store({
     },
     SET_USER (state, id) {
       state.userId = id
+      localStorage.setItem('userId', id)
     },
   },
   actions: {
@@ -36,9 +38,12 @@ export default new Vuex.Store({
   },
   plugins: [
     createPersistedState({
-      getState: key => Cookies.getJSON(key),
-      setState: (key, state) =>
-        Cookies.set(key, state, { expires: 3, secure: true }),
+      storage: {
+        getItem: key => Cookies.get(key),
+        setItem: (key, value) =>
+          Cookies.set(key, value, { expires: 3, secure: true }),
+        removeItem: key => Cookies.remove(key),
+      },
     }),
   ],
 })

@@ -342,9 +342,6 @@
       ],
       response: '',
     }),
-    mounted () {
-      debugger
-    },
     methods: {
       sendData () {
         axios({ method: 'POST', url: 'https://stormy-meadow-78369.herokuapp.com/api/contact', data: this.contact, headers: { 'content-type': 'application/json' } }).then(result => {

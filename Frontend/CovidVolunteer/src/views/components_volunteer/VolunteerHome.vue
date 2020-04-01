@@ -57,27 +57,29 @@
           </p>
         </base-material-card>
       </v-col>
-      <v-col
-        cols="12"
-      >
-        <h2> Opportunities Status </h2>
-      </v-col>
-      <v-col
-        cols="12"
-        sm="6"
-        lg="3"
-        v-for="recentOpportunity of recents"
-        :key="recentOpportunity.id"
-      >
-        <base-material-stats-card
-          color="info"
-          icon="mdi-circle"
-          title="Opportunity A"
-          value="Pending"
-          sub-icon="mdi-clock"
-          sub-text="December 1, 2019"
-        />
-      </v-col>
+      <div v-if="recents.length">
+        <v-col
+          cols="12"
+        >
+          <h2> Opportunities Status </h2>
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+          lg="3"
+          v-for="recentOpportunity of recents"
+          :key="recentOpportunity.id"
+        >
+          <base-material-stats-card
+            color="info"
+            icon="mdi-circle"
+            :title="recentOpportunity.opportunity.name"
+            :value="recentOpportunity.application_status"
+            sub-icon="mdi-clock"
+            :sub-text="recentOpportunity.opportunity.start_date"
+          />
+        </v-col>
+      </div>
       <v-col
         cols="12"
       >
