@@ -35,7 +35,7 @@
       class="ml-2"
       min-width="0"
       text
-      to="/"
+      @click="logout()"
     >
       Logout
     </v-btn>
@@ -54,7 +54,7 @@
 <script>
   // Utilities
   import { mapState, mapMutations } from 'vuex'
-
+  import store from '../../store'
   export default {
     name: 'DashboardCoreAppBar',
 
@@ -73,6 +73,12 @@
       ...mapMutations({
         setDrawer: 'SET_DRAWER',
       }),
+      logout () {
+        store.dispatch('clearStore')
+        this.$router.push({
+          path: '/',
+        })
+      },
     },
   }
 </script>
