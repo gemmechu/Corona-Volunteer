@@ -1,6 +1,7 @@
 <template>
   <v-container
     id="dashboard"
+    fluid=""
     tag="section"
   >
     <v-col
@@ -17,6 +18,7 @@
     <v-row>
       <v-col
         cols="12"
+        class="container"
         lg="12"
       >
         <base-material-card
