@@ -9,7 +9,7 @@
         cols="12"
         md="12"
       >
-        <h2></h2>
+        <h2 />
       </v-col>
 
       <v-col
@@ -19,7 +19,7 @@
         <base-material-card color="info">
           <template v-slot:heading>
             <div class="display-2 font-weight-bold">
-              {{ $route.params.opportunityid }} Detail
+              {{ $route.params.opportunityid }}Opportunity Detail
             </div>
 
             <div class="subtitle-1 font-weight-bold">
@@ -35,8 +35,8 @@
                   md="4"
                 >
                   <v-text-field
-                    label="Company (disabled)"
-                    disabled
+                    v-model="opportunity.name"
+                    label="Name"
                   />
                 </v-col>
 
@@ -44,106 +44,130 @@
                   cols="12"
                   md="4"
                 >
-                  <v-text-field
-                    class="purple-input"
-                    label="User Name"
-                  />
+                  <v-menu
+                    v-model="menu1"
+                    :close-on-content-click="false"
+                    transition="scale-transition"
+                    offset-y
+                    max-width="290px"
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on }">
+                      <v-text-field
+                        v-model="computedDateFormatted"
+                        label="Start Date"
+                        hint="DD/MM/YYYY format"
+                        persistent-hint
+                        prepend-icon="event"
+                        readonly
+                        v-on="on"
+                      />
+                    </template>
+                    <v-date-picker
+                      v-model="date"
+                      no-title
+                      @input="menu2 = false"
+                    />
+                  </v-menu>
                 </v-col>
-
+                <v-col
+                  cols="12"
+                  md="4"
+                >
+                  <v-menu
+                    v-model="menu2"
+                    :close-on-content-click="false"
+                    transition="scale-transition"
+                    offset-y
+                    max-width="290px"
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on }">
+                      <v-text-field
+                        v-model="computedDateFormatted2"
+                        label="End Date"
+                        hint="DD/MM/YYYY format"
+                        persistent-hint
+                        prepend-icon="event"
+                        readonly
+                        v-on="on"
+                      />
+                    </template>
+                    <v-date-picker
+                      v-model="date2"
+                      no-title
+                      @input="menu2 = false"
+                    />
+                  </v-menu>
+                </v-col>
                 <v-col
                   cols="12"
                   md="4"
                 >
                   <v-text-field
-                    label="Email Address"
-                    class="purple-input"
-                  />
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <v-text-field
-                    label="First Name"
-                    class="purple-input"
-                  />
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <v-text-field
-                    label="Last Name"
-                    class="purple-input"
-                  />
-                </v-col>
-
-                <v-col cols="12">
-                  <v-text-field
-                    label="Adress"
-                    class="purple-input"
-                  />
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="4"
-                >
-                  <v-text-field
-                    label="City"
-                    class="purple-input"
-                  />
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="4"
-                >
-                  <v-text-field
-                    label="Country"
-                    class="purple-input"
-                  />
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="4"
-                >
-                  <v-text-field
-                    class="purple-input"
-                    label="Postal Code"
+                    v-model="opportunity.minimum_age"
                     type="number"
-                  />
-                </v-col>
-
-                <v-col cols="12">
-                  <v-textarea
+                    label="Minimum age"
                     class="purple-input"
-                    label="Detail of Opportunity"
-                    value="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                   />
                 </v-col>
 
                 <v-col
                   cols="12"
-                  class="text-right"
+                  md="4"
                 >
-                  <v-btn
-                    color="info"
-                    class="mr-3"
-                  >
-                    Update
-                  </v-btn>
-                  <v-btn
-                    color="error"
-                    class="mr-3"
-                  >
-                    Delete
-                  </v-btn>
+                  <v-text-field
+                    v-model="opportunity.number_of_volunteer_needed"
+                    label="number of Volunteer needed"
+                    type="number"
+                    class="purple-input"
+                  />
+                </v-col>
+                <v-col
+                  cols="12"
+                  md="12"
+                >
+                  <v-textarea
+                    v-model="opportunity.requirment_description"
+                    outlined
+                    name="input-7-4"
+                    label="requirement description"
+                    value=""
+                  />
+                </v-col>
+                <v-col
+                  cols="12"
+                  md="12"
+                >
+                  <v-textarea
+                    v-model="opportunity.brief_description"
+                    outlined
+                    name="input-7-4"
+                    label="brief description"
+                    value=""
+                  />
                 </v-col>
               </v-row>
+              <v-btn
+                class="mr-3"
+                color="warning"
+                @click="seeVolunteer"
+              >
+                See Volunteers
+              </v-btn>
+              <v-btn
+                class="mr-3"
+                color="info"
+                @click="updateOpportunity"
+              >
+                Update
+              </v-btn>
+              <v-btn
+                color="error"
+                @click="deleteOpportunity"
+              >
+                Delete
+              </v-btn>
             </v-container>
           </v-form>
         </base-material-card>
@@ -153,7 +177,68 @@
 </template>
 
 <script>
+  import Axios from 'axios'
   export default {
-    //
+    data: function () {
+      return {
+        opportunity: '',
+        opportunity_id: this.$route.params.opportunityId,
+        select: null,
+        items: [],
+        date: new Date().toISOString().substr(0, 10),
+        date2: new Date().toISOString().substr(0, 10),
+        dateFormatted: this.formatDate(new Date().toISOString().substr(0, 10)),
+        menu1: false,
+        menu2: false,
+      }
+    },
+    computed: {
+      computedDateFormatted () {
+        return this.formatDate(this.date)
+      },
+      computedDateFormatted2 () {
+        return this.formatDate(this.date2)
+      },
+    },
+    watch: {
+      date (val) {
+        this.dateFormatted = this.formatDate(this.date)
+      },
+    },
+    mounted: function () {
+      Axios.get('https://stormy-meadow-78369.herokuapp.com/api/opportunity/' + this.opportunity_id)
+        .then(response => (this.opportunity = response.data))
+        .catch(console.log('error occured'))
+        .finally(console.log('loading complete'))
+    },
+    methods: {
+      formatDate (date) {
+        if (!date) return null
+
+        const [year, month, day] = date.split('-')
+        return `${day}/${month}/${year}`
+      },
+      parseDate (date) {
+        if (!date) return null
+
+        const [month, day, year] = date.split('/')
+        return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+      },
+      updateOpportunity () {
+        Axios.put('https://stormy-meadow-78369.herokuapp.com/api/opportunity/' + this.opportunity_id, {
+          name: this.opportunity.name,
+          minimum_age: this.opportunity.minimum_age,
+          number_of_volunteer_needed: this.opportunity.number_of_volunteer_needed,
+          requirment_description: this.opportunity.requirment_description,
+          brief_description: this.opportunity.brief_description,
+        }).then()
+      },
+      deleteOpportunity () {
+
+      },
+      seeVolunteer () {
+
+      },
+    },
   }
 </script>
