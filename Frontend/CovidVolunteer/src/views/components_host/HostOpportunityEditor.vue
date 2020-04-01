@@ -147,27 +147,42 @@
                     value=""
                   />
                 </v-col>
+                <v-overlay :value="overlay">
+                  <v-progress-circular
+                    indeterminate
+                    class="d-flex"
+                  />
+                  <v-btn
+                    icon
+                    class="d-flex"
+                    @click="overlay = false"
+                  >
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
+                </v-overlay>
               </v-row>
-              <v-btn
-                class="mr-3"
-                color="warning"
-                @click="seeVolunteer"
-              >
-                See Volunteers
-              </v-btn>
-              <v-btn
-                class="mr-3"
-                color="info"
-                @click="updateOpportunity"
-              >
-                Update
-              </v-btn>
-              <v-btn
-                color="error"
-                @click="deleteOpportunity"
-              >
-                Delete
-              </v-btn>
+              <v-row>
+                <v-btn
+                  class="mr-3"
+                  color="info"
+                  @click="updateOpportunity"
+                >
+                  Update
+                </v-btn>
+                <v-btn
+                  color="error"
+                  @click="deleteOpportunity"
+                >
+                  Delete
+                </v-btn>
+                <v-spacer />
+                <v-btn
+                  color="warning"
+                  to="/opportunityApplicant/opportunityid"
+                >
+                  See Volunteer
+                </v-btn>
+              </v-row>
             </v-container>
           </v-form>
         </base-material-card>
@@ -181,6 +196,7 @@
   export default {
     data: function () {
       return {
+        overlay: false,
         opportunity: '',
         opportunity_id: this.$route.params.opportunityId,
         select: null,
@@ -206,8 +222,9 @@
       },
     },
     mounted: function () {
+      this.overlay = true
       Axios.get('https://stormy-meadow-78369.herokuapp.com/api/opportunity/' + this.opportunity_id)
-        .then(response => (this.opportunity = response.data))
+        .then(response => (this.opportunity = response.data)).then(() => { this.overlay = false })
         .catch(console.log('error occured'))
         .finally(console.log('loading complete'))
     },
@@ -225,20 +242,27 @@
         return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
       },
       updateOpportunity () {
+        this.overlay = true
         Axios.put('https://stormy-meadow-78369.herokuapp.com/api/opportunity/' + this.opportunity_id, {
           name: this.opportunity.name,
           minimum_age: this.opportunity.minimum_age,
           number_of_volunteer_needed: this.opportunity.number_of_volunteer_needed,
           requirment_description: this.opportunity.requirment_description,
           brief_description: this.opportunity.brief_description,
-        }).then()
+        }).then(() => { this.overlay = false })
       },
       deleteOpportunity () {
-
+        this.overlay = true
+        Axios.delete('https://stormy-meadow-78369.herokuapp.com/api/opportunity/' + this.opportunity_id)
+          .then(() => { this.overlay = false })
       },
-      seeVolunteer () {
 
-      },
     },
   }
 </script>
+
+<style scoped>
+.v-progress-circular {
+  margin: 1rem;
+}
+</style>

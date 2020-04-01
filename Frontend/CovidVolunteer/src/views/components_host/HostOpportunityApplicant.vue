@@ -1,6 +1,6 @@
 <template>
   <v-container
-    id="hostManagement"
+    id="ApplicantManagement"
     fluid
     tag="section"
   >
@@ -14,7 +14,7 @@
         >
           <template v-slot:heading>
             <div class="display-2 font-weight-bold">
-              Opportunity Manager
+              Applicant Manager
             </div>
           </template>
           <v-overlay :value="overlay">
@@ -39,31 +39,23 @@
                   single-line
                   hide-details
                 />
-                <v-spacer />
-                <v-btn
-                  outlined=""
-                  color="info"
-                  to="/hostOpportunityCreate"
+                <v-data-table
+                  :headers="headers"
+                  :items="desserts"
+                  :search="search"
+                  @click:row="handleClick"
                 >
-                  Create
-                </v-btn>
+                  <template v-slot:no-results>
+                    <v-alert
+                      :value="true"
+                      color="error"
+                      icon="warning"
+                    >
+                      Your search for "{{ search }}" found no results.
+                    </v-alert>
+                  </template>
+                </v-data-table>
               </v-card-title>
-              <v-data-table
-                :headers="headers"
-                :items="desserts"
-                :search="search"
-                @click:row="handleClick"
-              >
-                <template v-slot:no-results>
-                  <v-alert
-                    :value="true"
-                    color="error"
-                    icon="warning"
-                  >
-                    Your search for "{{ search }}" found no results.
-                  </v-alert>
-                </template>
-              </v-data-table>
             </v-card>
           </template>
         </base-material-card>
@@ -79,14 +71,11 @@
       search: '',
       headers: [
         {
-          text: 'Opportunity',
+          text: 'Applicant',
           align: 'left',
           sortable: false,
-          value: 'name',
+          value: 'volunteer_id',
         },
-        { text: 'Organization', value: 'organization_id' },
-        { text: 'Type', value: 'activity_type' },
-        { text: 'Avaliable spot', value: 'number_of_avaliable_spot' },
         { text: 'Status', value: 'status' },
       ],
       desserts: [
@@ -95,8 +84,8 @@
     }),
     mounted: function () {
       this.overlay = true
-      Axios.post('https://stormy-meadow-78369.herokuapp.com/api/opportunity/opportunityByOrganizationId', {
-        organization_id: 'c16bc8fe-1b3e-49c3-89c3-e8c3d5c86915',
+      Axios.post('https://stormy-meadow-78369.herokuapp.com/api/opportunity/applicantsForAnOpportunity', {
+        opportuniy_id: '2f6049ac-1ad1-4fb0-b657-9cdb4610a753',
       },
       )
         .then(response => (this.desserts = response.data)).then(() => { this.overlay = false })

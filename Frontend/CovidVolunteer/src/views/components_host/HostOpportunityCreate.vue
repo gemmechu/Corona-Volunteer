@@ -199,8 +199,6 @@
                 </v-col>
               </v-row>
               <v-btn
-                outlined
-                text
                 color="info"
                 @click="createOpportunity"
               >
