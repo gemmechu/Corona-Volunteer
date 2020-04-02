@@ -12,6 +12,7 @@ export default new Vuex.Store({
       'https://demos.creative-tim.com/material-dashboard/assets/img/sidebar-1.jpg',
     drawer: null,
     userId: null,
+    role: null,
   },
   getters: {
     getUserId: state => {
@@ -30,12 +31,22 @@ export default new Vuex.Store({
       state.userId = id
       localStorage.setItem('userId', id)
     },
+    SET_ROLE (state, role) {
+      state.role = role
+      localStorage.setItem('role', role)
+    },
     CLEAR_STORE (state) {
       localStorage.setItem('userId', -Infinity)
+      localStorage.setItem('role', '')
       state.userId = null
+      state.role = null
     },
+
   },
   actions: {
+    setRole (context, role) {
+      context.commit('SET_ROLE', role)
+    },
     setUser (context, userId) {
       context.commit('SET_USER', userId)
     },

@@ -93,7 +93,7 @@
   import {
     mapState,
   } from 'vuex'
-
+  import store from '../../store'
   export default {
     name: 'DashboardCoreDrawer',
 
@@ -147,6 +147,12 @@
           children: item.children ? item.children.map(this.mapItem) : undefined,
           title: this.$t(item.title),
         }
+      },
+      logout () {
+        store.dispatch('clearStore')
+        this.$router.push({
+          path: '/',
+        })
       },
     },
   }

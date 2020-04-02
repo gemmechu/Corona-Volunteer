@@ -389,12 +389,19 @@
           if (result.data.type === 'volunteer') {
             if (result.data.volunteer.email === this.email) {
               store.dispatch('setUser', result.data.volunteer.id)
+              store.dispatch('setRole', result.data.type)
               this.$router.push('volunteers')
             } else {
               this.noUser = true
             }
           } else if (result.data.type === 'host') {
-            // Do the Host side
+            if (result.data.host.email === this.email) {
+              store.dispatch('setUser', result.data.volunteer.id)
+              store.dispatch('setRole', result.data.type)
+              this.$router.push('hosts')
+            } else {
+              this.noUser = true
+            }
           } else {
             this.noUser = true
           }

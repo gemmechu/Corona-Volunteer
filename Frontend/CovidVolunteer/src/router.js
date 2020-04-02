@@ -2,8 +2,26 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 Vue.use(Router)
-function guardMyroute (to, from, next) {
-    if (localStorage.getItem('userId') !== '-Infinity') {
+function guardMyRouteAdmin (to, from, next) {
+    if (localStorage.getItem('userId') !== '-Infinity' && localStorage.getItem('role') === 'admin') {
+    next()
+  } else {
+    next({
+      path: '/authenticate',
+    })
+  }
+}
+function guardMyRouteHost (to, from, next) {
+    if (localStorage.getItem('userId') !== '-Infinity' && localStorage.getItem('role') === 'host') {
+    next()
+  } else {
+    next({
+      path: '/authenticate',
+    })
+  }
+}
+function guardMyRouteVolunteer (to, from, next) {
+    if (localStorage.getItem('userId') !== '-Infinity' && localStorage.getItem('role') === 'volunteer') {
     next()
   } else {
     next({
@@ -38,74 +56,83 @@ const router = new Router({
         {
           name: 'Authenticate',
           path: '/authenticate',
-          component: () => import('@/views/components_public/PublicLoginOrRegister'),
+          component: () =>
+            import('@/views/components_public/PublicLoginOrRegister'),
         },
         {
           name: 'OpportunityDetails',
           path: '/opportunityDetails/:details',
-          component: () => import('@/views/components_public/PublicOpportunityDetails'),
+          component: () =>
+            import('@/views/components_public/PublicOpportunityDetails'),
         },
       ],
     },
     {
       path: '/admin',
       component: () => import('@/views/components_admin/AdminIndex'),
-      children: [
+      beforeEnter: guardMyRouteAdmin,
+     children: [
         // Dashboard
         {
           name: 'Home',
           path: '',
           component: () => import('@/views/components_admin/AdminHome'),
-          beforeEnter: guardMyroute,
+          beforeEnter: guardMyRouteAdmin,
         },
         {
           name: 'Host Management',
           path: '/hostManagement',
-          component: () => import('@/views/components_admin/AdminHostManagement'),
-          beforeEnter: guardMyroute,
+          component: () =>
+            import('@/views/components_admin/AdminHostManagement'),
+          beforeEnter: guardMyRouteAdmin,
         },
         {
           name: 'Host Editor',
           path: '/hostedit/:hostid',
           component: () => import('@/views/components_admin/AdminHostEditor'),
-          beforeEnter: guardMyroute,
+          beforeEnter: guardMyRouteAdmin,
         },
       ],
     },
     {
       path: '/volunteers',
       component: () => import('@/views/components_volunteer/VolunteerIndex'),
+      beforeEnter: guardMyRouteVolunteer,
       children: [
         // Dashboard
         {
           name: 'Home',
           path: '',
           component: () => import('@/views/components_volunteer/VolunteerHome'),
-          beforeEnter: guardMyroute,
+          beforeEnter: guardMyRouteVolunteer,
         },
         {
           name: 'Profile',
           path: '/profile',
-          component: () => import('@/views/components_volunteer/VolunteerProfile'),
-          beforeEnter: guardMyroute,
+          component: () =>
+            import('@/views/components_volunteer/VolunteerProfile'),
+          beforeEnter: guardMyRouteVolunteer,
         },
         {
           name: 'Opportunities',
           path: '/opportunities',
-          component: () => import('@/views/components_volunteer/VolunteerOpportunities'),
-          beforeEnter: guardMyroute,
+          component: () =>
+            import('@/views/components_volunteer/VolunteerOpportunities'),
+          beforeEnter: guardMyRouteVolunteer,
         },
         {
           name: 'VolunteerDetails',
           path: '/volunteerOpportunityDetails/:details',
-          component: () => import('@/views/components_volunteer/VolunteerOpportunityDetails'),
-          beforeEnter: guardMyroute,
+          component: () =>
+            import('@/views/components_volunteer/VolunteerOpportunityDetails'),
+          beforeEnter: guardMyRouteVolunteer,
         },
         {
           name: 'Calendar',
           path: '/calendar',
-          component: () => import('@/views/components_volunteer/VolunteerCalendar'),
-          beforeEnter: guardMyroute,
+          component: () =>
+            import('@/views/components_volunteer/VolunteerCalendar'),
+          beforeEnter: guardMyRouteVolunteer,
         },
       ],
     },
@@ -113,31 +140,35 @@ const router = new Router({
       // Host
       path: '/Hosts',
       component: () => import('@/views/components_host/HostIndex'),
+      beforeEnter: guardMyRouteHost,
       children: [
         // Dashboard
         {
           name: 'Home',
           path: '/hosthome',
           component: () => import('@/views/components_host/HostHome'),
-          beforeEnter: guardMyroute,
+          beforeEnter: guardMyRouteHost,
         },
         {
           name: 'Opportunity',
           path: '/hostOpportunityManagement',
-          component: () => import('@/views/components_host/HostOpportunityManagement'),
-          beforeEnter: guardMyroute,
+          component: () =>
+            import('@/views/components_host/HostOpportunityManagement'),
+          beforeEnter: guardMyRouteHost,
         },
         {
           name: 'Opportunity Editor',
           path: '/hostOpportunityEditor/:opportunityId',
-          component: () => import('@/views/components_host/HostOpportunityEditor'),
-          beforeEnter: guardMyroute,
+          component: () =>
+            import('@/views/components_host/HostOpportunityEditor'),
+          beforeEnter: guardMyRouteHost,
         },
         {
           name: 'Create Opportunity',
           path: '/hostOpportunityCreate',
-          component: () => import('@/views/components_host/HostOpportunityCreate'),
-          beforeEnter: guardMyroute,
+          component: () =>
+            import('@/views/components_host/HostOpportunityCreate'),
+          beforeEnter: guardMyRouteHost,
         },
       ],
     },
