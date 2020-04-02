@@ -174,7 +174,7 @@ const router = new Router({
           name: 'Applicant Management',
           path: '/opportunityApplicant/:opportunityid',
           component: () => import('@/views/components_host/HostOpportunityApplicant'),
-          beforeEnter: guardMyroute,
+          beforeEnter: guardMyRouteHost,
         },
       ],
     },
