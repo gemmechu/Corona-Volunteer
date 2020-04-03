@@ -4,6 +4,30 @@
     tag="section"
   >
     <v-row>
+      <div v-if="recents.length">
+        <v-row>
+          <v-col
+            cols="12"
+          >
+            <h2> Opportunities Status </h2>
+          </v-col>
+          <v-col
+            cols="12"
+            md="4"
+            v-for="recentOpportunity of recents"
+            :key="recentOpportunity.id"
+          >
+            <base-material-stats-card
+              color="info"
+              icon="mdi-circle"
+              :title="recentOpportunity.brief_description"
+              :value="recentOpportunity.status"
+              sub-icon="mdi-clock"
+              :sub-text="recentOpportunity.created_at"
+            />
+          </v-col>
+        </v-row>
+      </div>
       <v-col
         cols="12"
         style="padding-top:0"
@@ -60,6 +84,7 @@
     data: () => ({
       calendar: Calendar.months(),
       search: '',
+      recents: [],
       headers: [
         {
           text: 'Opportunity',
@@ -77,6 +102,10 @@
       tabs: 0,
     }),
     mounted: function () {
+      axios.get('https://stormy-meadow-78369.herokuapp.com/api/applicant')
+        .then(response => (this.recents = response.data.filter(x => x.volunteer_id === localStorage.getItem('userId'))))
+        .catch(console.log('error occured'))
+        .finally(console.log('loading complete'))
       axios.get('https://stormy-meadow-78369.herokuapp.com/api/opportunity')
         .then(response => (this.desserts = response.data))
         .catch(console.log('error occured'))

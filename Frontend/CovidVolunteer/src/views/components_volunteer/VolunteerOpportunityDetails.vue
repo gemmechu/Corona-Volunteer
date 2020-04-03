@@ -36,6 +36,7 @@
             <br>
           </div>
           <v-col
+            v-if="!applied"
             cols="12"
             class="text-right"
           >
@@ -54,6 +55,7 @@
     data: function () {
       return {
         opportunity: '',
+        applied: false,
         id: this.$route.params.details,
       }
     },
@@ -62,10 +64,27 @@
         .then(response => (this.opportunity = response.data))
         .catch(console.log('error occured'))
         .finally(console.log('loading complete'))
+      axios.get('https://stormy-meadow-78369.herokuapp.com/applicant/')
+        .then(response => (this.applied = response.data.filter(x => x.volunteer_id === localStorage.getItem('userId') && x.opportunity_id === this.id).len > 0))
+        .catch(console.log('error occured'))
+        .finally(console.log('loading complete'))
     },
     methods: {
       expressInterest (opId) {
-        this.$router.push({ path: '/authenticate' })
+        axios({
+          method: 'POST',
+          url: 'https://stormy-meadow-78369.herokuapp.com/api/volunteer/applicant/',
+          data: {
+            volunteer_id: localStorage.getItem('userId'),
+            opportunity_id: this.id,
+            brief_description: this.opportunity.brief_description,
+            status: this.opportunity.status,
+          },
+          headers: { 'content-type': 'application/json' },
+        }).then(result => {
+          this.recents = result.data
+          this.$router.push({ path: '/volunteerOpportunityDetails/' + this.id })
+        })
       },
     },
   }
